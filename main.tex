@@ -1,11 +1,22 @@
 \documentclass[12pt]{article}
 %\pointpoints{punto}{puntos}
 
-\usepackage{amsfonts, geometry, amsmath, amssymb, hyperref, cite}
+\usepackage{amsfonts, geometry, amsmath, amssymb, hyperref, cite, amsthm}
 \usepackage{algpseudocode, algorithm}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
+\usepackage{tikzit}
+\input{sample.tikzstyles}
 
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{exmp}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
 
 \def\NN{\ensuremath{\mathbb{N}}}
 \def\N{\ensuremath{\mathbb{N}}}
@@ -17,6 +28,7 @@
 \def\R{\ensuremath{\mathbb{R}}}
 \def\CC{\ensuremath{\mathbb{C}}}
 \def\FF{\ensuremath{\mathbb{F}}}
+\def\Pr{\ensuremath{\mbox{Pr}}}
 
 
 \usepackage{lastpage}
@@ -39,18 +51,111 @@
 \section{Introduction}
 
 \section{Kahn-Kalai Conjecture}
+
 \subsection{Thresholds}
+
 Let $n \in \N$ and $0 \leq p \leq 1$. The random graph $G(n, p)$ is a probability space over the set of graphs on $n$ labeled vertices determined by
-\[\text{Pr}[\{i, j\} \in G] = p\] 
-with these events mutually independent \cite{alon2016probabilistic} Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\text{Pr}[G(n, p) \vDash A]$. This is a test. try this out.
+\[\Pr[\{i, j\} \in G] = p\] 
+with these events mutually independent \cite{alon2016probabilistic}. Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. 
 
+\begin{definition}
+    $r(n)$ is a threshold function for a graph theoretic property $A$ if 
+    \begin{enumerate}
+        \item When \(p(n) \in o(r(n)), \; \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 0,\)
+        \item When \(r(n) \in o(p(n)), \;  \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 1,\) 
+    \end{enumerate}
+    or vice versa. \cite{alon2016probabilistic}
+\end{definition}
 
-\subsubsection{Threshold function for an isolated vertex}
+We give an example of a threshold function which illustrates a common method for proving that a function is a threshold. \par
 
-\subsection{}
+\subsubsection{Threshold function for having isolated vertices}
+
+Let $G$ be a graph on $n$ labeled vertices. An isolated vertex of $G$ is a vertex which does not belong to any of the edges of $G$. Let $A$ be the property that $G$ contains an isolated vertex. We will prove that $\displaystyle{r(n) = \frac{\ln n}{n}}$ is a threshold for $A$. \par
+
+For each vertex $i$ in $G$ define the variable 
+
+\[X_i = 
+\left\{
+	\begin{array}{ll}
+		1  & \mbox{if } i \text{ is an isolated vertex,} \\
+		0 & \mbox{if } i \text{ is not an isolated vertex.}
+	\end{array}
+\right.
+\]
+
+Now, the probability that a vertex $i$ is isolated $(1 - p)^{n - 1}$ since it is the probability that none of the other $n - 1$ vertices is connected to $i$. Let $X = \sum_{i = 1}^n X_i$, then the expected number of isolated vertices is thus \[E[X] = \sum_{i = 1}^{n} E[X_i] = \sum_{i = 1}^{n} \Pr[X_i] = n(1 - p)^{n - 1}.\]
+
+Let $\displaystyle{p = k\frac{\ln n}{n}}$ for $k \in \R_{>0}$. Then
+\begin{align*}
+    \lim_{n \to \infty} E[X] &= \lim_{n \to \infty} n\left(1 - k\frac{\ln n}{n}\right)^{n - 1} \\
+    &= ne^{-k\ln n} = n^{1 - k}.
+\end{align*}
+
+Therefore, $\lim_{n \to \infty} E[X] = 0$ if $k > 1$. Since \(E[X] \geq \Pr[X > 0],\) we conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] =  \lim_{n \to \infty} \Pr[X > 0] = 0.\] \par
+Now, for $k < 1$, the fact that $\lim_{n \to \infty} E[X] = \infty$ is not enough to conclude that \(\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = 1\). We have to use the second moment method. \par
+
+\begin{theorem*}
+    If $E[X] \to \infty$ and $\text{Var}[X] = o(E[X]^2)$, then $\lim_{n \to \infty} \Pr[X > 0] = 1$. \cite{alon2016probabilistic}
+\end{theorem*}
+
+We will prove that, in this case, $Var[X] = o(E[X]^2)$. First, 
+\begin{align*}
+    \sum_{i \neq j}E[X_iX_j] &= \sum_{i \neq j} \Pr[X_i = X_j = 1] \\
+    &= n(n - 1)(1 - p)^{n -1}(1 - p)^{n - 2} \\ &= n(n - 1)(1 - p)^{2n - 3},
+\end{align*}
+
+for if $i$ is an isolated vertex, then there is no edge between $i$ and $j$ so we only have to account for the remaining $n - 2$ edges that contain $j$.  \par
+
+Thus, since $\sum_{i = 1}^{n}E[X_i^2] =  \sum_{i = 1}^n E[X_i] = E[X]$ and $\lim_{n \to \infty} p = 0$,
+
+\begin{align*}
+    \lim_{n \to \infty} \frac{\text{Var}[X]}{E[X]^2} &= 
+    \lim_{n \to \infty}\frac{E(X^2) - E[X]^2}{E[X]^2} = \lim_{n \to \infty} \frac{\sum_{i = 1}^n E[X_i^2] + \sum_{i \neq j}E[X_iX_j]}{E[X]^2} - 1 \\ &= 0 + \lim_{n \to \infty} \frac{ n(n - 1)(1 - p)^{2n - 3}}{n^2(1 - p)^{2n - 2}} - 1= \lim_{n \to \infty} \frac{1}{1 - p} - 1 = 0.\\
+\end{align*} \par
+We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, if $k < 1$, \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = \lim_{n \to \infty} \Pr[X > 0] = 1.\] Therefore, $r(n) = \frac{\ln n}{n}$ is a threshold function for property $A$.
+
+\subsection{The expectation threshold}
+
+\textbf{TODO} Define increasing class and general definition of threshold \cite{park2022proof} 
+
+\noindent \textbf{TODO} Define expectation threshold and show inequalities. \cite{frankston2021thresholds}
+
+\begin{exmp}
+    $H_1$ example
+    \begin{figure}[h]
+        \centering
+        \ctikzfig{H1}
+        \caption{$H_1$}
+        \label{H1}
+    \end{figure}
+\end{exmp}
+
+\begin{exmp}
+    $H_2$ example
+    \begin{figure}[h!]
+        \centering
+        \ctikzfig{H2}
+        \caption{$H_2$}
+        \label{H2}
+    \end{figure}
+    
+\end{exmp}
+
+\begin{theorem}[Park Theorem \cite{park2022proof}, originally Kahn-Kalai Conjecture]
+\textbf{TODO}
+\end{theorem}
+
+\textbf{TODO} How to prove something is p-small
+
+\subsubsection{An application of the Park Theorem}
+
+\noindent \textbf{TODO} Prove the threshold for perfect matchings for $G(n, p)$
+
 \section{Numerical Semigroups}
 
-\section{Probabilistic Models on Numerical Semigroups}
+
+\section{Probabilistic Spaces over Numerical Semigroups}
 
 \section{Expected Frobenious Number}
 
