@@ -84,7 +84,7 @@ For each vertex $i$ in $G$ define the variable
 \right.
 \]
 
-Now, the probability that a vertex $i$ is isolated $(1 - p)^{n - 1}$ since it is the probability that none of the other $n - 1$ vertices is connected to $i$. Let $X = \sum_{i = 1}^n X_i$, then the expected number of isolated vertices is thus \[E[X] = \sum_{i = 1}^{n} E[X_i] = \sum_{i = 1}^{n} \Pr[X_i] = n(1 - p)^{n - 1}.\]
+Now, the probability that a vertex $i$ is isolated is $(1 - p)^{n - 1}$ since it is the probability that none of the other $n - 1$ vertices is connected to $i$. Let $X = \sum_{i = 1}^n X_i$, then the expected number of isolated vertices is thus \[E[X] = \sum_{i = 1}^{n} E[X_i] = \sum_{i = 1}^{n} \Pr[X_i] = n(1 - p)^{n - 1}.\]
 
 Let $\displaystyle{p = k\frac{\ln n}{n}}$ for $k \in \R_{>0}$. Then
 \begin{align*}
@@ -117,6 +117,8 @@ We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, if $k < 1$, \[\lim_{n \to
 
 \subsection{The expectation threshold}
 
+Let $X$ be a set and $p \in [0, 1]$. For $A \subset X$, let $P(A) = p^{|A|}(1 - p)^{|X \setminus A|}$. A class $\mathcal{F}$ of subsets of $X$ is increasing if for $A \in \mathcal{F}$, $A \subset B$ implies $B \in \mathcal{F}$. If $\mathcal{F}\neq \emptyset, 2^X$,  $P(\mathcal{F}) = \sum_{A \in \mathcal{F}} P(A)$ 
+ 
 \textbf{TODO} Define increasing class and general definition of threshold \cite{park2022proof} 
 
 \noindent \textbf{TODO} Define expectation threshold and show inequalities. \cite{frankston2021thresholds}
@@ -133,7 +135,7 @@ We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, if $k < 1$, \[\lim_{n \to
 
 \begin{exmp}
     $H_2$ example
-    \begin{figure}[h!]
+    \begin{figure}[h]
         \centering
         \ctikzfig{H2}
         \caption{$H_2$}
@@ -155,9 +157,9 @@ We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, if $k < 1$, \[\lim_{n \to
 \section{Numerical Semigroups}
 
 
-\section{Probabilistic Spaces over Numerical Semigroups}
+\section{Probability Spaces over Numerical Semigroups}
 
-\section{Expected Frobenious Number}
+\section{Expected Frobenius Number}
 
 \bibliography{refs}
 \bibliographystyle{ieeetr}
