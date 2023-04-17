@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.2.19)  16 APR 2023 21:32
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.2.19)  17 APR 2023 02:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -658,19 +658,19 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3] [4] [5] (./main.bbl) 
+[3] [4] [5] [6] (./main.bbl) 
 AED: lastpage setting LastPage
-[6] (./main.aux)
+[7] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: BEDF47CAC6D607D54F0CB59D104C7A2F;1713.
  ) 
 Here is how much of TeX's memory you used:
  24041 strings out of 476191
  473093 string characters out of 5812072
- 776475 words of memory out of 5000000
+ 777474 words of memory out of 5000000
  44321 multiletter control sequences out of 15000+600000
  477957 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 115i,11n,118p,444b,994s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 115i,11n,118p,552b,994s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (6 pages).
+Output written on main.pdf (7 pages).

@@ -206,7 +206,7 @@ Also, note that if $p = \frac{c}{M}$, $c \in \mathbb{R_+}$ ($0 < e^{-c} + ce^{-c
 \[\lim _{M \to \infty} E[X] = \lim_{M \to \infty} \frac{1 - e^{-c} - ce^{-c}}{p} = \infty.\]
 
 \textbf{Proof 2. }
-Fix $a \in \NN$. Consider the following events
+Fix $a \in \NN$. Consider the following events:
 \begin{itemize}
     \item $E_1$: No number less than $\frac{1}{ap}$ is selected as a generator. \par
     Let $X_1$ be the number of generators which are less than or equal than $\frac{1}{ap}$, then 
@@ -217,8 +217,19 @@ Fix $a \in \NN$. Consider the following events
     \[P\left[X_2 \leq \frac{a}{2}\right] \leq  \frac{(n - a/2)p}{(np - a/2)^2} = \frac{a - (a/2)p}{(a/2)^2} \leq \frac{4}{a},\]
     and so 
     \[P[E_2] = P\left[X_2 \geq \frac{a}{2}\right] \geq 1 - \frac{4}{a}.\]
-    \item $E_3:$ At least $\frac{a}{2}$ generators are minimal. 
+    \item $E_3:$ At most $\frac{3a}{2}$ generators between $\frac{1}{ap}$ and $\frac{a}{p} + \frac{1}{ap}$ are selected. We can use the bound (Feller \textcolor{blue}{I can add this to the appendix})
+    \[P\left[X_2 \geq \frac{3a}{2}\right] \leq  \frac{3a/2(1 - p)}{(3a/2 - a)^2} \leq \frac{6}{a},\]
+    and so 
+    \[P[E_3] = P\left[X_2 \leq \frac{3a}{2}\right] \geq 1 - \frac{6}{a}.\]
+    \item $E_4:$ All generators less than $\frac{a}{p} + \frac{1}{ap}$ are minimal. A generator is minimal if and only if it cannot be expressed as a sum of other generators. Given $E_1$, $E_2$ and $E_3$, the minimum generator is greater than $\frac{1}{ap}$ and there are less than $\frac{3a}{2}$ generators less than $\frac{a}{p} + \frac{1}{ap}$. 
+    Since \(\left(\frac{a}{p} + \frac{1}{ap}\right) / \frac{1}{ap} = a^2 + 1\), every sum of less than $a^2 + 1$ of these generators is greater than $\frac{a}{p} + \frac{1}{ap}$. We construct the generators in order. \par
+    Select the first generator, then there are at most $a^2 + 1$ multiples of this generator less than $\frac{a}{p} + \frac{1}{ap}$, so the probability for the second generator to be minimal is greater than $(1 - p)^{2^{a^2 + 1}}$. Similarly, the probability that the third generator is minimal is greater than $(1 - p)^{3^{a^2 + 1}}$, since we have to avoid every the combinations of the first two generators. If we continue, using the union bound, we get that the probability of the generators not being minimal is less than 
+    \[S(M) = \sum_{i = 1}^{\frac{3a}{2}}1 - (1 - p)^{(i + 1)^{a^2 + 1}},\]
+    which tends to 0 as $M$ tends to infinity, as $\lim_{M \to \infty}p = 0$.  
+
 \end{itemize}
+Finally, \[P[E_4] = P[E_4| E_1E_2E_3]P[E_1E_2E_3] \geq S(M)\left(1 - \frac{11}{a}\right).\] 
+Therefore, for every $N \in \NN$ and $\varepsilon > 0$, there exists $M$ and $a > N$ for which $P[E_4] > 1 - \varepsilon$.
 
 \bibliography{refs}
 \bibliographystyle{ieeetr}
