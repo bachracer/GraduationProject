@@ -205,6 +205,21 @@ Thus, since $\lim_{M \to \infty} Mp = \infty$, then $\lim_{M \to \infty }Mpe^{-M
 Also, note that if $p = \frac{c}{M}$, $c \in \mathbb{R_+}$ ($0 < e^{-c} + ce^{-c} < 1$),
 \[\lim _{M \to \infty} E[X] = \lim_{M \to \infty} \frac{1 - e^{-c} - ce^{-c}}{p} = \infty.\]
 
+\textbf{Proof 2. }
+Fix $a \in \NN$. Consider the following events
+\begin{itemize}
+    \item $E_1$: No number less than $\frac{1}{ap}$ is selected as a generator. \par
+    Let $X_1$ be the number of generators which are less than or equal than $\frac{1}{ap}$, then 
+    \[P[X_1 > 0] \leq E[X_1] = p \cdot \frac{1}{ap} = \frac{1}{a},\]
+    and so 
+    \[P[E_1] = P[X_1 = 0] \geq 1 - \frac{1}{a}.\]
+    \item $E_2:$ At least $\frac{a}{2}$ generators between $\frac{1}{ap}$ and $\frac{a}{p} + \frac{1}{ap}$ are selected. Let $X_2$ be the number of generators between $\frac{1}{ap}$ and $\frac{a}{p} + \frac{1}{ap}$, then $X_2$ is a binomial random variable with $n = \frac{a}{p}$ and we can use the bound (Feller \textcolor{blue}{I can add this to the appendix})
+    \[P\left[X_2 \leq \frac{a}{2}\right] \leq  \frac{(n - a/2)p}{(np - a/2)^2} = \frac{a - (a/2)p}{(a/2)^2} \leq \frac{4}{a},\]
+    and so 
+    \[P[E_2] = P\left[X_2 \geq \frac{a}{2}\right] \geq 1 - \frac{4}{a}.\]
+    \item $E_3:$ At least $\frac{a}{2}$ generators are minimal. 
+\end{itemize}
+
 \bibliography{refs}
 \bibliographystyle{ieeetr}
 
