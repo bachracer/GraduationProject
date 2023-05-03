@@ -215,15 +215,13 @@ Fix $a \in \NN$ such that $a > 11$ and let $A = \{1, \ldots, \lfloor\frac{a}{p}\
     \item $E_2:$ At most $\frac{3a}{2}$ generators are selected from $A$.\par 
     Let $X_2$ be the number of generators selected in $A$, then $X_2$ is a binomial random variable with $n = \frac{a}{p}$ and we can use the bound (Feller \textcolor{blue}{I can add this to the appendix})
 
-    \[\Pr[\overline{E_3}] = \Pr\left[X_2 > \frac{3a}{2}\right] \leq  \frac{\frac{3a}{2}(1 - p)}{(\frac{3a}{2} - a)^2} \leq \frac{6}{a}.\]
+    \[\Pr[\overline{E_2}] = \Pr\left[X_2 > \frac{3a}{2}\right] \leq  \frac{\frac{3a}{2}(1 - p)}{(\frac{3a}{2} - a)^2} \leq \frac{6}{a}.\]
 
-    Also note that, by union bound, \[\Pr[E_1\land E_2] \leq 1 - \frac{1}{a} - \frac{6}{a} = 1 - \frac{7}{a}.\]  
+    Also, note that by the union bound \[\Pr[E_1\land E_2] \leq 1 - \frac{1}{a} - \frac{6}{a} = 1 - \frac{7}{a}.\]  
 
     \item $E_3:$ At least $\frac{a}{2}$ generators are selected from $A$. \par 
     Similarly, we can use the bound for the other tail of the distribution so that 
-    \[\Pr[ \overline{E_2}] = \Pr\left[X_2 < \frac{a}{2}\right] \leq  \frac{(n - \frac{a}{2})p}{(np - \frac{a}{2})^2} = \frac{a - (\frac{a}{2})p}{(\frac{a}{2})^2} \leq \frac{4}{a}.\]
-    Also, 
-    \[\Pr[E_1\land E_2 \land E_3] \geq 1 - \frac{11}{a}.\]
+    \[\Pr[ \overline{E_3}] = \Pr\left[X_2 < \frac{a}{2}\right] \leq  \frac{(n - \frac{a}{2})p}{(np - \frac{a}{2})^2} = \frac{a - (\frac{a}{2})p}{(\frac{a}{2})^2} \leq \frac{4}{a}.\]
     
     \item $E_4:$ The generators selected from $A$ are minimal.\par 
     Let $Y_{(1)}, Y_{(2)}, \ldots, Y_{(k)}$ denote the first $k$ generators selected in $A$. Assume $E_1$ and $E_2$. We have that $E_1$ implies $Y_{(1)} \geq \frac{1}{ap}$ and $E_2$ implies $k \leq \frac{3a}{2}$. \par
@@ -234,7 +232,8 @@ Fix $a \in \NN$ such that $a > 11$ and let $A = \{1, \ldots, \lfloor\frac{a}{p}\
     \end{align*}
     and so
     \[\Pr[b \text{ is selected}|E_1 \land E_2] \leq \frac{\Pr[b \text{ is selected}]}{\Pr[E_1 \land E_2]} \leq  \frac{p}{1 - \frac{7}{a}}.  \]
-    Now, note that $Y_{(2)}$ is not minimal if a multiple of $Y_{(1)}$ is selected in $A$. Thus, if we fix $Y_{(1)} = y_1 \geq \frac{1}{ap}$, $Y_{(1)}$ is not minimal if $b \in \{2y_1, 3y_1, \ldots, c_1y_1\}$ is selected, where $c_1y_1$ is the largest multiple of $y_1$ which does not exceed $\frac{a}{p}$. Since $y_1 \geq \frac{1}{ap}$, we have that $c_1 \leq a^2$. Then, using union bound, 
+    Then, using the same reasoning, for any 
+    Now, note that $Y_{(2)}$ is not minimal if a multiple of $Y_{(1)}$ is selected in $A$. Thus, if we fix $Y_{(1)} = y_1 \geq \frac{1}{ap}$, $Y_{(1)}$ is not minimal if $b \in \{2y_1, 3y_1, \ldots, c_1y_1\}$ is selected, where $c_1y_1$ is the largest multiple of $y_1$ which does not exceed $\frac{a}{p}$. Since $y_1 \geq \frac{1}{ap}$, we have that $c_1 \leq a^2$. Then, using the union bound, 
     \[\Pr[Y_{(2)} \text{ is not minimal}|E_1\land E_2 \land Y_{(1)} = y_1] \leq \frac{pa^2}{1 - \frac{7}{a}} .\]
     If we sum over all possible $y_1$, we get that 
     \[\Pr[Y_{(2)} \text{ is not minimal}|E_1\land E_2] \leq \frac{pa^2}{1 - \frac{7}{a}} .\]
@@ -248,7 +247,7 @@ Fix $a \in \NN$ such that $a > 11$ and let $A = \{1, \ldots, \lfloor\frac{a}{p}\
 
 
 Finally, note that by union bound, 
-\[\Pr[E_4 \land E_2] \geq 1 - \frac{11}{a} - o(1).\] 
+\[\Pr[E_4 \land E_3] \geq 1 - \frac{11}{a} - o(1).\] 
 Therefore, for every $N \in \NN$ and $\varepsilon > 0$, there exists $K$ such that $M \geq K$ implies \[\Pr[f(S) > N], \; \Pr[g(S) > N], \; \Pr[e(S) > N] > 1 - \varepsilon.\].
 
 
