@@ -1,53 +1,113 @@
-\documentclass[12pt]{article}
-%\pointpoints{punto}{puntos}
+% All contribution chapters should follow a similar structure, with a
+% mini-introduction and overview at the beginning and a conclusion at the
+% end bookmarking a structured presentation of the contribution. This can be
+% largely based on your publications.
 
-\usepackage{amsfonts, geometry, amsmath, amssymb, hyperref, cite, amsthm}
-\usepackage{algpseudocode, algorithm}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\usepackage{tikzit}
-\input{sample.tikzstyles}
+\chapter{Contribution 1}\label{chap:contrib1}
 
-\newtheorem*{theorem*}{Theorem}
-\newtheorem{theorem}{Theorem}[section]
+\section{Introduction}
 
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{exmp}{Example}[section]
+In this Chapter, XXX is presented. Note: to cross-reference to other parts of the document you do so like this - see Section \ref{sec:contrib2:theme1:B}.
 
-\theoremstyle{remark}
-\newtheorem*{rem}{Remark}
+Section \ref{sec:contrib1:theme1} discusses Theme 1. Section \ref{sec:contrib1:theme2} discusses Theme 2....
 
-\def\NN{\ensuremath{\mathbb{N}}}
-\def\N{\ensuremath{\mathbb{N}}}
-\def\ZZ{\ensuremath{\mathbb{Z}}}
-\def\Z{\ensuremath{\mathbb{Z}}}
-\def\QQ{\ensuremath{\mathbb{Q}}}
-\def\Q{\ensuremath{\mathbb{Q}}}
-\def\RR{\ensuremath{\mathbb{R}}}
-\def\R{\ensuremath{\mathbb{R}}}
-\def\CC{\ensuremath{\mathbb{C}}}
-\def\FF{\ensuremath{\mathbb{F}}}
-\def\Pr{\ensuremath{\mbox{Pr}}}
+\section{Theme 1}\label{sec:contrib1:theme1}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{sample_wide_figure}
+\caption{This the approximate process for producing a Thesis. It typically takes 3-4 years.}
+\label{fig:phd_life}
+\end{figure}
 
-\usepackage{lastpage}
-\usepackage[none]{hyphenat}
+\figurename{} \ref{fig:phd_life} illustrates the key elements of Thesis synthesis. \LaTeX{} will tend to place figures where it wants (they `float' - generally they should be at the top or bottom of a page); you can override the default behaviour if you want, but you probably don't want to bother doing that until after your content is pretty much done. Instead, keep the figures as close as possible to the text; you can tweak this afterwards if you want by adding an option:
 
+\begin{verbatim}
+\begin{figure}[htb]
+\end{verbatim}
 
-%%--MATH---------------------------------------------------------
+This says put it here, if you can, otherwise at the top, or otherwise at the bottom. BUT I strongly suggest not using {\bf h} as it looks terrible.
 
-%%--OTHER ENVIRONMENTS--------------------------------------
-\renewcommand{\labelenumi}{{\bf \theenumi.}}
-\renewcommand{\labelenumii}{{\bf (\theenumii)}}
-\renewcommand{\labelenumiii}{{\bf (\theenumiii)}}
-%%----------------------------------------------------------
-\begin{document}
-\title{Graduation Project}
-\author{Santiago Morales - 201913369}
-\date{\today}
+Maybe you need an inline URL at this point: Here's one! \url{https://en.wikibooks.org/wiki/LaTeX}.
 
-\maketitle
+Mathematics can be inline, for example $x = \int_0^\infty y^2 dy$, or can be in display mode, as shown in \eqref{eqn:example}:
+
+\begin{equation}
+\label{eqn:example}
+F(x,y,z) = \sqrt{x^{y^z}}
+\end{equation}
+
+You probably want to show some of your results in a table, such as \tablename{} \ref{tab:example}.
+
+% Table environment. This is the most difficult thing to get right in LaTeX if you go beyond a simple table like that shown below. Refer to the LaTeX Wikibook for lots of info about creating LaTeX tables (see the toplevel README.md).
+\begin{table*}
+\centering
+\caption{Table captions normally go at the top.}
+\label{tab:example}
+% Don't leave blank lines in the middle of a floating environment such as table or figure!
+% This bit describes how the columns are organised. l, r, c for left, right, centre-justified; p{1cm} or p{0.2\textwidth} for left-justified with fixed width. This is usually best.
+\begin{tabular}{p{0.2\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+\toprule
+{\bf Left column}	&{\bf $\mu$}	&{\bf $\sigma$}\\
+\midrule
+Item 1				&0.3			&0.5\\
+Item 2				&0.9			&0.4\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}
+\centering
+\subfloat[Confusion]{
+	\includegraphics[height=0.3\textwidth]{confusion}
+	\label{fig:confusion}
+}
+\subfloat[Work]{
+	\includegraphics[height=0.3\textwidth]{work}
+	\label{fig:work}
+}
+\subfloat[Exhaustion]{
+        \includegraphics[height=0.3\textwidth]{exhaustion}
+        \label{fig:exhaustion}
+}
+\caption{The stages of the creative process.}
+\label{fig:creative_process}
+\end{figure}
+
+The basic creative process is shown in \figurename{} \ref{fig:creative_process}. Specifically, \figurename{} \ref{fig:confusion} shows the first step, while \figurename{} \ref{fig:work} and \ref{fig:exhaustion} show the remaining key steps of the procedure.
+
+\subsection{Subtopic A}\label{sec:contrib1:theme1:A}
+
+Algorithm \ref{alg:cap} shows a classical algorithm typeset in \LaTeX{}. This is also a float.
+
+\begin{algorithm}
+\caption{An algorithm with caption}\label{alg:cap}
+\begin{algorithmic}
+\Require $n \geq 0$
+\Ensure $y = x^n$
+\State $y \gets 1$
+\State $X \gets x$
+\State $N \gets n$
+\While{$N \neq 0$}
+\If{$N$ is even}
+    \State $X \gets X \times X$
+    \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+\ElsIf{$N$ is odd}
+    \State $y \gets y \times X$
+    \State $N \gets N - 1$
+\EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Subtopic B}\label{sec:contrib1:theme1:B}
+
+\subsection{Subtopic C}\label{sec:contrib1:theme1:C}
+
+\section{Theme 2}\label{sec:contrib1:theme2}
+
+Etc. etc.
+
 \section{Introduction}
 
 \section{Kahn-Kalai Conjecture}
@@ -123,27 +183,6 @@ Let $X$ be a set and $p \in [0, 1]$. For $A \subset X$, let $P(A) = p^{|A|}(1 - 
 \textbf{TODO} Define increasing class and general definition of threshold \cite{park2022proof} 
 
 \noindent \textbf{TODO} Define expectation threshold and show inequalities. \cite{frankston2021thresholds}
-
-\begin{exmp}
-    $H_1$ example
-    \begin{figure}[h]
-        \centering
-        \ctikzfig{H1}
-        \caption{$H_1$}
-        \label{H1}
-    \end{figure}
-\end{exmp}
-
-\begin{exmp}
-    $H_2$ example
-    \begin{figure}[h]
-        \centering
-        \ctikzfig{H2}
-        \caption{$H_2$}
-        \label{H2}
-    \end{figure}
-    
-\end{exmp}
 
 \begin{theorem}[Park Theorem \cite{park2022proof}, originally Kahn-Kalai Conjecture]
 \textbf{TODO}
@@ -231,8 +270,7 @@ Fix $a \in \NN$ such that $a > 11$ and let $A = \{1, \ldots, \lfloor\frac{a}{p}\
         &+  \Pr[b \text{ is selected}|\overline{E_1 \land E_2}]\Pr[\overline{E_1 \land E_2}],
     \end{align*}
     and so
-    \[\Pr[b \text{ is selected}|E_1 \land E_2] \leq \frac{\Pr[b \text{ is selected}]}{\Pr[E_1 \land E_2]} \leq  \frac{p}{1 - \frac{7}{a}}.  \]
-    Then, using the same reasoning, for any 
+    \[\Pr[b \text{ is selected}|E_1 \land E_2] \leq \frac{\Pr[b \text{ is selected}]}{\Pr[E_1 \land E_2]} \leq  \frac{p}{1 - \frac{7}{a}}.  \] 
     Now, note that $Y_{(2)}$ is not minimal if a multiple of $Y_{(1)}$ is selected in $A$. Thus, if we fix $Y_{(1)} = y_1 \geq \frac{1}{ap}$, $Y_{(1)}$ is not minimal if $b \in \{2y_1, 3y_1, \ldots, c_1y_1\}$ is selected, where $c_1y_1$ is the largest multiple of $y_1$ which does not exceed $\frac{a}{p}$. Since $y_1 \geq \frac{1}{ap}$, we have that $c_1 \leq a^2$. Then, using the union bound, 
     \[\Pr[Y_{(2)} \text{ is not minimal}|E_1\land E_2 \land Y_{(1)} = y_1] \leq \frac{pa^2}{1 - \frac{7}{a}} .\]
     If we sum over all possible $y_1$, we get that 
@@ -251,7 +289,5 @@ Finally, note that by union bound,
 Therefore, for every $N \in \NN$ and $\varepsilon > 0$, there exists $K$ such that $M \geq K$ implies \[\Pr[f(S) > N], \; \Pr[g(S) > N], \; \Pr[e(S) > N] > 1 - \varepsilon.\].
 
 
-\bibliography{refs}
-\bibliographystyle{ieeetr}
 
-\end{document}
+\section{Conclusion}
