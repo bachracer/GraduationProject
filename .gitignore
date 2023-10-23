@@ -1,0 +1,31 @@
+# Ignore build artifacts
+build/
+dist/
+*.pyc
+
+# Ignore sensitive information
+config.ini
+secrets.json
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore latex building files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.lof
+*.log
+*.lot
+*.out
+*.xml
+*.synctex.gz
+*.bbl
+*.blg
+*.toc
