@@ -23,4 +23,107 @@ Section \ref{sec:contrib2:theme1} discusses Theme 1. Section \ref{sec:contrib2:t
 
 Etc. etc.
 
+\section{Sketch} 
+I conjecture that the hypothesis that $q$ is prime can be relaxed.
+\subsection{Lemma}
+\begin{itemize}
+    \item Let $q$ be a prime number and $S$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. 
+\end{itemize}
+
+Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $S$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
+\[\text{Pr}(S) = \frac{1}{{q \choose s}}.\]
+For a given $z \in \mathbb{Z}_q$ and $k \in \mathbb{N}$ for which $k \leq s/2$, let 
+\[N_z^k := \left\{K \subset \mathbb{Z}_q: |K| = k, \sum_{t \in K} t = z\right\}.\]
+Note that $|N_z^k| = \frac{1}{q}{q \choose k}$, since $K \in N_0^k$ if and only if $K + k^{-1}z \in N_z^k$ for every $z \in \mathbb{Z}_q$.\par
+For $K \in¡ N_z^k$, let $A_K$ be the event that $K \subset S$. Let $X_K$ be the indicator variable of $A_K$.
+We define the random variable 
+\[X_z = \sum_{K \in N_z^k} X_K.\]
+Note that $X_z$ counts the number of sets of size $k$ which add up to $z$. We provide two ways of finding $E[X_z]$. The first one uses that, for any $K \subset N^k_z$, 
+\[E[X_K] = \text{Pr}[A_K] = \frac{{q - k \choose s - k}}{{q \choose s}},\]
+and so we get that
+\begin{align*}
+    E[X_z] = \sum_{K \in N_z^k} E[X_K] = |N_z^k|E[X_K] = \frac{1}{q}{q \choose k}\frac{{q - k \choose s - k}}{{q \choose s}} = \frac{1}{q} {s \choose k}.
+\end{align*}
+\par
+This motivates the second way, for we know that 
+\[\sum_{z \in Z_q} X_z = {s \choose k} = \sum_{z \in Z_q} E[X_z].\]\par
+As in the argument for finding $|N_z^k|$, for every $z \in \mathbb{Z}_q$, 
+\[E[X_0] = \sum_{K \in N_0^k}E[X_K] = \sum_{K \in N_0^k} E[X_{K + k^{-1}z}] = \sum_{K \in N_z^k} E[X_K] = E[X_z].\]
+Therefore, we also find that
+\begin{equation}
+E[X_z] = \frac{1}{p} {s \choose k}.
+\end{equation}
+Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ and define
+\[\Delta_j := \sum_{|K \cap L| = j} \text{Pr}[A_K \land A_L].\]
+\par Fix $j \leq k$, then 
+\[\text{Pr}[A_K \land A_L] = \frac{{q - 2k + j \choose s - 2k + j}}{{q \choose s}}.\]
+\par
+We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
+\[\Delta_j \leq \frac{{p \choose k} {q - k \choose k - j}{q - 2k + j \choose s - 2k + j}}{q{q \choose s}}.\]
+\par This implies that, using (1),
+\begin{align*}
+    \frac{\Delta_j}{E[X_z]^2} &\leq \frac{{q \choose k} {q - k \choose k - j}{q - 2k + j \choose s - 2k + j}}{\frac{1}{q} {s \choose k}\frac{1}{q} {s \choose k}q{q \choose s}} \\
+    &= \frac{\frac{q!}{(q - k)!k!}\frac{(p - k)!}{(k - j)!(q - 2k + k)!}\frac{(q - 2k + j)!}{(s - 2k + j)!(q - s)!}}{\frac{1}{q}{s \choose k}\frac{s!}{(s - k)!k!}\frac{q!}{(q - s)!s!}} \\
+    &= \frac{q{s - k \choose k - j}}{{s \choose k}}.
+\end{align*}
+Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$, where $\alpha \in (0, 1)$. Using that ${s - k \choose t}$ is maximized at $t = \lfloor (s - k) / 2\rfloor$,
+\begin{align*}
+\frac{\Delta_j}{E[X_z]^2} \leq \frac{q {2\lfloor 3 \log_2 q\rfloor\choose \lfloor 3 \log_2 q \rfloor}}{{4\lfloor 3\log_2 q \rfloor \choose 2\lfloor 3\log_2 q \rfloor}} \leq \frac{q}{{2\lfloor 3 \log_2 q \rfloor \choose \lfloor 3 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 3 \log_2 q \rfloor}} \sim \frac{1}{q^2},
+\end{align*}
+since \({2\lfloor q^{\alpha} \rfloor \choose \lfloor 3 \log_2 q \rfloor}^2 \leq {4\lfloor 3 \log_2 q \rfloor \choose 2\lfloor 3 \log_2 q \rfloor}\) (I can prove this in a lemma or in the appendix).   \par
+This proves that
+\[\text{Pr}[X_z = 0] \leq \frac{\Delta}{E[X_z]^2} = \sum_{j = 0}^k \frac{\Delta_j}{E[X_z]^2} \leq \frac{(k + 1)}{q^2}.\]
+Therefore, by the union bound,
+\[\text{Pr}[\bigvee_{z \in \mathbb{Z}_q} X_z = 0] \leq \frac{(k + 1)}{q}.\]
+
+\section{Theorem} 
+\begin{itemize}
+    \item Let $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ .Then
+\[\lim_{p \to 0}\text{Pr}\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 0.\] 
+\end{itemize}
+
+\par The proof of this Theorem consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $g\left(\frac{1}{p}\right)$ with high probability, since $F(S)$ is less than the maximum element of this Ápery set. The proof has the following structure: 
+\begin{enumerate}
+\item First, we will find a step for which a prime $q$ is chosen with high probability (E1). 
+\item Then, in the spirit of the \textcolor{blue}{Lemma}, we will find a step such that $s$ elements, which are different modulo $q$, are chosen with high probability (E2). 
+\item Finally, we will apply the \textcolor{blue}{Lemma} to the Ápery set of a subsemigroup of $S$ generated by the subset in part 2. 
+\end{enumerate}
+\textit{Proof. }
+\subsubsection*{Part 1}
+Let \(h(x)\) be a function such that \(h(x) \in o(x (\log x)^2)\) and \(x\log x \in o(h(x))\). Let $t(x) = 20x \log x$. Consider the event
+$E_1$ that there exists a prime $q \in S$, such that 
+\[t\left(\frac{1}{p}\right) \leq q \leq h\left(\frac{1}{p}\right).\]
+\par 
+Let $q_n$ be the $n$-th prime number and let $k_x$ be the number of primes between $20x\log x$ and $h(x)$. For $n \geq 6$, by the \textcolor{blue}{Prime Number Theorem}, 
+\[n(\log n + \log \log n - 1) < q_n < n(\log n + \log\log n) = o(h(n)).\]
+
+\par Thus, $n = o(k_n)$ (\textcolor{blue}{I can prove this if it is not clear}) and, for every $c > 0$,  
+\[\lim_{p \to 0}\text{Pr}[\lnot E_1] \geq \lim_{p \to 0} (1 - p)^{k_{\frac{1}{p}}} \geq \lim_{p \to 0} (1 - p)^{\frac{c}{p}} = e^{-c}.\]
+Therefore, 
+\[\lim_{p \to 0}\text{Pr}[E_1] = 1.\]
+\subsubsection*{Part 2}
+
+Now, assume $E_1$. Then $S$ contains a prime number $q$ for which 
+\[t\left(\frac{1}{p}\right) \leq q \leq h\left(\frac{1}{p}\right).\]
+\par Let $s = 4\lfloor3\log_2 q \rfloor$, as in the \textcolor{blue}{Lemma}. 
+\par Let $A := \{q + 1, q + 2, \ldots,  2q\}$. Consider the event \textbf{E2} that at least $s$ generators are selected in $A$. Let $X_1$ be the number of generators selected in $A$, then $X_1$ is a binomial random variable with parameters $n = q$ and $p$. Then, in a similar way to $E2$ in \textcolor{blue}{Theorem 1}, we use the \textcolor{blue}{Binomial Distribution Tail Bound} to show that, assuming that $p$ is small enough so that $qp > s$ for all possible $q$,
+\begin{align*}
+    \Pr[ \overline{E_2}  | E_1] = \Pr\left[X_1 < s\right] \leq \Pr\left[X_2 < s\right] \leq \frac{(n - s)p}{(np - s)^2} = \frac{(q - s)p}{(qp - s)^2}.
+\end{align*}
+\par Thus, bounding by the worst case asymptotically, (\textcolor{blue}{needs to be explained better})
+\[\lim_{p \to 0} P[\overline{E_2} | E_1] =  \lim_{p \to 0}\frac{\left(h\left(\frac{1}{p}\right) - 4\left\lfloor3\log_2 h\left(\frac{1}{p}\right) \right\rfloor\right)p}{\left(20 \log \frac{1}{p} - 4\lfloor3\log_2 t\left(\frac{1}{p}\right) \rfloor\right)^2} = 0.\]
+\par We conclude that
+\[\lim_{p \to 0} \Pr[E_2 | E_1] = 1,\]
+and so
+\[\lim_{p \to 0} \text{Pr}[E_1 \land E_2] = \lim_{p \to 0} \text{Pr}[E_2  | E_1]\text{Pr}[E_1] = 1.\]
+
+
+\subsubsection*{Part 3}
+
+\par Finally, assume $E_1$ and $E_2$. Let $B = \{Y_{1}, \ldots, Y_{s}\}$ be a randomly selected subset of size $s$ of the generators selected in $E_2$.  Since the generators are chosen randomly and $|A| = q$, we can apply the \textcolor{blue}{Lemma} to the Ápery set of the subsemigroup generated by $B$, denoted by $G(B)$, and conclude that the Ápery set of $G(B)$ will be completed before step $h\left(\frac{1}{p}\right)2\left\lfloor 3\log_2 h\left(\frac{1}{p}\right)\right\rfloor$ with high probability as $p \to 0$. 
+\par Thus, if $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ (\textcolor{blue}{Probably needs to be explained better}),
+\[\lim_{p \to  0} \text{Pr}\left[F(G(B)) \leq g\left(\frac{1}{p}\right)\right] = 1.\]
+Since $F(S) \leq F(G(B))$, we conclude that
+\[\lim_{p \to 0}\text{Pr}\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1.\] 
+
 \section{Conclusion}
