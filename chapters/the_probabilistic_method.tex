@@ -2,7 +2,20 @@
 
 \section{Introduction}\label{sec:litrev:intro}
 
-Some contextural overview of what we are going to discuss. Include the first example in the book. 
+The probabilistic method is a powerful tool, with applications in Combinatorics, Graph Theory, Number Theory and Computer Science. It is a nonconstructive method that proves the existence of an object with a certain property by showing that the probability that a randomly chosen object has that property is greater than zero. This requires an appropiate sample space. \par
+
+The method is best illustrated by an example: \par
+
+\begin{definition}\label{def:tournament}
+A \textit{tournament} is a directed graph $T$ on $n$ vertices such that for every pair of vertices $i, j \in V(T)$, exactly one of the edges $(i, j)$ or $(j, i)$ is in $E(T)$. \cite{alon2016probabilistic}
+\end{definition}
+
+\begin{figure}
+    \centering
+    \ctikzfig{tournament}
+    \caption{A tournament on 4 vertices.}
+    \label{fig:tournament}
+\end{figure}
 
 Section \ref{sec:litrev:theme1} discusses Theme 1. Section \ref{sec:litrev:theme2} discusses Theme 2....
 
@@ -17,7 +30,7 @@ Section \ref{sec:litrev:theme1} discusses Theme 1. Section \ref{sec:litrev:theme
 
 \section{Linearity of Expectation}\label{sec:litrev:theme2}
 
-Etc. etc.
+Etc. etc. \ref{def:tournament}
 
 \section{Second Moment Method}
 
