@@ -1,0 +1,86 @@
+\chapter{The Probabilistic Method}\label{chap:litrev}
+
+\section{Introduction}\label{sec:litrev:intro}
+
+Some contextural overview of what we are going to discuss. Include the first example in the book. 
+
+Section \ref{sec:litrev:theme1} discusses Theme 1. Section \ref{sec:litrev:theme2} discusses Theme 2....
+
+\section{Union Bound}\label{sec:litrev:theme1}
+
+
+\subsection{Example}\label{sec:litrev:theme1:A}
+
+\subsection{Subtopic B}\label{sec:litrev:theme1:B}
+
+\subsection{Subtopic C}\label{sec:litrev:theme1:C}
+
+\section{Linearity of Expectation}\label{sec:litrev:theme2}
+
+Etc. etc.
+
+\section{Second Moment Method}
+
+\section{Threshold Functions}
+
+Let $n \in \N$ and $0 \leq p \leq 1$. The random graph $G(n, p)$ is a probability space over the set of graphs on $n$ labeled vertices determined by
+\[\Pr[\{i, j\} \in G] = p\] 
+with these events mutually independent \cite{alon2016probabilistic}. Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. 
+
+\begin{definition}
+    $r(n)$ is a threshold function for a graph theoretic property $A$ if 
+    \begin{enumerate}
+        \item When \(p(n) \in o(r(n)), \; \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 0,\)
+        \item When \(r(n) \in o(p(n)), \;  \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 1,\) 
+    \end{enumerate}
+    or vice versa. \cite{alon2016probabilistic}
+\end{definition}
+
+We give an example of a threshold function which illustrates a common method for proving that a function is a threshold. \par
+
+\subsubsection{Threshold function for having isolated vertices}
+
+Let $G$ be a graph on $n$ labeled vertices. An isolated vertex of $G$ is a vertex which does not belong to any of the edges of $G$. Let $A$ be the property that $G$ contains an isolated vertex. We will prove that $\displaystyle{r(n) = \frac{\ln n}{n}}$ is a threshold for $A$. \par
+
+For each vertex $i$ in $G$ define the variable 
+
+\[X_i = 
+\left\{
+	\begin{array}{ll}
+		1  & \mbox{if } i \text{ is an isolated vertex,} \\
+		0 & \mbox{if } i \text{ is not an isolated vertex.}
+	\end{array}
+\right.
+\]
+
+Now, the probability that a vertex $i$ is isolated is $(1 - p)^{n - 1}$ since it is the probability that none of the other $n - 1$ vertices is connected to $i$. Let $X = \sum_{i = 1}^n X_i$, then the expected number of isolated vertices is
+ \[E[X] = \sum_{i = 1}^{n} E[X_i] = \sum_{i = 1}^{n} \Pr[X_i] = n(1 - p)^{n - 1}.\]
+
+Let $\displaystyle{p = k\frac{\ln n}{n}}$ for $k \in \R_{>0}$. Then
+\begin{align*}
+    \lim_{n \to \infty} E[X] &= \lim_{n \to \infty} n\left(1 - k\frac{\ln n}{n}\right)^{n - 1} \\
+    &= ne^{-k\ln n} = n^{1 - k}.
+\end{align*}
+
+Therefore, $\lim_{n \to \infty} E[X] = 0$ if $k > 1$. Since \(E[X] \geq \Pr[X > 0],\) we conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] =  \lim_{n \to \infty} \Pr[X > 0] = 0.\] \par
+Now, for $k < 1$, the fact that $\lim_{n \to \infty} E[X] = \infty$ is not enough to conclude that \(\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = 1\). We have to use the second moment method. \par
+
+\begin{theorem*}
+    If $E[X] \to \infty$ and $\text{Var}[X] = o(E[X]^2)$, then $\lim_{n \to \infty} \Pr[X > 0] = 1$. \cite{alon2016probabilistic}
+\end{theorem*}
+
+\textbf{Proof. } We will prove that, in this case, $Var[X] = o(E[X]^2)$. First, 
+\begin{align*}
+    \sum_{i \neq j}E[X_iX_j] &= \sum_{i \neq j} \Pr[X_i = X_j = 1] \\
+    &= n(n - 1)(1 - p)^{n -1}(1 - p)^{n - 2} \\ &= n(n - 1)(1 - p)^{2n - 3},
+\end{align*}
+
+for if $i$ is an isolated vertex, then there is no edge between $i$ and $j$ so we only have to account for the remaining $n - 2$ edges that contain $j$.  \par
+
+Thus, since $\sum_{i = 1}^{n}E[X_i^2] =  \sum_{i = 1}^n E[X_i] = E[X]$ and $\lim_{n \to \infty} p = 0$,
+
+\begin{align*}
+    \lim_{n \to \infty} \frac{\text{Var}[X]}{E[X]^2} &= 
+    \lim_{n \to \infty}\frac{E(X^2) - E[X]^2}{E[X]^2} = \lim_{n \to \infty} \frac{\sum_{i = 1}^n E[X_i^2] + \sum_{i \neq j}E[X_iX_j]}{E[X]^2} - 1 \\ &= 0 + \lim_{n \to \infty} \frac{ n(n - 1)(1 - p)^{2n - 3}}{n^2(1 - p)^{2n - 2}} - 1= \lim_{n \to \infty} \frac{1}{1 - p} - 1 = 0.\\
+\end{align*} \par
+We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, if $k < 1$, \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = \lim_{n \to \infty} \Pr[X > 0] = 1.\] Therefore, $r(n) = \frac{\ln n}{n}$ is a threshold function for property $A$.
