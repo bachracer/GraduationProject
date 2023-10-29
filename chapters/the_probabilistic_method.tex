@@ -2,21 +2,54 @@
 
 \section{Introduction}\label{sec:litrev:intro}
 
-The probabilistic method is a powerful tool, with applications in Combinatorics, Graph Theory, Number Theory and Computer Science. It is a nonconstructive method that proves the existence of an object with a certain property by showing that the probability that a randomly chosen object has that property is greater than zero. This requires an appropiate sample space. \par
-
-The method is best illustrated by an example: \par
+The probabilistic method is a powerful tool, with applications in Combinatorics, Graph Theory, Number Theory and Computer Science. It is a nonconstructive method that proves the existence of an object with a certain property, by showing that the probability that a randomly chosen object has that property is greater than zero. The method requires an appropiate sample space and is best illustrated by an example: \par
 
 \begin{definition}\label{def:tournament}
-A \textit{tournament} is a directed graph $T$ on $n$ vertices such that for every pair of vertices $i, j \in V(T)$, exactly one of the edges $(i, j)$ or $(j, i)$ is in $E(T)$. \cite{alon2016probabilistic}
+A \textit{tournament} is a directed graph $T$ on $n$ vertices such that for every pair of vertices $i, j \in V(T)$, exactly one of the edges $(i, j)$ or $(j, i)$ is in $E(T)$. \cite{alon2016probabilistic} 
 \end{definition}
+
+The name of a tournament comes from the fact that it can be thought of as a sports tournament where each vertex represents a team and each team plays every other team exactly once. The edge $(i, j)$ represents a win for team $i$ over team $j$. A tournament $T$ has property $S_k$ if for every subset $S \subseteq V(T)$ of size $k$, there is a vertex $v \in V(T)$ such that $(v, s) \in E(T)$ for all $s \in S$ \cite{alon2016probabilistic}. That is, for every set of $k$ teams there is a team that beats all of them. For example, the tournament in Figure \ref{fig:tournament} has property $S_1$ since every team is beaten by another team. \par
+
+A natural question to ask is: is there a tournament with property $S_k$ for every $k$? The answer is yes. We will prove this using the probabilistic method. First we define a probability space over the set of tournaments on $n$ vertices: \par 
+A \textit{random} tournament on a set of $n$ vertices is a tournament $T$ such that for every pair of vertices $i, j \in V(T)$, the edge $(i, j)$ is in $E(T)$ with probability $\frac{1}{2}$ and the edge $(j, i)$ is in $E(T)$ with probability $\frac{1}{2}$, independently of all other edges. Thus, every tournament on $n$ vertices has the same probability, which means that this probability space is \textit{symmetric}. \par
 
 \begin{figure}
     \centering
     \ctikzfig{tournament}
-    \caption{A tournament on 4 vertices.}
+    \caption{A tournament on 3 vertices with property $S_1$.}
     \label{fig:tournament}
 \end{figure}
 
+The main idea is to show that there is a large $n$ as a function of $k$, such that the probability that a random tournament on $n$ vertices has property $S_k$ is greater than zero. This implies that there is at least one tournament with property $S_k$. \par
+
+
+\begin{theorem}
+    For every $k \in \N$, there is a tournament with property $S_k$. \cite{alon2016probabilistic}
+\end{theorem}
+
+\textbf{Proof. } Fix a subset $S \subseteq V(T)$ of size $k$. Consider the event $A_S$ that there is no vertex $v \in V(T)$ such that $(v, s) \in E(T)$ for all $s \in S$. For any vertex $v \in V(T) \setminus S$, the probability that $(v, s) \notin E(T)$ for all $s \in S$ is $2^{-k}$. Thus,
+\[\Pr[A_S] = \left(1 - 2^{-k}\right)^{n - k}.\]
+Now, if we consider all subsets $S \subseteq V(T)$ of size $k$, then the probability that $T$ does not have property $S_k$ is the probability that any of the events $A_S$ occurs. Since there are $\binom{n}{k}$ such subsets, by the union bound,
+\[\Pr\left[\bigvee_{S \subseteq V(T), \; |S| = k} A_S\right] \leq \sum_{S \subseteq V(T), \; |S| = k}\Pr[A_K] = \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k}.\]
+We want to show that, for some $n$, this probability of this event is less than 1. Using \ref{ap:prop:binom}, we have that
+\begin{align}\label{eq:tournament}
+    \Pr\left[\bigvee_{S \subseteq V(T), \; |S| = k} A_S\right] \leq \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k} \leq \left(\frac{en}{k}\right)^k\left(e^{-2^{-k}}\right)^{n - k} = e^{k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k}}. 
+\end{align}
+Thus, \ref{eq:tournament} is less than one if 
+\[k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k} = k\log n - k\log k + \frac{k}{2^k} - \frac{n}{2^k} < k\log n - \frac{n}{2^k} < 0,\]
+which holds if and only if
+\[\frac{n}{\log n} > k2^k.\]
+Now, if $n = (\log 2)k^2 2^k$, then
+\[\lim_{n \to \infty} \frac{n}{k2^k\log n} = \lim_{k \to \infty} \frac{k\log 2}{2\log k + k\log 2 + \log\log 2} = 1.\]
+Therefore, we conclude for some $n = k^2 2^k (1 + o(1))$, the probability that a random tournament on $n$ vertices does not have property $S_k$ is less than one. Thus, the probability that there exists a tournament on $n$ vertices with property $S_k$ is greater than zero, which means that there exists at least one tournament with property $S_k$. \par
+
+We make two observations: 
+\begin{enumerate}
+    \item In the proof, we used the \textit{union bound}. The union bound is a common technique in the probabilistic method. It states that for any events $A_1, ..., A_n$,
+    \[\Pr[A_1 \cup ... \cup A_n] \leq \Pr[A_1] + ... + \Pr[A_n].\]
+    We will extensively use this technique in this thesis. In a measure space, the union bound is the same property as \textit{subadditivity}. \par
+    \item The proof is nonconstructive. It does not give us a way to find a tournament with property $S_k$. It only shows that there is at least one. This is a common feature of the probabilistic method.
+\end{enumerate}
 Section \ref{sec:litrev:theme1} discusses Theme 1. Section \ref{sec:litrev:theme2} discusses Theme 2....
 
 \section{Union Bound}\label{sec:litrev:theme1}
@@ -94,6 +127,6 @@ Thus, since $\sum_{i = 1}^{n}E[X_i^2] =  \sum_{i = 1}^n E[X_i] = E[X]$ and $\lim
 
 \begin{align*}
     \lim_{n \to \infty} \frac{\text{Var}[X]}{E[X]^2} &= 
-    \lim_{n \to \infty}\frac{E(X^2) - E[X]^2}{E[X]^2} = \lim_{n \to \infty} \frac{\sum_{i = 1}^n E[X_i^2] + \sum_{i \neq j}E[X_iX_j]}{E[X]^2} - 1 \\ &= 0 + \lim_{n \to \infty} \frac{ n(n - 1)(1 - p)^{2n - 3}}{n^2(1 - p)^{2n - 2}} - 1= \lim_{n \to \infty} \frac{1}{1 - p} - 1 = 0.\\
+    \lim_{n \to \infty}\frac{E[X^2] - E[X]^2}{E[X]^2} = \lim_{n \to \infty} \frac{\sum_{i = 1}^n E[X_i^2] + \sum_{i \neq j}E[X_iX_j]}{E[X]^2} - 1 \\ &= 0 + \lim_{n \to \infty} \frac{ n(n - 1)(1 - p)^{2n - 3}}{n^2(1 - p)^{2n - 2}} - 1= \lim_{n \to \infty} \frac{1}{1 - p} - 1 = 0.\\
 \end{align*} \par
 We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, if $k < 1$, \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = \lim_{n \to \infty} \Pr[X > 0] = 1.\] Therefore, $r(n) = \frac{\ln n}{n}$ is a threshold function for property $A$.
