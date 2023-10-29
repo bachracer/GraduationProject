@@ -56,13 +56,15 @@ We make two observations:
     \item We used the \textit{union bound}. The union bound is a common technique in the probabilistic method. It states that for any events $A_1, ..., A_n$,
     \[\Pr[A_1 \cup ... \cup A_n] \leq \Pr[A_1] + ... + \Pr[A_n].\]
     We will extensively use this technique in this thesis. In a measure space, the union bound is the same property as \textit{subadditivity}. \par
-    \item The proof is nonconstructive. It does not give us a way to find a tournament with property $S_k$. It only shows that there is at least one. This is a common feature of the probabilistic method. However, in this case, we have that for large enough $n$, the probability that a random tournament on $n$ vertices has property $S_k$ is close to one. This means that we can find a tournament with property $S_k$ by generating random tournaments until we find one with the desired property.
+    \item The proof is nonconstructive. It does not give us a way to find a tournament with property $S_k$. It only shows that there is at least one. This is a common feature of the probabilistic method. However, in this case, we have that for large enough $n$, the probability that a random tournament on $n$ vertices has property $S_k$ is close to one. This means that we can find a tournament with property $S_k$ by generating random tournaments until we find one with the desired property. If $n$ is large enough, this will not take too long. \par
 \end{enumerate}
-In this chapter, we will introduce some tools that are useful for applying the probabilistic method and to prove some of the results in this thesis.
+In this chapter, we will introduce some tools that are useful for applying the probabilistic method. We will also give some examples of the method in action. \par
 
 \section{Linearity of Expectation}\label{sec:probmet:linearity}
 
-Etc. etc. \ref{def:tournament}
+Let $X_1, \ldots, X_n$ be random variables. Linearity of expectation states that 
+\[E[c_1X_1 + \cdots + c_nX_n] = c_1E[X_1] + \cdots + c_2E[X_2].\]
+Note that the variables do not need to be independent. Also, in a probability space, there is a point for which $X \geq E[X]$ and there is \ref{def:tournament}
 
 \section{Second Moment Method}\label{sec:probmet:secondmoment}
 
