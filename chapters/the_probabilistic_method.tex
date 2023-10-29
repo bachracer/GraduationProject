@@ -36,11 +36,11 @@ The main idea is to show that there is a large $n$ as a function of $k$, such th
 
 \textbf{Proof. } Fix a subset $K \subseteq V(T)$ of size $k$. Consider the event $A_K$ that there is no vertex $v \in V(T)$ such that $(v, s) \in E(T)$ for all $s \in S$. For any vertex $v \in V(T) \setminus K$, the probability that $(v, s) \notin E(T)$ for all $s \in K$ is $2^{-k}$. Thus,
 \[\Pr[A_K] = \left(1 - 2^{-k}\right)^{n - k}.\]
-Now, if we consider all subsets $S \subseteq V(T)$ of size $k$, then the probability that $T$ does not have property $S_k$ is the probability that any of the events $A_S$ occurs. Since there are $\binom{n}{k}$ such subsets, by the union bound,
-\[\Pr\left[\bigvee_{\substack{S \subseteq V(T) \\ |S| = k}} A_S\right] \leq \sum_{\substack{S \subseteq V(T) \\ |S| = k}}\Pr[A_K] = \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k}.\]
+Now, if we consider all subsets $K \subseteq V(T)$ of size $k$, then the probability that $T$ does not have property $S_k$ is the probability that any of the events $A_K$ occurs. Since there are $\binom{n}{k}$ such subsets, by the union bound,
+\[\Pr\left[\bigvee_{\substack{K \subseteq V(T) \\ |K| = k}} A_K\right] \leq \sum_{\substack{K \subseteq V(T) \\ |K| = k}}\Pr[A_K] = \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k}.\]
 We want to show that, for some $n$, this probability of this event is less than 1. Using Propositions \ref{ap:prop:upperbinom} and \ref{ap:prop:exp}, we have that
 \begin{align}
-    \Pr\left[\bigvee_{\substack{S \subseteq V(T) \\ |S| = k}} A_S\right] &\leq \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k} \\
+    \Pr\left[\bigvee_{\substack{K \subseteq V(T) \\ |K| = k}} A_K\right] &\leq \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k} \\
     &\leq \left(\frac{en}{k}\right)^k\left(e^{-2^{-k}}\right)^{n - k} = e^{k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k}}. \label{eq:tournament}
 \end{align}
 Then, \ref{eq:tournament} is less than one if 
@@ -58,15 +58,65 @@ We make two observations:
     We will extensively use this technique in this thesis. In a measure space, the union bound is the same property as \textit{subadditivity}. \par
     \item The proof is nonconstructive. It does not give us a way to find a tournament with property $S_k$. It only shows that there is at least one. This is a common feature of the probabilistic method. However, in this case, we have that for large enough $n$, the probability that a random tournament on $n$ vertices has property $S_k$ is close to one. This means that we can find a tournament with property $S_k$ by generating random tournaments until we find one with the desired property. If $n$ is large enough, this will not take too long. \par
 \end{enumerate}
-In this chapter, we will introduce some tools that are useful for applying the probabilistic method. We will also give some examples of the method in action. \par
+In this chapter, we will introduce some tools that are useful for applying the probabilistic method in discrete settings. We will also give some examples of the method in action. \par
 
 \section{Linearity of Expectation}\label{sec:probmet:linearity}
 
-Let $X_1, \ldots, X_n$ be random variables. Linearity of expectation states that 
-\[E[c_1X_1 + \cdots + c_nX_n] = c_1E[X_1] + \cdots + c_2E[X_2].\]
-Note that the variables do not need to be independent. Also, in a probability space, there is a point for which $X \geq E[X]$ and there is \ref{def:tournament}
+Let $X$ be a discrete random variable, then the \textit{expected value} of $X$ is defined as 
+\[E[X] = \sum_{x \in \text{Rg}(X)} x\Pr[X = x].\]
+We show that the expected value is linear. \par
+Let $X$ and $Y$ be discrete random variables. Then, the expected value of $X + Y$ is
+\begin{align*}
+    E[X + Y] &= \sum_{x \in \text{Rg}(X)} \sum_{y \in \text{Rg}(Y)} (x + y)\Pr[X = x \wedge Y = y] \\
+    &= \sum_{x \in \text{Rg}(X)} \sum_{y \in \text{Rg}(Y)} x\Pr[X = x \wedge Y = y] + \sum_{x \in \text{Rg}(X)} \sum_{y \in \text{Rg}(Y)} y\Pr[X = x \wedge Y = y] \\
+    &= \sum_{x \in \text{Rg}(X)} x\sum_{y \in \text{Rg}(Y)} \Pr[X = x \wedge Y = y] + \sum_{y \in \text{Rg}(Y)} y\sum_{x \in \text{Rg}(X)} \Pr[X = x \wedge Y = y] \\
+    &= \sum_{x \in \text{Rg}(X)} x\Pr[X = x] + \sum_{y \in \text{Rg}(Y)} y\Pr[Y = y] \\
+    &= E[X] + E[Y].
+\end{align*}
+Similarly, if $a \in \R$,
+\begin{align*}
+    E[aX] &= \sum_{x \in \text{Rg}(X)} ax\Pr[X = x] \\
+    &= a\sum_{x \in \text{Rg}(X)} x\Pr[X = x] \\
+    &= aE[X].
+\end{align*}
+This result is known as the \textit{linearity of expectation}. 
+\begin{example}\label{ex:probmet:linearity}\cite{alon2016probabilistic}
+    Let $\sigma$ be a random permutation of $\{1, \ldots, n\}$ chosen uniformly at random. Let $X_i$ be the indicator variable for the event that $\sigma(i) = i$. Then, $E[X_i] = \frac{1}{n}$ since there are $n$ possible values for $\sigma(i)$ and only one of them is $i$. Now, let $X = \sum_{i = 1}^n X_i$. Then, $X$ is the number of fixed points of $\sigma$. By the linearity of expectation,
+    \[E[X] = E\left[\sum_{i = 1}^n X_i\right] = \sum_{i = 1}^n E[X_i] = \sum_{i = 1}^n \frac{1}{n} = 1.\tqed\]
+\end{example}
+Note that there is a point in the probability space $x \geq E[X]$ such that $\Pr[X = x] > 0$, and there is a point $x \leq E[X]$ such that $\Pr[X = x] > 0$. The following result by Szele (1943) is often considered as one of the first applications of the probabilistic method \cite{alon2016probabilistic}. \par
+\begin{theorem}
+    There is a tournament with $n$ players and at least $n!2^{-(n - 1)}$ Hamiltonian paths. \cite{alon2016probabilistic}
+\end{theorem}
+\textbf{Proof. } Let $X$ be the number of hamiltonian paths in a random tournament. Let $\sigma$ be a permutation, and let $X_\sigma$ be the indicator variable for the event that $\sigma$ is a hamiltonian path. That is, $\sigma$ is an ordering of the vertices such that $(\sigma(1), \sigma(2)), ..., (\sigma(n - 1), \sigma(n))$ are edges of the tournament. Then, $X = \sum_{\sigma} X_\sigma$. By the linearity of expectation,
+\[E[X] = E\left[\sum_{\sigma} X_\sigma\right] = \sum_{\sigma} E[X_\sigma] = \sum_{\sigma} \frac{1}{2^{n - 1}} = n!2^{-(n - 1)}.\]
+Therefore, there exists a tournament with at least $n!2^{-(n - 1)}$ hamiltonian paths. \qed
 
 \section{Second Moment Method}\label{sec:probmet:secondmoment}
+
+Just as we can use the linearity of expectation to prove results with the probabilistic method, we can also use the \textit{second moment method}, which relies on the \textit{variance} of a random variable. Let $X$ be a random variable with expected value $E[X]$. Then, the variance of $X$ is defined as
+\[\text{Var}[X] = E[(X - E[X])^2].\]
+By the linearity of expectation, 
+\[E[(X - E[X])^2] = E[X] - 2E[XE[X]] + E[X]^2 = E[X^2] - E[X]^2.\]
+The standard practice is to denote the expected value as $\mu$ and the variance as $\sigma^2$. The use of the following inequality is called the second moment method: \par
+
+\begin{theorem}[Chebyschev's inequality]\label{thm:probmet:chebyschev}\cite{alon2016probabilistic}
+    For $\lambda \geq 0$,
+\end{theorem}
+\[\Pr[|X - \mu| \geq \lambda \sigma] \leq \frac{1}{\lambda^2}.\]
+\textbf{Proof. } 
+\[\sigma^2 = \text{Var}[X] = E[(x - \mu)^2] \geq \lambda^2\sigma^2 \Pr[|X - \mu| \geq \lambda \sigma]. \qed\]
+
+If $X = X_1 + ... + X_n$, then, by the linearity of expectation,
+\[\text{Var}[X] = \sum_{i = 1}^{n}\text{Var}[X_i] + \sum_{i \neq j}\text{Cov}[X_i, X_j],\]
+where 
+\[\text{Cov}[X_i, X_j] = E[X_iX_j] - E[X_i]E[X_j].\] 
+Furthermore, if, for each $i$, $X_i$ is an indicator variable of event $A_i$, that is, $X_i = 1$ if $A_i$ occurs and $X_i = 0$ otherwise, then
+\[\text{Var}[X_i] = \Pr[A_i](1 - \Pr[A_i]) \leq E[X_i],\]
+and we have that
+\[\text{Var}[X] \leq E[X] + \sum_{i \neq j} \text{Cov}[X_i, X_j].\]
+
+If $X$ only takes nonnegative integer values, we can bound $\Pr[X = 0]$
 
 \section{Threshold Functions}\label{sec:probmet:threshold}
 

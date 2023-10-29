@@ -37,10 +37,7 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{mathrsfs}
-\usepackage{tikzit}
 \usepackage{quiver}
-
-\input{figures/graphstyle.tikzstyles}
 
 \newtheorem*{theorem*}{Theorem}
 \newtheorem{theorem}{Theorem}[section]
@@ -65,6 +62,11 @@
 \def\CC{\ensuremath{\mathbb{C}}}
 \def\FF{\ensuremath{\mathbb{F}}}
 \def\Pr{\ensuremath{\mbox{Pr}}}
+
+\newcommand\xqed[1]{%
+  \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+  \quad\hbox{#1}}
+\newcommand\tqed{\xqed{$\triangle$}}
 %\newsavebox{\imagebox}
 
 %Formatting for headers and footers
@@ -105,7 +107,7 @@
 
 \tableofcontents
 \listoffigures
-\listoftables
+%\listoftables
 
 \pagenumbering{arabic}
 
