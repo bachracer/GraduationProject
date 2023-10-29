@@ -2,6 +2,27 @@
 
 Here you might present some additional results, derivations, proofs etc. that were not included in the main text.
 
-\begin{proposition}\label{ap:prop:binom}
+\section{Useful Bounds}
+
+We include some bounds that are useful in the proofs of the main results.
+
+\begin{proposition}\label{ap:prop:upperbinom}
     $\binom{n}{k} \leq \left(\frac{en}{k}\right)^k$ for $1 \leq k \leq n$. 
 \end{proposition}
+
+\begin{proposition}\label{ap:prop:lowebinom}
+    $\left(\frac{n}{k}\right)^k \leq \binom{n}{k}$ for $1 \leq k \leq n$.
+\end{proposition}
+
+\begin{proposition}\label{ap:prop:exp}
+    $(1 - p) \leq e^{-p}$ for $0 \leq p \leq 1$.
+\end{proposition}
+
+\textbf{Proof. } The Taylor series of $e^{-p}$ is decreasing and alternating, so
+\[e^{-p} = 1 - p + \frac{p^2}{2!} - \frac{p^3}{3!} + ... \geq 1 - p.\]
+
+\begin{proposition}
+    $\binom{n}{k}^2 \leq \binom{2n}{2k}$ for $n \geq 1$. 
+\end{proposition}
+
+\textbf{Proof. } We have that
