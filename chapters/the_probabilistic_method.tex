@@ -88,7 +88,7 @@ Note that there is a point in the probability space $x \geq E[X]$ such that $\Pr
 \begin{theorem}
     There is a tournament with $n$ players and at least $n!2^{-(n - 1)}$ Hamiltonian paths. \cite{alon2016probabilistic}
 \end{theorem}
-\textbf{Proof. } Let $X$ be the number of hamiltonian paths in a random tournament. Let $\sigma$ be a permutation, and let $X_\sigma$ be the indicator variable for the event that $\sigma$ is a hamiltonian path. That is, $\sigma$ is an ordering of the vertices such that $(\sigma(1), \sigma(2)), ..., (\sigma(n - 1), \sigma(n))$ are edges of the tournament. Then, $X = \sum_{\sigma} X_\sigma$. By the linearity of expectation,
+\textbf{Proof. } Let $X$ be the number of hamiltonian paths in a random tournament. Let $\sigma$ be a permutation, and let $X_\sigma$ be the indicator variable for the event that $\sigma$ is a hamiltonian path of the random tournament. That is, $\sigma$ is an ordering of the vertices such that $(\sigma(1), \sigma(2)), ..., (\sigma(n - 1), \sigma(n))$ are edges of the tournament. Then, $X = \sum_{\sigma} X_\sigma$. By the linearity of expectation,
 \[E[X] = E\left[\sum_{\sigma} X_\sigma\right] = \sum_{\sigma} E[X_\sigma] = \sum_{\sigma} \frac{1}{2^{n - 1}} = n!2^{-(n - 1)}.\]
 Therefore, there exists a tournament with at least $n!2^{-(n - 1)}$ hamiltonian paths. \qed
 
@@ -98,7 +98,7 @@ Just as we can use the linearity of expectation to prove results with the probab
 \[\text{Var}[X] = E[(X - E[X])^2].\]
 By the linearity of expectation, 
 \[E[(X - E[X])^2] = E[X] - 2E[XE[X]] + E[X]^2 = E[X^2] - E[X]^2.\]
-The standard practice is to denote the expected value as $\mu$ and the variance as $\sigma^2$. The use of the following inequality is called the second moment method: \par
+The standard practice is to denote the expected value as $\mu$ and the variance as $\sigma^2$. The use of the following inequality is called the second moment method \par
 
 \begin{theorem}[Chebyschev's inequality]\label{thm:probmet:chebyschev}\cite{alon2016probabilistic}
     For $\lambda \geq 0$,
@@ -111,20 +111,61 @@ If $X = X_1 + ... + X_n$, then, by the linearity of expectation,
 \[\text{Var}[X] = \sum_{i = 1}^{n}\text{Var}[X_i] + \sum_{i \neq j}\text{Cov}[X_i, X_j],\]
 where 
 \[\text{Cov}[X_i, X_j] = E[X_iX_j] - E[X_i]E[X_j].\] 
-Furthermore, if, for each $i$, $X_i$ is an indicator variable of event $A_i$, that is, $X_i = 1$ if $A_i$ occurs and $X_i = 0$ otherwise, then
+Note that $\text{Cov}[X_i, X_j] = 0$ if $X_i$ and $X_j$ are independent. Furthermore, if, for each $i$, $X_i$ is an indicator variable of event $A_i$, that is, $X_i = 1$ if $A_i$ occurs and $X_i = 0$ otherwise, then
 \[\text{Var}[X_i] = \Pr[A_i](1 - \Pr[A_i]) \leq E[X_i],\]
 and we have that
-\[\text{Var}[X] \leq E[X] + \sum_{i \neq j} \text{Cov}[X_i, X_j].\]
+\begin{equation}
+    \text{Var}[X] \leq E[X] + \sum_{i \neq j} \text{Cov}[X_i, X_j].
+\end{equation}
 
+<<<<<<< HEAD
 If $X$ only takes nonnegative integer values, we can bound $\Pr[X = 0]$ 
+=======
+Suppose that $X$ only takes nonnegative integer values, we are interested in bounding $\Pr[X = 0]$. First, note that 
+\begin{equation}\label{eq:probmet:secondmoment:1}
+    \Pr[X > 0] \leq E[X].   
+\end{equation}
+Thus, if $E[X] \to 0$, then $X = 0$ almost always. On the other hand, if $E[X] \to \infty$ does not necessarily imply that $X > 0$ almost always. For instance, consider an obviously imaginary game where you throw a coin until it lands heads up and you get paid $2^n$ dollars if it takes $n$ throws. Then, $E[X] = \infty$ but $X = 0$ with probability $\frac{1}{2}$. In some cases, we can use the second moment method to show that if $E[X] \to \infty$ and we have more information about $\text{Var}[X]$, then $X > 0$ almost always. \par
+>>>>>>> 6bea5c627ef1f7570a7203298c5128bebb69a164
 
+\begin{theorem}\label{thm:probmet:secondmoment:1}
+    \(\Pr[X = 0] \leq \frac{\text{Var}[X]}{E[X]^2}.\)\cite{alon2016probabilistic}
+\end{theorem}
+
+\textbf{Proof. } We apply Chebyschev's inequality \ref{thm:probmet:chebyschev} with $\lambda = \frac{\mu}{\sigma}$. Thus, 
+\[\Pr[X = 0] \leq \Pr[|X - \mu| \geq \lambda \sigma] \leq \frac{1}{\lambda^2} = \frac{\sigma^2}{\mu^2}. \qed \]
+
+In asymptotic terms, 
+
+\begin{corollary}\label{cor:probmet:secondmoment:1}
+    If $\text{Var}[X] \in o(E[X^2])$, $X > 0$ almost always. \cite{alon2016probabilistic}
+\end{corollary}
+
+Let $\varepsilon > 0$, following the proof of Theorem \ref{thm:probmet:secondmoment:1}, if $\lambda = \frac{\varepsilon\mu}{\sigma}$, then
+\[\Pr[X = 0] \leq \frac{\text{Var}[X]}{\varepsilon^2E[X]^2}.\]
+Thus, we have a tighter result:
+\begin{corollary}\label{cor:probmet:secondmoment:2}
+    If $\text{Var}[X] \in o(E[X]^2)$, then $X \sim E[X]$ almost always. \cite{alon2016probabilistic}
+\end{corollary}
+
+Finally, if $X = X_1 + \cdots + X_n$, where each $X_i$ is the indicator variable of event $A_i$. For indices $i, j$ such that $i \neq j$, we say that $i \sim j$ if the events $A_i$ and $A_j$ are not independent. Let
+\[\Delta  = \sum_{i \sim j} \Pr[A_i \wedge A_j].\]
+\begin{corollary}\label{cor:probmet:secondmoment:3}
+    If $E[X] \to \infty$ and $\Delta = o(E[X^2])$, then $X > 0$ almost always. Also, $X \sim E[X]$ almost always. \cite{alon2016probabilistic}
+\end{corollary}
+\textbf{Proof. } When $i \sim j$, 
+\[\text{Cov}[X_i, X_j] = E[X_iX_j] - E[X_i]E[X_j] \leq E[X_iX_j] = \Pr[A_i \wedge A_j],\]
+and so 
+\[\text{Var}[X] \leq E[X] + \sum_{i \neq j}\text{Cov}[X_i, X_j] \leq E[X] + \sum_{i \sim j}\Pr[A_i \wedge A_j] = E[X] + \Delta. \qed\]
+
+We are now ready to show an application of the second moment method. \par
 \section{Threshold Functions}\label{sec:probmet:threshold}
 
 Let $n \in \N$ and $0 \leq p \leq 1$. The random graph $G(n, p)$ is a probability space over the set of graphs on $n$ labeled vertices determined by
 \[\Pr[\{i, j\} \in G] = p\] 
-with these events mutually independent \cite{alon2016probabilistic}. Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. 
+with these events mutually independent \cite{alon2016probabilistic}. Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. As $n$ grows, we let $p$ be a function of $n$, $p = p(n)$. \par
 
-\begin{definition}
+\begin{definition}\label{def:probmet:threshold}
     $r(n)$ is a threshold function for a graph theoretic property $A$ if 
     \begin{enumerate}
         \item When \(p(n) \in o(r(n)), \; \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 0,\)
@@ -137,9 +178,26 @@ We give an example of a threshold function which illustrates a common method for
 
 \subsection{Threshold function for having isolated vertices}
 
-Let $G$ be a graph on $n$ labeled vertices. An isolated vertex of $G$ is a vertex which does not belong to any of the edges of $G$. Let $A$ be the property that $G$ contains an isolated vertex. We will prove that $\displaystyle{r(n) = \frac{\ln n}{n}}$ is a threshold for $A$. \par
+\begin{figure}[h]
+    \[\begin{tikzcd}
+        \bullet & \bullet & \bullet \\
+        \bullet & \bullet & \bullet
+        \arrow[no head, from=2-1, to=1-2]
+        \arrow[no head, from=2-1, to=2-2]
+        \arrow[no head, from=1-2, to=2-3]
+        \arrow[no head, from=2-3, to=1-1]
+    \end{tikzcd}\]
+    \caption{A graph with an isolated vertex.}
+    \label{fig:isolatedvertex}
+\end{figure}
 
-For each vertex $i$ in $G$ define the variable 
+Let $G$ be a graph on $n$ labeled vertices. An isolated vertex of $G$ is a vertex which does not belong to any of the edges of $G$. Let $A$ be the property that $G$ contains an isolated vertex.
+
+\begin{theorem}\label{thm:probmet:isolatedverticesthreshold}
+    $\displaystyle{r(n) = \frac{\ln n}{n}}$ is a threshold for having isolated vertices. 
+\end{theorem}
+
+\textbf{Proof. } For each vertex $i$ in $G$, let $A_i$ be the event that $i$ is an isolated vertex and define its indicator variable 
 
 \[X_i = 
 \left\{
@@ -150,34 +208,40 @@ For each vertex $i$ in $G$ define the variable
 \right.
 \]
 
-Now, the probability that a vertex $i$ is isolated is $(1 - p)^{n - 1}$ since it is the probability that none of the other $n - 1$ vertices is connected to $i$. Let $X = \sum_{i = 1}^n X_i$, then the expected number of isolated vertices is
+Now, the probability that a vertex $i$ is isolated is $(1 - p)^{n - 1}$,since it is the probability that none of the other $n - 1$ vertices is connected to $i$. Let $X = \sum_{i = 1}^n X_i$, then the expected number of isolated vertices is
  \[E[X] = \sum_{i = 1}^{n} E[X_i] = \sum_{i = 1}^{n} \Pr[X_i] = n(1 - p)^{n - 1}.\]
+
 
 Let $\displaystyle{p = k\frac{\ln n}{n}}$ for $k \in \R_{>0}$. Then
 \begin{align*}
     \lim_{n \to \infty} E[X] &= \lim_{n \to \infty} n\left(1 - k\frac{\ln n}{n}\right)^{n - 1} \\
     &= ne^{-k\ln n} = n^{1 - k}.
 \end{align*}
-
-Therefore, $\lim_{n \to \infty} E[X] = 0$ if $k > 1$. Since \(E[X] \geq \Pr[X > 0],\) we conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] =  \lim_{n \to \infty} \Pr[X > 0] = 0.\] \par
-Now, for $k < 1$, the fact that $\lim_{n \to \infty} E[X] = \infty$ is not enough to conclude that \(\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = 1\). We have to use the second moment method. \par
-
-\begin{theorem*}
-    If $E[X] \to \infty$ and $\text{Var}[X] = o(E[X]^2)$, then $\lim_{n \to \infty} \Pr[X > 0] = 1$. \cite{alon2016probabilistic}
-\end{theorem*}
-
-\textbf{Proof. } We will prove that, in this case, $Var[X] = o(E[X]^2)$. First, 
-\begin{align*}
-    \sum_{i \neq j}E[X_iX_j] &= \sum_{i \neq j} \Pr[X_i = X_j = 1] \\
-    &= n(n - 1)(1 - p)^{n -1}(1 - p)^{n - 2} \\ &= n(n - 1)(1 - p)^{2n - 3},
-\end{align*}
-
-for if $i$ is an isolated vertex, then there is no edge between $i$ and $j$ so we only have to account for the remaining $n - 2$ edges that contain $j$.  \par
-
-Thus, since $\sum_{i = 1}^{n}E[X_i^2] =  \sum_{i = 1}^n E[X_i] = E[X]$ and $\lim_{n \to \infty} p = 0$,
-
-\begin{align*}
-    \lim_{n \to \infty} \frac{\text{Var}[X]}{E[X]^2} &= 
-    \lim_{n \to \infty}\frac{E[X^2] - E[X]^2}{E[X]^2} = \lim_{n \to \infty} \frac{\sum_{i = 1}^n E[X_i^2] + \sum_{i \neq j}E[X_iX_j]}{E[X]^2} - 1 \\ &= 0 + \lim_{n \to \infty} \frac{ n(n - 1)(1 - p)^{2n - 3}}{n^2(1 - p)^{2n - 2}} - 1= \lim_{n \to \infty} \frac{1}{1 - p} - 1 = 0.\\
-\end{align*} \par
-We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, if $k < 1$, \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = \lim_{n \to \infty} \Pr[X > 0] = 1.\] Therefore, $r(n) = \frac{\ln n}{n}$ is a threshold function for property $A$.
+There are two cases: \par
+\begin{enumerate}
+    \item If $k > 1$, $\lim_{n \to \infty} E[X] = 0$. Since \(E[X] \geq \Pr[X > 0],\) we conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] =  \lim_{n \to \infty} \Pr[X > 0] = 0.\] \par
+    Thus, if $r(n) \in o(p(n))$, then $\lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 0$. \par
+    \item If $k < 1$, the fact that $\lim_{n \to \infty} E[X] = \infty$ is not enough to conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = 1.\] 
+    We have to use the second moment method.  We will prove that $\text{Var} [X] = o(E[X]^2)$. First, 
+    \begin{align*}
+        \sum_{i \neq j}E[X_iX_j] &= \sum_{i \neq j} \Pr[X_i = X_j = 1] \\
+        &= n(n - 1)(1 - p)^{n -1}(1 - p)^{n - 2} \\ &= n(n - 1)(1 - p)^{2n - 3},
+    \end{align*}
+    
+    for if $i$ is an isolated vertex, then there is no edge between $i$ and $j$ so we only have to account for the remaining $n - 2$ edges that contain $j$.  \par
+    
+    Thus, since $\sum_{i = 1}^{n}E[X_i^2] =  \sum_{i = 1}^n E[X_i] = E[X]$ and $\lim_{n \to \infty} p(n) = 0$,
+    
+    \begin{align*}
+        \lim_{n \to \infty} \frac{\text{Var}[X]}{E[X]^2} &= 
+        \lim_{n \to \infty}\frac{E[X^2] - E[X]^2}{E[X]^2} \\
+        &= \lim_{n \to \infty} \frac{\sum_{i = 1}^n E[X_i^2] + \sum_{i \neq j}E[X_iX_j]}{E[X]^2} - 1 \\ &= \lim_{n \to \infty} \frac{E[X]}{E[X]^2} +\frac{ n(n - 1)(1 - p)^{2n - 3}}{n^2(1 - p)^{2n - 2}} - 1 \\
+        & = \lim_{n \to \infty} \frac{1}{1 - p} - 1 = 0.\\
+    \end{align*} \par
+    We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, by Corollary \ref{cor:probmet:secondmoment:1}, if $k < 1$, 
+    \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = \lim_{n \to \infty} \Pr[X > 0] = 1.\] 
+    Therefore, if $p(n) \in o(r(n))$, then $\lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 1$. Furthermore, if $p(n) \in o(r(n))$, $X \sim E[X]$ almost always as $n$ tends to infinity.  \par
+\end{enumerate}
+We conclude that $r(n) = \frac{\ln n}{n}$ is a threshold function for property $A$. \qed \par
+We could have used Corollary \ref{cor:probmet:secondmoment:3} since we are dealing with a sum of indicator variables. However, since we could show result without using the upper bound on the covariance, we only needed Corollary \ref{cor:probmet:secondmoment:1}. The definition of $\Delta$ will be useful in further results. \par 
+Also, note that we proved a stronger result than what we needed. We also showed that there are functions which are constant multiples of $r(n)$ such that the probability that $G(n, p)$ satisfies $A$ is close to one or close to zero. \par
