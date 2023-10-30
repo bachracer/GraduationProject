@@ -1,4 +1,4 @@
-\chapter{Numerical Semigroups}\label{chap:probmet}
+\chapter{Numerical Semigroups}\label{chap:smgs}
 
 \section{Introduction}\label{sec:smgps:intro}
 
@@ -13,7 +13,15 @@ So far we have only discussed graphs. In this chapter, we will introduce a new o
     \end{enumerate}
 \end{definition}
 
-Examples of numerical semigroups include $\NN_{0}$, 
+Examples of numerical semigroups include $\NN_{0}$ and $\NN_{0} \setminus \{1\}$. Subsets of $\NN_0$ which are not numerical semigroups include the set of even numbers, any finite set and $\NN_0 \setminus \{2\}$. \par
+
+\begin{example}\label{ex:smgps:mcnugget}
+    The \textit{McNugget Semigroup} is the set of all non-negative integers which can be expressed as a sum of non-negative multiples of 6, 9 and 20. 
+\end{example}
+
+Suppose you are in the United Kingdom and you wish to order 43 McNuggets. The cashier will hesitate for a while before telling you that they do not sell 43 McNuggets. However, if you order 44 McNuggets, you will receive 2 boxes of 20 McNuggets and 2 boxes of 2 McNuggets. This is because 44 can be expressed as a sum of non-negative multiples of 6, 9 and 20, namely $44 = 2 \cdot 6 + 2 \cdot 9 + 2 \cdot 20$ \cite{youtube}. 
+
+Let us see why the McNugget Semigroup is a numerical semigroup. First, we note that $0$ can be expressed as a sum of non-negative multiples of 6, 9 and 20, namely $0 = 0 \cdot 6 + 0 \cdot 9 + 0 \cdot 20$. Next, we note that if $a$ and $b$ can be expressed as a sum of non-negative multiples of 6, 9 and 20, then so can $a + b$. Finally, we note that the complement of the McNugget Semigroup in $\NN_0$ is finite, since any integer greater than or equal to 43 can be expressed as a sum of non-negative multiples of 6, 9 and 20. \par
 
 \section{Invariants}\label{sec:smgps:theme1}
 
