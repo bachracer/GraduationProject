@@ -2,15 +2,17 @@
 
 \section{Introduction}\label{sec:probmet:intro}
 
-The probabilistic method is a powerful tool, with applications in Combinatorics, Graph Theory, Number Theory and Computer Science. It is a nonconstructive method that proves the existence of an object with a certain property, by showing that the probability that a randomly chosen object has that property is greater than zero. The method requires an appropiate sample space and is best illustrated by an example: \par
+This chapter is based on the book \textit{The Probabilistic Method} by Noga Alon and Joel H. Spencer \cite{alon2016probabilistic}. \par
 
-\begin{definition}\label{def:tournament}
-A \textit{tournament} is a directed graph $T$ on $n$ vertices such that for every pair of vertices $i, j \in V(T)$, exactly one of the edges $(i, j)$ or $(j, i)$ is in $E(T)$. \cite{alon2016probabilistic} 
+The probabilistic method is a powerful tool, with applications in Combinatorics, Graph Theory, Number Theory and Computer Science. It is a nonconstructive method that proves the existence of an object with a certain property by showing that the probability that a randomly chosen object has that property is greater than zero. The method requires an appropriate sample space and is best illustrated by an example: \par
+
+\begin{definition}\label{def:tournament} 
+A \textit{tournament} is a directed graph $T$ on $n$ vertices such that for every pair of vertices $i, j \in V(T)$, exactly one of the edges $(i, j)$ or $(j, i)$ is in $E(T)$. 
 \end{definition}
 
-The name of a tournament comes from the fact that it can be thought of as a sports tournament where each vertex represents a team and each team plays every other team exactly once. The edge $(i, j)$ represents a win for team $i$ over team $j$. A tournament $T$ has property $S_k$ if for every subset $K \subseteq V(T)$ of size $k$, there is a vertex $v \in V(T)$ such that $(v, s) \in E(T)$ for all $s \in K$ \cite{alon2016probabilistic}. That is, for every set of $k$ teams there is a team that beats all of them. For example, the tournament in Figure \ref{fig:tournament} has property $S_1$ since every team is beaten by another team. \par
+The name of a tournament comes from the fact that it can be thought of as a sports tournament where each vertex represents a team and each team plays every other team exactly once. The edge $(i, j)$ represents a win for team $i$ over team $j$. A tournament $T$ has property $S_k$ if for every subset $K \subseteq V(T)$ of size $k$, there is a vertex $v \in V(T)$ such that $(v, s) \in E(T)$ for all $s \in K$. That is, for every set of $k$ teams there is a team that beats all of them. For example, the tournament in Figure \ref{fig:tournament} has property $S_1$ since every team is beaten by another team. \par
 
-A natural question to ask is: is there a tournament with property $S_k$ for every $k$? The answer is yes. We will prove this using the probabilistic method. First we define a probability space over the set of tournaments on $n$ vertices: \par 
+A natural question to ask is: for every $k$, is there a tournament with property $S_k$? The answer is yes. We will prove this using the probabilistic method. First we define a probability space over the set of tournaments on $n$ vertices: \par 
 A \textit{random} tournament on a set of $n$ vertices is a tournament $T$ such that for every pair of vertices $i, j \in V(T)$, the edge $(i, j)$ is in $E(T)$ with probability $\frac{1}{2}$ and the edge $(j, i)$ is in $E(T)$ with probability $\frac{1}{2}$, independently of all other edges. Thus, every tournament on $n$ vertices has the same probability, which means that this probability space is \textit{symmetric}. \par
 
 \begin{figure}
@@ -43,12 +45,12 @@ We want to show that, for some $n$, this probability of this event is less than 
     \Pr\left[\bigvee_{\substack{K \subseteq V(T) \\ |K| = k}} A_K\right] &\leq \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k} \\
     &\leq \left(\frac{en}{k}\right)^k\left(e^{-2^{-k}}\right)^{n - k} = e^{k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k}}. \label{eq:tournament}
 \end{align}
-Then, \ref{eq:tournament} is less than one if 
+Then, \ref{eq:tournament} is less than one if \textcolor{blue}{Reverse inequality}
 \[k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k} = k\log n - k\log k + \frac{k}{2^k} - \frac{n}{2^k} < k\log n - \frac{n}{2^k} < 0,\]
 which holds if and only if
 \[\frac{n}{\log n} > k2^k.\]
-Now, if $n = k^2 2^k\log 2$, then
-\[\lim_{n \to \infty} \frac{n}{k2^k\log n} = \lim_{k \to \infty} \frac{k\log 2}{2\log k + k\log 2 + \log\log 2} = 1.\]
+Now, if $n \geq k^2 2^k\log 2$, then 
+\[\lim_{n \to \infty} \frac{n}{k2^k\log n} = \lim_{k \to \infty} \frac{k\log 2}{2\log k + k\log 2 + \log\log 2} \leq 1.\]
 Hence, we conclude that there exists $n = (\log 2)k^2 2^k (1 + o(1))$, such that the probability that a random tournament on $n$ vertices does not have property $S_k$ is less than one. Therefore, the probability that there exists a tournament on $n$ vertices with property $S_k$ is greater than zero, which means that there exists at least one tournament with property $S_k$. \qed
 
 We make two observations: 
@@ -84,11 +86,11 @@ This result is known as the \textit{linearity of expectation}.
     Let $\sigma$ be a random permutation of $\{1, \ldots, n\}$ chosen uniformly at random. Let $X_i$ be the indicator variable for the event that $\sigma(i) = i$. Then, $E[X_i] = \frac{1}{n}$ since there are $n$ possible values for $\sigma(i)$ and only one of them is $i$. Now, let $X = \sum_{i = 1}^n X_i$. Then, $X$ is the number of fixed points of $\sigma$. By the linearity of expectation,
     \[E[X] = E\left[\sum_{i = 1}^n X_i\right] = \sum_{i = 1}^n E[X_i] = \sum_{i = 1}^n \frac{1}{n} = 1.\tqed\]
 \end{example}
-Note that there is a point in the probability space $x \geq E[X]$ such that $\Pr[X = x] > 0$, and there is a point $x \leq E[X]$ such that $\Pr[X = x] > 0$. The following result by Szele (1943) is often considered as one of the first applications of the probabilistic method \cite{alon2016probabilistic}. \par
-\begin{theorem}
-    There is a tournament with $n$ players and at least $n!2^{-(n - 1)}$ Hamiltonian paths. \cite{alon2016probabilistic}
+Note that there is a point $x$ such that $x \geq E[X]$ and $\Pr[X = x] > 0$, and there is a point $x \leq E[X]$ such that $\Pr[X = x] > 0$. The following result by Szele (1943) is often considered as one of the first applications of the probabilistic method. \par
+\begin{theorem} \textcolor{blue}{Cite exact theorem}
+    There is a tournament with $n$ players and at least $n!2^{-(n - 1)}$ Hamiltonian paths. 
 \end{theorem}
-\textbf{Proof. } Let $X$ be the number of hamiltonian paths in a random tournament. Let $\sigma$ be a permutation, and let $X_\sigma$ be the indicator variable for the event that $\sigma$ is a hamiltonian path of the random tournament. That is, $\sigma$ is an ordering of the vertices such that $(\sigma(1), \sigma(2)), ..., (\sigma(n - 1), \sigma(n))$ are edges of the tournament. Then, $X = \sum_{\sigma} X_\sigma$. By the linearity of expectation,
+\textbf{Proof. } Let $X$ be the number of Hamiltonian paths in a random tournament. Let $\sigma$ be a permutation, and let $X_\sigma$ be the indicator variable for the event that $\sigma$ is a hamiltonian path of the random tournament. That is, $\sigma$ is an ordering of the vertices such that $(\sigma(1), \sigma(2)), ..., (\sigma(n - 1), \sigma(n))$ are edges of the tournament. Then, $X = \sum_{\sigma} X_\sigma$. By the linearity of expectation,
 \[E[X] = E\left[\sum_{\sigma} X_\sigma\right] = \sum_{\sigma} E[X_\sigma] = \sum_{\sigma} \frac{1}{2^{n - 1}} = n!2^{-(n - 1)}.\]
 Therefore, there exists a tournament with at least $n!2^{-(n - 1)}$ hamiltonian paths. \qed
 
@@ -98,7 +100,7 @@ Just as we can use the linearity of expectation to prove results with the probab
 \[\text{Var}[X] = E[(X - E[X])^2].\]
 By the linearity of expectation, 
 \[E[(X - E[X])^2] = E[X] - 2E[XE[X]] + E[X]^2 = E[X^2] - E[X]^2.\]
-The standard practice is to denote the expected value as $\mu$ and the variance as $\sigma^2$. The use of the following inequality is called the second moment method \par
+The standard practice is to denote the expected value by $\mu$ and the variance by $\sigma^2$. The use of the following inequality is called the second moment method \par
 
 \begin{theorem}[Chebyschev's inequality]\label{thm:probmet:chebyschev}\cite{alon2016probabilistic}
     For $\lambda \geq 0$,
@@ -132,6 +134,7 @@ Thus, if $E[X] \to 0$, then $X = 0$ almost always. On the other hand, if $E[X] \
 \[\Pr[X = 0] \leq \Pr[|X - \mu| \geq \lambda \sigma] \leq \frac{1}{\lambda^2} = \frac{\sigma^2}{\mu^2}. \qed \]
 
 In asymptotic terms, 
+\textcolor{blue}{Define it for a sequence of variables}
 
 \begin{corollary}\label{cor:probmet:secondmoment:1}
     If $\text{Var}[X] \in o(E[X^2])$, $X > 0$ almost always. \cite{alon2016probabilistic}
@@ -205,13 +208,13 @@ Let $G$ be a graph on $n$ labeled vertices. An isolated vertex of $G$ is a verte
 \]
 
 Now, the probability that a vertex $i$ is isolated is $(1 - p)^{n - 1}$,since it is the probability that none of the other $n - 1$ vertices is connected to $i$. Let $X = \sum_{i = 1}^n X_i$, then the expected number of isolated vertices is
- \[E[X] = \sum_{i = 1}^{n} E[X_i] = \sum_{i = 1}^{n} \Pr[X_i] = n(1 - p)^{n - 1}.\]
+ \[E[X] = \sum_{i = 1}^{n} E[X_i] = \sum_{i = 1}^{n} \Pr[A_i] = n(1 - p)^{n - 1}.\]
 
 
-Let $\displaystyle{p = k\frac{\ln n}{n}}$ for $k \in \R_{>0}$. Then
+Let $\displaystyle{p = k\frac{\ln n}{n}}$ for $k \in \R_{>0}$. Then \textcolor{blue}{Put another step}
 \begin{align*}
     \lim_{n \to \infty} E[X] &= \lim_{n \to \infty} n\left(1 - k\frac{\ln n}{n}\right)^{n - 1} \\
-    &= ne^{-k\ln n} = n^{1 - k}.
+    &= \lim_{n \to \infty} ne^{-k\ln n} = \lim_{n \to \infty} n^{1 - k}.
 \end{align*}
 There are two cases: \par
 \begin{enumerate}
