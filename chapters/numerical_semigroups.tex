@@ -59,6 +59,8 @@ The McNugget semigroup and the proofs of the previous theorems motivates the fol
 
 \section{Invariants}\label{sec:smgps:invariants}
 
+Let $S$ be a numerical semigroup. \par
+
 \begin{definition}\label{def:smgps:multiplicity}
     The \textit{multiplicity} of $S$, denoted by $m(S)$, is the smallest non-zero element of $S$.
 \end{definition}
@@ -68,7 +70,7 @@ For instance, the multiplicity of the McNugget Semigroup is 6. \par
 Let $A$ and $B$ be non-empty finite subsets of $\NN$. Then we denote by $A + B$ the set \[\{a + b : a \in A, b \in B\}.\] 
 
 \begin{theorem}\label{thm:smgps:minimal_generating_set}
-    Let $S$ be a numerical semigroup. Then there exists a unique minimal generating set $A$ with $S = \langle A \rangle$.
+     There exists a unique minimal generating set $A$ with $S = \langle A \rangle$.
 \end{theorem}
 
 \textbf{Proof. } Let $A = S \setminus(S + S)$. This means that every element in $A$ is not the sum of two elements in $S$. First we prove that $A$ generates $S$. Note that $A$ generates 0. Suppose that $s\in S \setminus A$. Then $s = a + b$, such that $a$ and $b$ are in $S$ and $a, b < s$. If we proceed recursively, in a finite number of steps we can express $s$ as a sum of elements of $A$. \par
@@ -83,14 +85,20 @@ This motivates \par
 
 Theorem \ref{thm:smgps:minimal_generating_set} together with the proof of Theorem \ref{thm:smgps:fin_gen} show that $e(S) \leq m(S)$. \par
 
+Let $n$ be a non-zero element of $S$. \par
 
 \begin{definition}\label{def:smgps:aperyset}
-
+    The \textit{Ap\'ery set} of $n$ in $S$ is the set
 \end{definition}
+\[\text{Ap}(S, n) = \{s \in S : s - n \notin S\}\]
 
+For instance, $\text{Ap}(\langle 6, 9, 20 \rangle, 6) = \{0, 9, 20, 29, \}$. \par
 
 \begin{definition}\label{def:smgps:frobeniusnum}
+    The \textit{Frobenius number} of $S$, denoted by $F(S)$, is the largest element of $(\NN \cup \{-1\}) \setminus S$.
 \end{definition}
+
+The Frobenius number of the McNugget semigroup is 43. \par
 
 
 \begin{definition}\label{def:smgps:genus}
