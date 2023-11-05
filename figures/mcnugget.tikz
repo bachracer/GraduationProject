@@ -1,0 +1,61 @@
+%tikz
+\begin{tikzpicture}[every node/.style={draw,scale=1pt,
+    minimum width=20pt,inner sep=3pt,
+    line width=0pt,draw=black}]
+    \matrix[row sep=2pt,column sep=2pt]
+    {\node[left color=blue,right color=-red]{44};&
+    \node[fill=-red]{45};&
+    \node[fill=-red]{46};&
+    \node[fill=-red]{47};&
+    \node[fill=-red]{48};&
+    \node[fill=-red]{49};\\
+    \node[fill=-red]{38};&
+    \node[fill=-red]{39};&
+    \node[fill=-red]{40};&
+    \node[fill=-red]{41};&
+    \node[fill=-red]{42};&
+    \node[]{43};\\
+    \node[fill=-red]{32};&
+    \node[fill=-red]{33};&
+    \node[]{34};&
+    \node[fill=-red]{35};&
+    \node[fill=-red]{36};&
+    \node[]{37};\\
+    \node[fill=-red]{26};&
+    \node[fill=-red]{27};&
+    \node[]{28};&
+    \node[fill=-red]{29};&
+    \node[fill=-red]{30};&
+    \node[]{31};\\
+    \node[left color=-red,right color=red!70]{20};&
+    \node[fill=-red]{21};&
+    \node[]{22};&
+    \node[]{23};&
+    \node[fill=-red]{24};&
+    \node[]{25};\\
+    \node[]{14};&
+    \node[fill=-red]{15};&
+    \node[]{16};&
+    \node[]{17};&
+    \node[fill=-red]{18};&
+    \node[]{19};\\
+    \node[]{8};&
+    \node[left color=-red,right color=red!70]{9};&
+    \node[]{10};&
+    \node[]{11};&
+    \node[fill=-red]{12};&
+    \node[]{13};\\
+    \node[]{2};&
+    \node[]{3};&
+    \node[]{4};&
+    \node[]{5};&
+    \node[left color=-red,right color=red!70]{6};&
+    \node[]{7};\\
+    \node[]{-4};&
+    \node[]{-3};&
+    \node[]{-2};&
+    \node[]{-1};&
+    \node[fill=-red]{0};&
+    \node[]{1};\\
+    };
+\end{tikzpicture}

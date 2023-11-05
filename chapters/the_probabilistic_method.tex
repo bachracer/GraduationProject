@@ -81,7 +81,7 @@ Similarly, if $a \in \R$,
     &= a\sum_{x \in \text{Rg}(X)} x\Pr[X = x] \\
     &= aE[X].
 \end{align*}
-This result is known as the \textit{linearity of expectation}. 
+This result is known as \textit{linearity of expectation}. 
 \begin{example}\label{ex:probmet:linearity}\cite{alon2016probabilistic}
     Let $\sigma$ be a random permutation of $\{1, \ldots, n\}$ chosen uniformly at random. Let $X_i$ be the indicator variable for the event that $\sigma(i) = i$. Then, $E[X_i] = \frac{1}{n}$ since there are $n$ possible values for $\sigma(i)$ and only one of them is $i$. Now, let $X = \sum_{i = 1}^n X_i$. Then, $X$ is the number of fixed points of $\sigma$. By the linearity of expectation,
     \[E[X] = E\left[\sum_{i = 1}^n X_i\right] = \sum_{i = 1}^n E[X_i] = \sum_{i = 1}^n \frac{1}{n} = 1.\tqed\]
@@ -103,7 +103,7 @@ By the linearity of expectation,
 The standard practice is to denote the expected value by $\mu$ and the variance by $\sigma^2$. The use of the following inequality is called the second moment method \par
 
 \begin{theorem}[Chebyschev's inequality]\label{thm:probmet:chebyschev}\cite{alon2016probabilistic}
-    For $\lambda \geq 0$,
+    For $\lambda > 0$,
 \end{theorem}
 \[\Pr[|X - \mu| \geq \lambda \sigma] \leq \frac{1}{\lambda^2}.\]
 \textbf{Proof. } 
@@ -162,7 +162,7 @@ We are now ready to show an application of the second moment method. \par
 
 Let $n \in \N$ and $0 \leq p \leq 1$. The random graph $G(n, p)$ is a probability space over the set of graphs on $n$ labeled vertices determined by
 \[\Pr[\{i, j\} \in G] = p\] 
-with these events mutually independent \cite{alon2016probabilistic}. Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. As $n$ grows, we let $p$ be a function of $n$, $p = p(n)$. \par
+with these events mutually independent. Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. As $n$ grows, we let $p$ be a function of $n$, $p = p(n)$. \par
 
 \begin{definition}\label{def:probmet:threshold}
     $r(n)$ is a threshold function for a graph theoretic property $A$ if 
@@ -170,7 +170,7 @@ with these events mutually independent \cite{alon2016probabilistic}. Given a gra
         \item When \(p(n) \in o(r(n)), \; \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 0,\)
         \item When \(r(n) \in o(p(n)), \;  \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 1,\) 
     \end{enumerate}
-    or vice versa. \cite{alon2016probabilistic}
+    or vice versa.
 \end{definition}
 
 We give an example of a threshold function which illustrates a common method for proving that a function is a threshold. \par

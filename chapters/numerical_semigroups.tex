@@ -13,13 +13,13 @@ So far we have only discussed graphs. In this chapter, we will introduce a new o
     \end{enumerate}
 \end{definition}
 
-Examples of numerical semigroups include $\NN_{0}$ and $\NN_{0} \setminus \{1\}$. Subsets of $\NN_0$ which are not numerical semigroups include the set of even numbers, any finite set and $\NN_0 \setminus \{2\}$. \par
+Examples of numerical semigroups include $\NN_{0}$ and $\NN_{0} \setminus \{1\}$. Subsets of $\NN_0$ which are not numerical semigroups include the set of even numbers, any finite set and $\NN_0 \setminus \{2\}$. Numerical semigroups are studied in the context of commutative algebra and algebraic geometry, and they have applications in coding theory and cryptography \cite{assi2020numerical}. \par
 
 \begin{example}\label{ex:smgps:mcnugget}
-    The \textit{McNugget Semigroup} is the set of all non-negative integers which can be expressed as a sum of non-negative multiples of 6, 9 and 20. 
+    The \textit{McNugget Semigroup} is the set of all non-negative integers which can be expressed as a sum of non-negative multiples of 6, 9 and 20 (see Figure \ref{fig:smgps:mcnugget}).
 \end{example}
 
-Suppose you are in the United Kingdom and you wish to order 43 McNuggets. The cashier will hesitate for a while before telling you that they do not sell 43 McNuggets, since there is no combination of boxes of 6, 9 and 20 McNuggets which add up to 43. However, if you order 44 McNuggets, one possibility is that you will receive one box of 20 McNuggets, two boxes of 9 McNuggets and one box of 6 McNuggets. This is because 44 can be expressed as a sum of non-negative multiples of 6, 9 and 20, namely $44 = 2 \cdot 20 + 2 \cdot 9 + 6$ \cite{youtube}. In general, if you order more than 43 McNuggets, you will receive your order, since any integer greater than or equal to 43 can be expressed as a sum of non-negative multiples of 6, 9 and 20. \par
+Suppose you are in the United Kingdom and you wish to order 43 McNuggets. The cashier will hesitate for a while before telling you that they do not sell 43 McNuggets, since there is no combination of boxes of 6, 9 and 20 McNuggets which add up to 43 \cite{youtube}. However, if you order 44 McNuggets, one possibility is that you will receive one box of 20 McNuggets, two boxes of 9 McNuggets and one box of 6 McNuggets. This is because 44 can be expressed as a sum of non-negative multiples of 6, 9 and 20, namely $44 = 2 \cdot 20 + 2 \cdot 9 + 6$. In general, if you order more than 43 McNuggets, you will receive your order, since any integer greater than or equal to 43 can be expressed as a sum of non-negative multiples of 6, 9 and 20. \par
 
 Let us see why the McNugget Semigroup is a numerical semigroup. First, we note that $0$ can be expressed as a sum of non-negative multiples of 6, 9 and 20, namely $0 = 0 \cdot 6 + 0 \cdot 9 + 0 \cdot 20$. Next, we note that if $a$ and $b$ can be expressed as a sum of non-negative multiples of 6, 9 and 20, then so can $a + b$. Finally, we note that the complement of the McNugget Semigroup in $\NN_0$ is finite, since 
 \begin{align*}
@@ -55,9 +55,16 @@ and $k$ is a non-negative sum of multiples of elements of $A$:
 \[k = \sum_{i = 1}^n (\lambda_i + |\lambda_i|a_1)a_i,\]
 and so $k \in S$. Thus, for $0 \leq j < a_1$, $jk \in S$ and $jk$ is congruent with $j$ modulo $a_1$. Therefore, every number greater than $(a_1 - 1)k$ belongs to $S$, since it can be expressed as the sum of a multiple of $k$ plus a multiple of $a_1$.  This means that the complement of $S$ in $\NN$ is finite and so $S$ is a numerical semigroup. \qed \par
 
-The McNugget semigroup and the proofs of the previous theorems motivates the following numerical semigroup invariants. \par 
+The McNugget semigroup example and the proofs of the previous theorems motivates the following numerical semigroup invariants. \par 
 
 \section{Invariants}\label{sec:smgps:invariants}
+
+\begin{figure}
+    \centering
+    \input{figures/mcnugget.tikz}
+    \caption{Visualization of the McNugget semigroup.}
+    \label{fig:smgps:mcnugget}
+\end{figure}
 
 Let $S$ be a numerical semigroup. \par
 
@@ -77,34 +84,72 @@ Let $A$ and $B$ be non-empty finite subsets of $\NN$. Then we denote by $A + B$ 
 
 Now, we show that $A$ is minimal. If $S = \langle A' \rangle$, then for $a \in A$, if $a$ is a sum of non-negative multiples of elements of $A'$, then, since $a$ is not the sum of two elements in $S$, $a$ must be an element of $A'$. \qed \par
 
-This motivates \par
+Since the minimal generating set is unique, \par
 
 \begin{definition}\label{def:smgps:embedding_dim}
     The \textit{embedding dimension} of $S$, denoted by $e(S)$, is the cardinality of the minimal generating set of $S$.
 \end{definition}
 
-Theorem \ref{thm:smgps:minimal_generating_set} together with the proof of Theorem \ref{thm:smgps:fin_gen} show that $e(S) \leq m(S)$. \par
-
-Let $n$ be a non-zero element of $S$. \par
+Theorem \ref{thm:smgps:minimal_generating_set} together with the proof of Theorem \ref{thm:smgps:fin_gen} show that $e(S) \leq m(S)$. Let $n$ be a non-zero element of $S$. \par
 
 \begin{definition}\label{def:smgps:aperyset}
     The \textit{Ap\'ery set} of $n$ in $S$ is the set
 \end{definition}
 \[\text{Ap}(S, n) = \{s \in S : s - n \notin S\}\]
 
-For instance, $\text{Ap}(\langle 6, 9, 20 \rangle, 6) = \{0, 9, 20, 29, \}$. \par
-
+With the observation that $s - n \notin S$ if and only if $s$ is the first element in its congruence class modulo $n$, the Apéry set can also be defined as  
+\[\text{Ap}(S, n) =  \{0, b_1, \ldots, b_{n - 1}\},\]
+where $b_i$ is the first element of $S$ such that \(b_i \equiv i \mod n\). 
+For instance, \[\text{Ap}(\langle 6, 9, 20 \rangle, 6) = \{0, 49, 20, 9, 40, 29\}.\]. 
+\begin{proposition}
+    Each element of the $\text{Ap}(S, n)$ is either an element of the minimal generating set or a sum of two elements of $\text{Ap}(S, n)$. 
+\end{proposition}
+\textbf{Proof. } First, $0 = 0 + 0$. If $0 < s \in \text{Ap}(S, n)$, the other option is that $s = a + b$ such that $a \in S\setminus\text{Ap}(S, n)$ and $b \in S$. But this is not possible, since that means that $a - n \in S$, and so $a - n + b \equiv s \mod n$, which contradicts the fact that $s$ is the first element of its congruence class modulo $n$. \qed \par  
+For example, in the case of the McNugget semigroup,
+\[29 = 20 + 9, \quad 40 = 20 + 20 \quad \text{and} \quad 49 = 40 + 9.\]
 \begin{definition}\label{def:smgps:frobeniusnum}
     The \textit{Frobenius number} of $S$, denoted by $F(S)$, is the largest element of $(\NN \cup \{-1\}) \setminus S$.
 \end{definition}
 
-The Frobenius number of the McNugget semigroup is 43. \par
+The Frobenius number of the McNugget semigroup is 43. For $n \in S$, using the definition of the Frobenius number, we have that
+\begin{equation}\label{eq:smgps:selmer1}
+    F(S) = \max (\text{Ap}(S, n)) - n.
+\end{equation}
 
+\begin{proposition} Let $a, b \in \NN$ such that $\text{gcd}(a, b) = 1$. Then 
+    \[F(\langle a, b \rangle) = ab - a - b.\] 
+\end{proposition}
+\textbf{Proof. } If $a$ and $b$ are relatively prime, then $b$ modulo $a$ generates $\ZZ_a$ and $(a - 1)b$ is the maximum element of $\text{Ap}(\langle a, b\rangle, a)$. Apply equation \ref{eq:smgps:selmer1}. \qed
+
+\begin{definition}
+    The \textit{conductor} of $S$, denoted by $c(S)$, is the first element of $S$ greater than $F(S)$, $c(S) = F(S) + 1$.
+\end{definition}
+In Figure \ref{fig:smgps:mcnugget}, the elements of the McNugget semigroup are colored with light blue, the elements of the minimal generating set are shown in red and the conductor is shown in dark blue. The lowest element of each column is the first element of its congruence class modulo 6, which is the Apéry set of 6 in the McNugget semigroup. \par
+
+In general, the Apéry set can be used in the calculation many properties of numerical semigroups \cite{apery1946branches}. For instance, it can be used to calculate the cardinality of the set of gaps $G(S) = \NN \setminus S$.
 
 \begin{definition}\label{def:smgps:genus}
+    The \textit{genus} of $S$, denoted by $g(S)$, is the cardinality of $G(S)$.
 \end{definition}
 
+\begin{proposition} Let $n$ be a non-zero element of $S$. 
+    \begin{equation}\label{eq:smgps:selmer2}
+        g(S) = \frac{1}{n}\left(\sum_{s \in Ap(S, n)} s\right) - \frac{n - 1}{2}.
+    \end{equation}
+\end{proposition}
+\textbf{Proof. } First, if we divide the complement of $S$ in $\NN$ into congruence classes modulo $p$, we can find the number of gaps in congruence class $i$ by counting the number of elements in that class before the first element of $S$ in that class. Thus, if $b_i \in \text{Ap}(S, n)$ and $b_i \equiv i \mod n$, we can write $b_i = k_i n + i$, and the number of gaps in congruence class $i$ is $k_i$. Therefore,
+\begin{align*}
+    g(S) = \sum_{i = 1}^{n - 1} k_i &=  \frac{1}{n}\left(n\sum_{i = 1}^{n - 1} k_i + \frac{n(n - 1)}{2}\right) - \frac{n - 1}{2} \\
+    &= \frac{1}{n}\left(\sum_{i = 1}^n k_i n + i \right) - \frac{n - 1}{2} \\
+    &= \frac{1}{n}\left(\sum_{s \in Ap(S, n)} s \right) - \frac{n - 1}{2}. \qed
+\end{align*}
+Equations \ref{eq:smgps:selmer1} and \ref{eq:smgps:selmer2} are known as the \textit{Selmer formulas} \cite{selmer1977linear}. Note that \[g(S) \leq F(S),\] since $F(S)$ is the largest element of $\NN \setminus S$. Also, 
+\[g(S) \geq \frac{c(S)}{2} = \frac{F(S) + 1}{2},\]
+since $s \in S$ implies that $F(S) - s \notin S$, which means that at least half of the elements which are less than $c(S)$ do not belong to $S$.  This also shows that
+\begin{equation}\label{eq:smgps:frobgenus}
+    g(S) \leq F(S) \leq 2g(S).
+\end{equation}
 
 \section{Wilf's Conjecture}\label{sec:smgps:theme2}
 
-Etc. etc.
+Now, we present a dangerous problem, in the sense that it is easy to state, but it has been open for around 50 years. \par
