@@ -155,14 +155,18 @@ Finally, if $X = X_1 + \cdots + X_n$, where each $X_i$ is the indicator variable
 \textbf{Proof. } When $i \sim j$, 
 \[\text{Cov}[X_i, X_j] = E[X_iX_j] - E[X_i]E[X_j] \leq E[X_iX_j] = \Pr[A_i \wedge A_j],\]
 and so 
-\[\text{Var}[X] \leq E[X] + \sum_{i \neq j}\text{Cov}[X_i, X_j] \leq E[X] + \sum_{i \sim j}\Pr[A_i \wedge A_j] = E[X] + \Delta. \qed\]
+\[\text{Var}[X] \leq E[X] + \sum_{i \neq j}\text{Cov}[X_i, X_j] \leq E[X] + \sum_{i \sim j}\Pr[A_i \wedge A_j] = E[X] + \Delta. \qed\]
 
 We are now ready to show an application of the second moment method. \par
 \section{Threshold Functions}\label{sec:probmet:threshold}
 
-Let $n \in \N$ and $0 \leq p \leq 1$. The random graph $G(n, p)$ is a probability space over the set of graphs on $n$ labeled vertices determined by
-\[\Pr[\{i, j\} \in G] = p\] 
-with these events mutually independent. Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. As $n$ grows, we let $p$ be a function of $n$, $p = p(n)$. \par
+Let $n \in \N$ and $0 \leq p \leq 1$. 
+\begin{definition}
+    The Erdös-Rényi model for random graphs $G(n, p)$ is a probability space over the set of graphs on $n$ labeled vertices determined by
+    \[\Pr[\{i, j\} \in G] = p\] 
+    with these events mutually independent.
+\end{definition}
+ Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. As $n$ grows, we let $p$ be a function of $n$, $p = p(n)$. \par
 
 \begin{definition}\label{def:probmet:threshold}
     $r(n)$ is a threshold function for a graph theoretic property $A$ if 

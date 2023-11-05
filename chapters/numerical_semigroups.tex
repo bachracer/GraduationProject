@@ -1,4 +1,4 @@
-\chapter{Numerical Semigroups}\label{chap:smgs}
+\chapter{Numerical Semigroups}\label{chap:numsems}
 
 \section{Introduction}\label{sec:smgps:intro}
 
@@ -19,7 +19,7 @@ Examples of numerical semigroups include $\NN_{0}$ and $\NN_{0} \setminus \{1\}$
     The \textit{McNugget Semigroup} is the set of all non-negative integers which can be expressed as a sum of non-negative multiples of 6, 9 and 20 (see Figure \ref{fig:smgps:mcnugget}).
 \end{example}
 
-Suppose you are in the United Kingdom and you wish to order 43 McNuggets. The cashier will hesitate for a while before telling you that they do not sell 43 McNuggets, since there is no combination of boxes of 6, 9 and 20 McNuggets which add up to 43 \cite{youtube}. However, if you order 44 McNuggets, one possibility is that you will receive one box of 20 McNuggets, two boxes of 9 McNuggets and one box of 6 McNuggets. This is because 44 can be expressed as a sum of non-negative multiples of 6, 9 and 20, namely $44 = 2 \cdot 20 + 2 \cdot 9 + 6$. In general, if you order more than 43 McNuggets, you will receive your order, since any integer greater than or equal to 43 can be expressed as a sum of non-negative multiples of 6, 9 and 20. \par
+Suppose you are in the United Kingdom and you wish to order 43 McNuggets. The cashier will hesitate for a while before telling you that they do not sell 43 McNuggets, since there is no combination of boxes of 6, 9 and 20 McNuggets which add up to 43 \cite{youtube}. However, if you order 44 McNuggets, one possibility is that you will receive one box of 20 McNuggets, two boxes of 9 McNuggets and one box of 6 McNuggets. This is because 44 can be expressed as a sum of non-negative multiples of 6, 9 and 20, namely $44 = 2 \cdot 20 + 2 \cdot 9 + 6$. In general, if you order more than 43 McNuggets, you will receive your order. \par
 
 Let us see why the McNugget Semigroup is a numerical semigroup. First, we note that $0$ can be expressed as a sum of non-negative multiples of 6, 9 and 20, namely $0 = 0 \cdot 6 + 0 \cdot 9 + 0 \cdot 20$. Next, we note that if $a$ and $b$ can be expressed as a sum of non-negative multiples of 6, 9 and 20, then so can $a + b$. Finally, we note that the complement of the McNugget Semigroup in $\NN_0$ is finite, since 
 \begin{align*}
@@ -152,4 +152,12 @@ since $s \in S$ implies that $F(S) - s \notin S$, which means that at least half
 
 \section{Wilf's Conjecture}\label{sec:smgps:theme2}
 
-Now, we present a dangerous problem, in the sense that it is easy to state, but it has been open for around 50 years. \par
+Now, we present a dangerous problem, in the sense that it is easy to state, but it has not been solved yet. \par  
+Let $n(S)$ be the number of elements of $S$ less than $c(S)$, so that $n(S) + g(S) = c(S)$.\par
+
+\begin{conjecture}[Wilf, 1978] \cite{wilf1978circle}\label{conj:smgps:wilf}
+    For any numerical semigroup $S$,
+    \[\frac{n(S)}{c(S)} \geq \frac{1}{e(S)}.\]
+\end{conjecture}
+
+Wilf's conjecture states that the density of the small elements of a numerical semigroup is bounded below by the inverse of the embedding dimension. 

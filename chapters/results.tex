@@ -1,9 +1,4 @@
-% All contribution chapters should follow a similar structure, with a
-% mini-introduction and overview at the beginning and a conclusion at the
-% end bookmarking a structured presentation of the contribution. This can be
-% largely based on your publications.
-
-\chapter{Results}\label{chap:contrib3}
+\chapter{Results}\label{chap:results}
 
 \section{Introduction}
 
@@ -96,46 +91,46 @@ I conjecture that the hypothesis that $q$ is prime can be relaxed.
 \end{itemize}
 
 Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $S$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
-\[\text{Pr}(S) = \frac{1}{{q \choose s}}.\]
+\[\text{Pr}(S) = \frac{1}{\binom{q}{s}}.\]
 For a given $z \in \mathbb{Z}_q$ and $k \in \mathbb{N}$ for which $k \leq s/2$, let 
 \[N_z^k := \left\{K \subseteq \mathbb{Z}_q: |K| = k, \sum_{t \in K} t = z\right\}.\]
-Note that $|N_z^k| = \frac{1}{q}{q \choose k}$, since $K \in N_0^k$ if and only if $K + k^{-1}z \in N_z^k$ for every $z \in \mathbb{Z}_q$.\par
-For $K \in¡ N_z^k$, let $A_K$ be the event that $K \subset S$. Let $X_K$ be the indicator variable of $A_K$.
+Note that $|N_z^k| = \frac{1}{q}{\binom{q}{k}}$, since $K \in N_0^k$ if and only if $K + k^{-1}z \in N_z^k$ for every $z \in \mathbb{Z}_q$.\par
+For $K \in N_z^k$, let $A_K$ be the event that $K \subset S$. Let $X_K$ be the indicator variable of $A_K$.
 We define the random variable 
 \[X_z = \sum_{K \in N_z^k} X_K.\]
 Note that $X_z$ counts the number of sets of size $k$ which add up to $z$. We provide two ways of finding $E[X_z]$. The first one uses that, for any $K \subset N^k_z$, 
-\[E[X_K] = \text{Pr}[A_K] = \frac{{q - k \choose s - k}}{{q \choose s}},\]
+\[E[X_K] = \text{Pr}[A_K] = \frac{\binom{q - k}{s - k}}{\binom{q}{s}},\]
 and so we get that
 \begin{align*}
-    E[X_z] = \sum_{K \in N_z^k} E[X_K] = |N_z^k|E[X_K] = \frac{1}{q}{q \choose k}\frac{{q - k \choose s - k}}{{q \choose s}} = \frac{1}{q} {s \choose k}.
+    E[X_z] = \sum_{K \in N_z^k} E[X_K] = |N_z^k|E[X_K] = \frac{1}{q}{\binom{q}{k}}\frac{\binom{q - k}{s - k}}{\binom{q}{s}} = \frac{1}{q} {\binom{s}{k}}.
 \end{align*}
 \par
 This motivates the second way, for we know that 
-\[\sum_{z \in Z_q} X_z = {s \choose k} = \sum_{z \in Z_q} E[X_z].\]\par
+\[\sum_{z \in Z_q} X_z = {\binom{s}{k}} = \sum_{z \in Z_q} E[X_z].\]\par
 As in the argument for finding $|N_z^k|$, for every $z \in \mathbb{Z}_q$, 
 \[E[X_0] = \sum_{K \in N_0^k}E[X_K] = \sum_{K \in N_0^k} E[X_{K + k^{-1}z}] = \sum_{K \in N_z^k} E[X_K] = E[X_z].\]
 Therefore, we also find that
 \begin{equation}
-E[X_z] = \frac{1}{p} {s \choose k}.
+E[X_z] = \frac{1}{p} {\binom{s}{k}}.
 \end{equation}
 Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ and define
 \[\Delta_j := \sum_{|K \cap L| = j} \text{Pr}[A_K \land A_L].\]
 \par Fix $j \leq k$, then 
-\[\text{Pr}[A_K \land A_L] = \frac{{q - 2k + j \choose s - 2k + j}}{{q \choose s}}.\]
+\[\text{Pr}[A_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
 \par
 We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
-\[\Delta_j \leq \frac{{p \choose k} {q - k \choose k - j}{q - 2k + j \choose s - 2k + j}}{q{q \choose s}}.\]
+\[\Delta_j \leq \frac{\binom{p}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{q\binom{q}{s}}.\]
 \par This implies that, using (1),
 \begin{align*}
-    \frac{\Delta_j}{E[X_z]^2} &\leq \frac{{q \choose k} {q - k \choose k - j}{q - 2k + j \choose s - 2k + j}}{\frac{1}{q} {s \choose k}\frac{1}{q} {s \choose k}q{q \choose s}} \\
-    &= \frac{\frac{q!}{(q - k)!k!}\frac{(p - k)!}{(k - j)!(q - 2k + k)!}\frac{(q - 2k + j)!}{(s - 2k + j)!(q - s)!}}{\frac{1}{q}{s \choose k}\frac{s!}{(s - k)!k!}\frac{q!}{(q - s)!s!}} \\
-    &= \frac{q{s - k \choose k - j}}{{s \choose k}}.
+    \frac{\Delta_j}{E[X_z]^2} &\leq \frac{\binom{q}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{\frac{1}{q} \binom{s}{k}\frac{1}{q} \binom{s}{k}q\binom{q}{s}} \\
+    &= \frac{\frac{q!}{(q - k)!k!}\frac{(p - k)!}{(k - j)!(q - 2k + k)!}\frac{(q - 2k + j)!}{(s - 2k + j)!(q - s)!}}{\frac{1}{q}\binom{s}{k}\frac{s!}{(s - k)!k!}\frac{q!}{(q - s)!s!}} \\
+    &= \frac{q\binom{s - k}{k - j}}{\binom{s}{k}}.
 \end{align*}
-Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$, where $\alpha \in (0, 1)$. Using that ${s - k \choose t}$ is maximized at $t = \lfloor (s - k) / 2\rfloor$,
+Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$, where $\alpha \in (0, 1)$. Using that $\binom{s - k}{t}$ is maximized at $t = \lfloor (s - k) / 2\rfloor$,
 \begin{align*}
-\frac{\Delta_j}{E[X_z]^2} \leq \frac{q {2\lfloor 3 \log_2 q\rfloor\choose \lfloor 3 \log_2 q \rfloor}}{{4\lfloor 3\log_2 q \rfloor \choose 2\lfloor 3\log_2 q \rfloor}} \leq \frac{q}{{2\lfloor 3 \log_2 q \rfloor \choose \lfloor 3 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 3 \log_2 q \rfloor}} \sim \frac{1}{q^2},
+\frac{\Delta_j}{E[X_z]^2} \leq \frac{q \binom{2\lfloor 3 \log_2 q\rfloor}{\lfloor 3 \log_2 q \rfloor}}{\binom{4\lfloor 3\log_2 q \rfloor}{2\lfloor 3\log_2 q \rfloor}} \leq \frac{q}{\binom{2\lfloor 3 \log_2 q \rfloor }{ \lfloor 3 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 3 \log_2 q \rfloor}} \sim \frac{1}{q^2},
 \end{align*}
-since \({2\lfloor q^{\alpha} \rfloor \choose \lfloor 3 \log_2 q \rfloor}^2 \leq {4\lfloor 3 \log_2 q \rfloor \choose 2\lfloor 3 \log_2 q \rfloor}\) (I can prove this in a lemma or in the appendix).   \par
+since \(\binom{2\lfloor q^{\alpha} \rfloor}{\lfloor 3 \log_2 q \rfloor}^2 \leq \binom{4\lfloor 3 \log_2 q \rfloor }{2\lfloor 3 \log_2 q \rfloor}\) (I can prove this in a lemma or in the appendix).   \par
 This proves that
 \[\text{Pr}[X_z = 0] \leq \frac{\Delta}{E[X_z]^2} = \sum_{j = 0}^k \frac{\Delta_j}{E[X_z]^2} \leq \frac{(k + 1)}{q^2}.\]
 Therefore, by the union bound,
