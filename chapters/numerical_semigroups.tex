@@ -115,6 +115,7 @@ The Frobenius number of the McNugget semigroup is 43. For $n \in S$, using the d
 \begin{equation}\label{eq:smgps:selmer1}
     F(S) = \max (\text{Ap}(S, n)) - n.
 \end{equation}
+It can be proven that finding the Frobenius number with variable $n$ is an NP-hard problem \cite{ramirez1996complexity}.
 
 \begin{proposition} Let $a, b \in \NN$ such that $\text{gcd}(a, b) = 1$. Then 
     \[F(\langle a, b \rangle) = ab - a - b.\] 
@@ -152,12 +153,22 @@ since $s \in S$ implies that $F(S) - s \notin S$, which means that at least half
 
 \section{Wilf's Conjecture}\label{sec:smgps:theme2}
 
-Now, we present a dangerous problem, in the sense that it is easy to state, but it has not been solved yet. \par  
-Let $n(S)$ be the number of elements of $S$ less than $c(S)$, so that $n(S) + g(S) = c(S)$.\par
+Now, we present a dangerous problem, in the sense that it is easy to state, but it has not been solved yet. Let $n(S)$ be the number of elements of $S$ less than $c(S)$, so that $n(S) + g(S) = c(S)$.\par 
 
 \begin{conjecture}[Wilf, 1978] \cite{wilf1978circle}\label{conj:smgps:wilf}
     For any numerical semigroup $S$,
     \[\frac{n(S)}{c(S)} \geq \frac{1}{e(S)}.\]
 \end{conjecture}
 
-Wilf's conjecture states that the density of the small elements of a numerical semigroup is bounded below by the inverse of the embedding dimension. 
+Wilf's conjecture states that the density of the small elements of a numerical semigroup is bounded below by the inverse of the embedding dimension. This conjecture has been verified for specific classes of numerical semigroups \cite{assi2020numerical}: for a numerical semigroup $S$, Wilf's conjecture holds one of these conditions is satisfied:
+\begin{itemize}
+    \item $e(S) \leq 3$,
+    \item $e(S) = m(S)$,
+    \item $F(S) - 1 + g(S) \leq 4$,
+    \item $4g(S) \leq 3c(S)$,
+    \item $n(S) \leq 4$,
+    \item $4n(S) \geq c(S)$,
+    \item $F(S) \leq 20$.
+\end{itemize}
+
+This is not an exhaustive list. As there are several published papers on partial solutions, a recent survey on Wilf's conjecture can be found in \cite{2020conjecture}. \par

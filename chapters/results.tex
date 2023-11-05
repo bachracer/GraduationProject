@@ -2,13 +2,9 @@
 
 \section{Introduction}
 
-In this Chapter, XXX is presented.
+In this chapter, we present the main results of this Thesis. We start by proving a Theorem found in \cite{de2018random} without the use of the simplicial complex. 
 
-Section \ref{sec:contrib3:theme1} discusses Theme 1. Section \ref{sec:contrib3:theme2} discusses Theme 2....
-
-\section{Lower Bound}\label{sec:contrib3:theme1}
-
-\section{Expected Frobenius Number}
+\section{Lower Bound}\label{sec:results:lowerbound}
 
 We prove a Theorem found in \cite{de2018random} without the use of the simplicial complex. 
 
@@ -76,19 +72,14 @@ Finally, note that by union bound,
 \[\Pr[E_4 \land E_3] \geq 1 - \frac{11}{a} - o(1).\] 
 Therefore, for every $N \in \NN$ and $\varepsilon > 0$, there exists $K$ such that $M \geq K$ implies \[\Pr[f(S) > N], \; \Pr[g(S) > N], \; \Pr[e(S) > N] > 1 - \varepsilon.\].
 
-\subsection{Subtopic A}\label{sec:contrib3:theme1:A}
 
-\subsection{Subtopic B}\label{sec:contrib3:theme1:B}
-
-\subsection{Subtopic C}\label{sec:contrib3:theme1:C}
-
-\section{Lower Bound result}\label{sec:contrib3:theme2}
+\section{Upper bound}\label{sec:results:upperbound}
 
 I conjecture that the hypothesis that $q$ is prime can be relaxed.
-\subsection{Lemma}
-\begin{itemize}
-    \item Let $q$ be a prime number and $S$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. 
-\end{itemize}
+\subsection{Iteraded sumsets in cyclic groups}
+\begin{lemma}\label{lem:sumset}
+    Let $q$ be a prime number and $S$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. 
+\end{lemma}
 
 Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $S$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
 \[\text{Pr}(S) = \frac{1}{\binom{q}{s}}.\]
@@ -136,11 +127,11 @@ This proves that
 Therefore, by the union bound,
 \[\text{Pr}[\bigvee_{z \in \mathbb{Z}_q} X_z = 0] \leq \frac{(k + 1)}{q}.\]
 
-\section{Theorem} 
-\begin{itemize}
-    \item Let $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ .Then
-\[\lim_{p \to 0}\text{Pr}\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1.\] 
-\end{itemize}
+\subsection{Proof of the upper bound} 
+\begin{theorem}\label{thm:upperbound}
+    Let $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ .Then
+    \[\lim_{p \to 0}\text{Pr}\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1.\] 
+\end{theorem}
 
 \par The proof of this Theorem consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $g\left(\frac{1}{p}\right)$ with high probability, since $F(S)$ is less than the maximum element of this Ápery set. The proof has the following structure: 
 \begin{enumerate}
@@ -184,7 +175,7 @@ and so
 \par Thus, if $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ (\textcolor{blue}{Probably needs to be explained better}),
 \[\lim_{p \to  0} \text{Pr}\left[F(G(B)) \leq g\left(\frac{1}{p}\right)\right] = 1.\]
 Since $F(S) \leq F(G(B))$, we conclude that
-\[\lim_{p \to 0}\text{Pr}\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1.\] 
+\[\lim_{p \to 0}\text{Pr}\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1. \qed \] 
 
 
 \section{Conclusion}
