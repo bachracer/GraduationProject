@@ -97,12 +97,14 @@ and so we get that
 \end{align*}
 \par
 This motivates the second way, for we know that 
-\[\sum_{z \in Z_q} X_z = {\binom{s}{k}} = \sum_{z \in Z_q} E[X_z].\]\par
+\[\sum_{z \in Z_q} X_z = {\binom{s}{k}},\]
+and so
+\[\binom{s}{k} = E\left[\sum_{z \in Z_q} X_z\right] =  \sum_{z \in Z_q} E[X_z].\]\par
 As in the argument for finding $|N_z^k|$, for every $z \in \mathbb{Z}_q$, 
 \[E[X_0] = \sum_{K \in N_0^k}E[X_K] = \sum_{K \in N_0^k} E[X_{K + k^{-1}z}] = \sum_{K \in N_z^k} E[X_K] = E[X_z].\]
 Therefore, we also find that
-\begin{equation}
-E[X_z] = \frac{1}{p} {\binom{s}{k}}.
+\begin{equation}\label{eq:upperbound:expected}
+E[X_z] = \frac{1}{q} {\binom{s}{k}}.
 \end{equation}
 Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ and define
 \[\Delta_j := \sum_{|K \cap L| = j} \text{Pr}[A_K \land A_L].\]
@@ -111,13 +113,13 @@ Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ and define
 \par
 We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
 \[\Delta_j \leq \frac{\binom{p}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{q\binom{q}{s}}.\]
-\par This implies that, using (1),
+\par This implies that, using \ref{eq:upperbound:expected},
 \begin{align*}
     \frac{\Delta_j}{E[X_z]^2} &\leq \frac{\binom{q}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{\frac{1}{q} \binom{s}{k}\frac{1}{q} \binom{s}{k}q\binom{q}{s}} \\
     &= \frac{\frac{q!}{(q - k)!k!}\frac{(p - k)!}{(k - j)!(q - 2k + k)!}\frac{(q - 2k + j)!}{(s - 2k + j)!(q - s)!}}{\frac{1}{q}\binom{s}{k}\frac{s!}{(s - k)!k!}\frac{q!}{(q - s)!s!}} \\
     &= \frac{q\binom{s - k}{k - j}}{\binom{s}{k}}.
 \end{align*}
-Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$, where $\alpha \in (0, 1)$. Using that $\binom{s - k}{t}$ is maximized at $t = \lfloor (s - k) / 2\rfloor$,
+Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$. Using that $\binom{s - k}{t}$ is maximized at $t = \lfloor (s - k) / 2\rfloor$,
 \begin{align*}
 \frac{\Delta_j}{E[X_z]^2} \leq \frac{q \binom{2\lfloor 3 \log_2 q\rfloor}{\lfloor 3 \log_2 q \rfloor}}{\binom{4\lfloor 3\log_2 q \rfloor}{2\lfloor 3\log_2 q \rfloor}} \leq \frac{q}{\binom{2\lfloor 3 \log_2 q \rfloor }{ \lfloor 3 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 3 \log_2 q \rfloor}} \sim \frac{1}{q^2},
 \end{align*}
