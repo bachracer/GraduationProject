@@ -4,25 +4,40 @@ Here you might present some additional results, derivations, proofs etc. that we
 
 \section{Useful Bounds}
 
-We include some bounds that are useful in the proofs of the main results.
+We include some bounds that are useful in the proofs of the main results. By Stirling's Formula, we have that
+\begin{equation}\label{ap:eq:stirling}
+    k! \sim \sqrt{2\pi k}\left(\frac{k}{e}\right)^k.
+\end{equation}
 
 \begin{proposition}\label{ap:prop:upperbinom}
     $\binom{n}{k} \leq \left(\frac{en}{k}\right)^k$ for $1 \leq k \leq n$. 
 \end{proposition}
 
+\textbf{Proof. } Using (\ref{ap:eq:stirling}), we have that, for $k \geq 1$, 
+\[k! \geq \left(\frac{k}{e}\right)^k.\]
+Then
+\[\binom{n}{k} \leq \frac{n^k}{\left(\frac{k}{e}\right)^k} = \left(\frac{en}{k}\right)^k. \qed\]
+
 \begin{proposition}\label{ap:prop:lowebinom}
-    $\left(\frac{n}{k}\right)^k \leq \binom{n}{k}$ for $1 \leq k \leq n$.
+    $\left(\frac{n}{k}\right)^k \geq \binom{n}{k}$ for $1 \leq k \leq n$.
 \end{proposition}
+
+\textbf{Proof. }
+\[\binom{n}{k} = \prod_{i = 0}^{k - 1} \frac{n - i}{k - i} \geq \left(\frac{n}{k}\right)^k. \qed\]
 
 \begin{proposition}\label{ap:prop:exp}
     $(1 - p) \leq e^{-p}$ for $0 \leq p \leq 1$.
 \end{proposition}
 
-\textbf{Proof. } The Taylor series of $e^{-p}$ is decreasing and alternating, so
-\[e^{-p} = 1 - p + \frac{p^2}{2!} - \frac{p^3}{3!} + ... \geq 1 - p.\]
+\textbf{Proof. } The Taylor series of $e^{-p}$ alternating with a decreasing sequence, so
+\[e^{-p} = 1 - p + \frac{p^2}{2!} - \frac{p^3}{3!} + ... \geq 1 - p. \qed\]
+
+We prove a bound on the tails of the binomial distribution found in \cite{feller}.
+
+We also give a combinatorial proof of the following result.
 
 \begin{proposition}
-    $\binom{n}{k}^2 \leq \binom{2n}{2k}$ for $n \geq 1$. 
+    $\binom{2n}{k}^2 \leq \binom{4n}{2k}$ for $n \geq 1$. 
 \end{proposition}
 
-\textbf{Proof. } We have that
+\textbf{Proof. } The number of subsets of size $2k$ of a set of size $4n$ is $\binom{4n}{2k}$. This is greater than the number of subsets that can be expressed as the product of two subsets of size $k$ of a set of size $2n$, which is $\binom{2n}{k}^2$. \qed

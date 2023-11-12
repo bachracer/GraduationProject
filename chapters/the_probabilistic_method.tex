@@ -4,7 +4,7 @@
 
 This chapter is based on the book \textit{The Probabilistic Method} by Noga Alon and Joel H. Spencer \cite{alon2016probabilistic}. \par
 
-The probabilistic method is a powerful tool, with applications in Combinatorics, Graph Theory, Number Theory and Computer Science. It is a nonconstructive method that proves the existence of an object with a certain property by showing that the probability that a randomly chosen object has that property is greater than zero. The method requires an appropriate sample space and is best illustrated by an example: \par
+The Probabilistic Method is a powerful tool, with applications in Combinatorics, Graph Theory, Number Theory and Computer Science. It is a nonconstructive method that proves the existence of an object with a certain property, by showing that the probability that a randomly chosen object has that property is greater than zero. The method requires an appropriate sample space and is best illustrated by an example: \par
 
 \begin{definition}\label{def:tournament} 
 A \textit{tournament} is a directed graph $T$ on $n$ vertices such that for every pair of vertices $i, j \in V(T)$, exactly one of the edges $(i, j)$ or $(j, i)$ is in $E(T)$. 
@@ -12,7 +12,7 @@ A \textit{tournament} is a directed graph $T$ on $n$ vertices such that for ever
 
 The name of a tournament comes from the fact that it can be thought of as a sports tournament where each vertex represents a team and each team plays every other team exactly once. The edge $(i, j)$ represents a win for team $i$ over team $j$. A tournament $T$ has property $S_k$ if for every subset $K \subseteq V(T)$ of size $k$, there is a vertex $v \in V(T)$ such that $(v, s) \in E(T)$ for all $s \in K$. That is, for every set of $k$ teams there is a team that beats all of them. For example, the tournament in Figure \ref{fig:tournament} has property $S_1$ since every team is beaten by another team. \par
 
-A natural question to ask is: for every $k$, is there a tournament with property $S_k$? The answer is yes. We will prove this using the probabilistic method. First we define a probability space over the set of tournaments on $n$ vertices: \par 
+A natural question to ask is: for every $k$, is there a tournament with property $S_k$? The answer is yes. We will prove this using the Probabilistic Method. First we define a probability space over the set of tournaments on $n$ vertices: \par 
 A \textit{random} tournament on a set of $n$ vertices is a tournament $T$ such that for every pair of vertices $i, j \in V(T)$, the edge $(i, j)$ is in $E(T)$ with probability $\frac{1}{2}$ and the edge $(j, i)$ is in $E(T)$ with probability $\frac{1}{2}$, independently of all other edges. Thus, every tournament on $n$ vertices has the same probability, which means that this probability space is \textit{symmetric}. \par
 
 \begin{figure}
@@ -29,133 +29,142 @@ A \textit{random} tournament on a set of $n$ vertices is a tournament $T$ such t
     \label{fig:tournament}
 \end{figure}
 
-The main idea is to show that there is a large $n$ as a function of $k$, such that the probability that a random tournament on $n$ vertices has property $S_k$ is greater than zero. This implies that there is at least one tournament with property $S_k$. \par
+The main idea is to show that for sufficiently large $n$ as a function of $k$, such that the probability that a random tournament on $n$ vertices has property $S_k$ is greater than zero. This implies that there is at least one tournament with property $S_k$. \par
 
 
-\begin{theorem}
-    For every $k \in \N$, there is a tournament with property $S_k$. \cite{alon2016probabilistic}
+\begin{theorem}[Theorem 1.2.1 \cite{alon2016probabilistic}]
+    For every $k \in \N$, there is a tournament with property $S_k$. 
 \end{theorem}
 
 \textbf{Proof. } Fix a subset $K \subseteq V(T)$ of size $k$. Consider the event $A_K$ that there is no vertex $v \in V(T)$ such that $(v, s) \in E(T)$ for all $s \in S$. For any vertex $v \in V(T) \setminus K$, the probability that $(v, s) \notin E(T)$ for all $s \in K$ is $2^{-k}$. Thus,
 \[\Pr[A_K] = \left(1 - 2^{-k}\right)^{n - k}.\]
-Now, if we consider all subsets $K \subseteq V(T)$ of size $k$, then the probability that $T$ does not have property $S_k$ is the probability that any of the events $A_K$ occurs. Since there are $\binom{n}{k}$ such subsets, by the union bound,
+Now, if we consider all subsets $K \subseteq V(T)$ of size $k$, then the probability that $T$ does not have property $S_k$ is the probability that at least one of the events $A_K$ occurs. Since there are $\binom{n}{k}$ such subsets, by the union bound,
 \[\Pr\left[\bigvee_{\substack{K \subseteq V(T) \\ |K| = k}} A_K\right] \leq \sum_{\substack{K \subseteq V(T) \\ |K| = k}}\Pr[A_K] = \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k}.\]
-We want to show that, for some $n$, this probability of this event is less than 1. Using Propositions \ref{ap:prop:upperbinom} and \ref{ap:prop:exp}, we have that
+We want to show that, for some $n$, the probability of this event is less than 1. Using Propositions \ref{ap:prop:upperbinom} and \ref{ap:prop:exp}, we have that
 \begin{align}
     \Pr\left[\bigvee_{\substack{K \subseteq V(T) \\ |K| = k}} A_K\right] &\leq \binom{n}{k}\left(1 - 2^{-k}\right)^{n - k} \\
     &\leq \left(\frac{en}{k}\right)^k\left(e^{-2^{-k}}\right)^{n - k} = e^{k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k}}. \label{eq:tournament}
 \end{align}
-Then, \ref{eq:tournament} is less than one if \textcolor{blue}{Reverse inequality}
-\[k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k} = k\log n - k\log k + \frac{k}{2^k} - \frac{n}{2^k} < k\log n - \frac{n}{2^k} < 0,\]
-which holds if and only if
-\[\frac{n}{\log n} > k2^k.\]
-Now, if $n \geq k^2 2^k\log 2$, then 
-\[\lim_{n \to \infty} \frac{n}{k2^k\log n} = \lim_{k \to \infty} \frac{k\log 2}{2\log k + k\log 2 + \log\log 2} \leq 1.\]
-Hence, we conclude that there exists $n = (\log 2)k^2 2^k (1 + o(1))$, such that the probability that a random tournament on $n$ vertices does not have property $S_k$ is less than one. Therefore, the probability that there exists a tournament on $n$ vertices with property $S_k$ is greater than zero, which means that there exists at least one tournament with property $S_k$. \qed
+Then, (\ref{eq:tournament}) is less than 1 if
+\begin{align*}
+    k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k} &< 0.
+\end{align*}
+Which is true if 
+\begin{align*}
+  0 >  k\log n - \frac{n}{2^k} &> k\log n - k\log k + \frac{k}{2^k} - \frac{n}{2^k}\\
+  &= k\log\left(\frac{n}{k}\right) - \frac{n - k}{2^k}.
+\end{align*}
+Thus,
+\[\frac{n}{\log n} > k2^k \implies  \Pr\left[\bigvee_{\substack{K \subseteq V(T) \\ |K| = k}} A_K\right] < 1.\]
+
+Hence, for sufficiently large $n$, the probability that a random tournament on $n$ vertices does not have property $S_k$ is less than one. Therefore, the probability that there exists a tournament on $n$ vertices with property $S_k$ is greater than zero, which means that there exists at least one tournament with property $S_k$. \qed
 
 We make two observations: 
 \begin{enumerate}
-    \item We used the \textit{union bound}. The union bound is a common technique in the probabilistic method. It states that for any events $A_1, ..., A_n$,
+    \item We used the \textit{union bound}. The union bound is a common technique in the Probabilistic Method. It states that for any events $A_1, ..., A_n$,
     \[\Pr[A_1 \cup ... \cup A_n] \leq \Pr[A_1] + ... + \Pr[A_n].\]
     We will extensively use this technique in this thesis. In a measure space, the union bound is the same property as \textit{subadditivity}. \par
-    \item The proof is nonconstructive. It does not give us a way to find a tournament with property $S_k$. It only shows that there is at least one. This is a common feature of the probabilistic method. However, in this case, we have that for large enough $n$, the probability that a random tournament on $n$ vertices has property $S_k$ is close to one. This means that we can find a tournament with property $S_k$ by generating random tournaments until we find one with the desired property. If $n$ is large enough, this will not take too long. \par
+    \item The proof is nonconstructive. It does not give us a way to find a tournament with property $S_k$. It only shows that there is at least one. This is a common feature of the Probabilistic Method. However, in this case, we have that for large enough $n$, the probability that a random tournament on $n$ vertices has property $S_k$ is close to one. This means that we can find a tournament with property $S_k$ by generating random tournaments until we find one with the desired property. If $n$ is large enough, it will be highly probable, though harder to verify. \par
 \end{enumerate}
-In this chapter, we will introduce some tools that are useful for applying the probabilistic method in discrete settings. We will also give some examples of the method in action. \par
+In this chapter, we will introduce some tools that are useful for applying the Probabilistic Method in discrete settings. We will also give some examples of the method in action. \par
 
 \section{Linearity of Expectation}\label{sec:probmet:linearity}
 
 Let $X$ be a discrete random variable, then the \textit{expected value} of $X$ is defined as 
-\[E[X] = \sum_{x \in \text{Rg}(X)} x\Pr[X = x].\]
-We show that the expected value is linear. \par
-Let $X$ and $Y$ be discrete random variables. Then, the expected value of $X + Y$ is
+\[\EE[X] = \sum_{x \in \mathrm{Rg}(X)} x\Pr[X = x].\]
+\begin{theorem}[Linearity of expectation]
+    \(\EE[X]\) is linear. 
+\end{theorem}
+\textbf{Proof. } Let $X$ and $Y$ be discrete random variables. Then, the expected value of $X + Y$ is
 \begin{align*}
-    E[X + Y] &= \sum_{x \in \text{Rg}(X)} \sum_{y \in \text{Rg}(Y)} (x + y)\Pr[X = x \wedge Y = y] \\
-    &= \sum_{x \in \text{Rg}(X)} \sum_{y \in \text{Rg}(Y)} x\Pr[X = x \wedge Y = y] + \sum_{x \in \text{Rg}(X)} \sum_{y \in \text{Rg}(Y)} y\Pr[X = x \wedge Y = y] \\
-    &= \sum_{x \in \text{Rg}(X)} x\sum_{y \in \text{Rg}(Y)} \Pr[X = x \wedge Y = y] + \sum_{y \in \text{Rg}(Y)} y\sum_{x \in \text{Rg}(X)} \Pr[X = x \wedge Y = y] \\
-    &= \sum_{x \in \text{Rg}(X)} x\Pr[X = x] + \sum_{y \in \text{Rg}(Y)} y\Pr[Y = y] \\
-    &= E[X] + E[Y].
+    \EE[X + Y] &= \sum_{x \in \mathrm{Rg}(X)} \sum_{y \in \mathrm{Rg}(Y)} (x + y)\Pr[X = x \wedge Y = y] \\
+    &= \sum_{x \in \mathrm{Rg}(X)} \sum_{y \in \mathrm{Rg}(Y)} x\Pr[X = x \wedge Y = y] + \sum_{x \in \mathrm{Rg}(X)} \sum_{y \in \mathrm{Rg}(Y)} y\Pr[X = x \wedge Y = y] \\
+    &= \sum_{x \in \mathrm{Rg}(X)} x\sum_{y \in \mathrm{Rg}(Y)} \Pr[X = x \wedge Y = y] + \sum_{y \in \mathrm{Rg}(Y)} y\sum_{x \in \mathrm{Rg}(X)} \Pr[X = x \wedge Y = y] \\
+    &= \sum_{x \in \mathrm{Rg}(X)} x\Pr[X = x] + \sum_{y \in \mathrm{Rg}(Y)} y\Pr[Y = y] \\
+    &= \EE[X] + \EE[Y].
 \end{align*}
 Similarly, if $a \in \R$,
 \begin{align*}
-    E[aX] &= \sum_{x \in \text{Rg}(X)} ax\Pr[X = x] \\
-    &= a\sum_{x \in \text{Rg}(X)} x\Pr[X = x] \\
-    &= aE[X].
+    \EE[aX] &= \sum_{x \in \mathrm{Rg}(X)} ax\Pr[X = x] \\
+    &= a\sum_{x \in \mathrm{Rg}(X)} x\Pr[X = x] \\
+    &= a\EE[X].  
 \end{align*}
-This result is known as \textit{linearity of expectation}. 
-\begin{example}\label{ex:probmet:linearity}\cite{alon2016probabilistic}
-    Let $\sigma$ be a random permutation of $\{1, \ldots, n\}$ chosen uniformly at random. Let $X_i$ be the indicator variable for the event that $\sigma(i) = i$. Then, $E[X_i] = \frac{1}{n}$ since there are $n$ possible values for $\sigma(i)$ and only one of them is $i$. Now, let $X = \sum_{i = 1}^n X_i$. Then, $X$ is the number of fixed points of $\sigma$. By the linearity of expectation,
-    \[E[X] = E\left[\sum_{i = 1}^n X_i\right] = \sum_{i = 1}^n E[X_i] = \sum_{i = 1}^n \frac{1}{n} = 1.\tqed\]
+Thus, the expected value is linear. \qed \par
+
+\begin{example}\label{ex:probmet:linearity}
+    Let $\sigma$ be a random permutation of $\{1, \ldots, n\}$ chosen uniformly at random. Let $X_i$ be the indicator variable for the event that $\sigma(i) = i$. Then, $\EE[X_i] = \frac{1}{n}$ since there are $n$ possible values for $\sigma(i)$ and only one of them is $i$. Now, let $X = \sum_{i = 1}^n X_i$. Then, $X$ is the number of fixed points of $\sigma$. By the linearity of expectation,
+    \[\EE[X] = \EE\left[\sum_{i = 1}^n X_i\right] = \sum_{i = 1}^n \EE[X_i] = \sum_{i = 1}^n \frac{1}{n} = 1.\tqed\]
 \end{example}
-Note that there is a point $x$ such that $x \geq E[X]$ and $\Pr[X = x] > 0$, and there is a point $x \leq E[X]$ such that $\Pr[X = x] > 0$. The following result by Szele (1943) is often considered as one of the first applications of the probabilistic method. \par
-\begin{theorem} \textcolor{blue}{Cite exact theorem}
+Note that there is a point $x$ such that $x \geq \EE[X]$ and $\Pr[X = x] > 0$, and there is a point $x \leq \EE[X]$ such that $\Pr[X = x] > 0$. The following result by Szele (1943) is often considered as one of the first applications of the Probabilistic Method. \par
+\begin{theorem}[Theorem 2.1.1 \cite{alon2016probabilistic}]
     There is a tournament with $n$ players and at least $n!2^{-(n - 1)}$ Hamiltonian paths. 
 \end{theorem}
-\textbf{Proof. } Let $X$ be the number of Hamiltonian paths in a random tournament. Let $\sigma$ be a permutation, and let $X_\sigma$ be the indicator variable for the event that $\sigma$ is a hamiltonian path of the random tournament. That is, $\sigma$ is an ordering of the vertices such that $(\sigma(1), \sigma(2)), ..., (\sigma(n - 1), \sigma(n))$ are edges of the tournament. Then, $X = \sum_{\sigma} X_\sigma$. By the linearity of expectation,
-\[E[X] = E\left[\sum_{\sigma} X_\sigma\right] = \sum_{\sigma} E[X_\sigma] = \sum_{\sigma} \frac{1}{2^{n - 1}} = n!2^{-(n - 1)}.\]
-Therefore, there exists a tournament with at least $n!2^{-(n - 1)}$ hamiltonian paths. \qed
+\textbf{Proof. } Let $X$ be the number of Hamiltonian paths in a random tournament. Let $\sigma$ be a permutation, and let $X_\sigma$ be the indicator variable for the event that $\sigma$ is a Hamiltonian path of the random tournament. That is, $\sigma$ is an ordering of the vertices such that $(\sigma(1), \sigma(2)), ..., (\sigma(n - 1), \sigma(n))$ are edges of the tournament. Then, $X = \sum_{\sigma} X_\sigma$. By the linearity of expectation,
+\[\EE[X] = \EE\left[\sum_{\sigma} X_\sigma\right] = \sum_{\sigma} \EE[X_\sigma] = \sum_{\sigma} \frac{1}{2^{n - 1}} = n!2^{-(n - 1)}.\]
+Therefore, there exists a tournament with at least $n!2^{-(n - 1)}$ Hamiltonian paths. \qed
 
 \section{Second Moment Method}\label{sec:probmet:secondmoment}
 
-Just as we can use the linearity of expectation to prove results with the probabilistic method, we can also use the \textit{second moment method}, which relies on the \textit{variance} of a random variable. Let $X$ be a random variable with expected value $E[X]$. Then, the variance of $X$ is defined as
-\[\text{Var}[X] = E[(X - E[X])^2].\]
+Just as we can use the linearity of expectation to prove results with the Probabilistic Method, we can also use the \textit{second moment method}, which relies on the \textit{variance} of a random variable. Let $X$ be a random variable with expected value $\EE[X]$. Then, the variance of $X$ is defined as
+\[\Var[X] = \EE[(X - \EE[X])^2].\]
 By the linearity of expectation, 
-\[E[(X - E[X])^2] = E[X] - 2E[XE[X]] + E[X]^2 = E[X^2] - E[X]^2.\]
+\[\EE[(X - \EE[X])^2] = \EE[X] - 2\EE[X\EE[X]] + \EE[X]^2 = \EE[X^2] - \EE[X]^2.\]
 The standard practice is to denote the expected value by $\mu$ and the variance by $\sigma^2$. The use of the following inequality is called the second moment method \par
 
-\begin{theorem}[Chebyschev's inequality]\label{thm:probmet:chebyschev}\cite{alon2016probabilistic}
+\begin{theorem}[Chebyshev's inequality]\label{thm:probmet:chebyschev}
     For $\lambda > 0$,
 \end{theorem}
 \[\Pr[|X - \mu| \geq \lambda \sigma] \leq \frac{1}{\lambda^2}.\]
 \textbf{Proof. } 
-\[\sigma^2 = \text{Var}[X] = E[(x - \mu)^2] \geq \lambda^2\sigma^2 \Pr[|X - \mu| \geq \lambda \sigma]. \qed\]
+\[\sigma^2 = \Var[X] = \EE[(x - \mu)^2] \geq \lambda^2\sigma^2 \Pr[|X - \mu| \geq \lambda \sigma]. \qed\]
 
 If $X = X_1 + ... + X_n$, then, by the linearity of expectation,
-\[\text{Var}[X] = \sum_{i = 1}^{n}\text{Var}[X_i] + \sum_{i \neq j}\text{Cov}[X_i, X_j],\]
+\[\Var[X] = \sum_{i = 1}^{n}\Var[X_i] + \sum_{i \neq j}\Cov[X_i, X_j],\]
 where 
-\[\text{Cov}[X_i, X_j] = E[X_iX_j] - E[X_i]E[X_j].\] 
-Note that $\text{Cov}[X_i, X_j] = 0$ if $X_i$ and $X_j$ are independent. Furthermore, if, for each $i$, $X_i$ is an indicator variable of event $A_i$, that is, $X_i = 1$ if $A_i$ occurs and $X_i = 0$ otherwise, then
-\[\text{Var}[X_i] = \Pr[A_i](1 - \Pr[A_i]) \leq E[X_i],\]
+\[\Cov[X_i, X_j] = \EE[X_iX_j] - \EE[X_i]\EE[X_j].\] 
+Note that $\Cov[X_i, X_j] = 0$ if $X_i$ and $X_j$ are independent. Furthermore, if, for each $i$, $X_i$ is an indicator variable of event $A_i$, that is, $X_i = 1$ if $A_i$ occurs and $X_i = 0$ otherwise, then
+\[\Var[X_i] = \Pr[A_i](1 - \Pr[A_i]) \leq \EE[X_i],\]
 and we have that
 \begin{equation}
-    \text{Var}[X] \leq E[X] + \sum_{i \neq j} \text{Cov}[X_i, X_j].
+    \Var[X] \leq \EE[X] + \sum_{i \neq j} \Cov[X_i, X_j].
 \end{equation}
 
-Suppose that $X$ only takes nonnegative integer values, we are interested in bounding $\Pr[X = 0]$. First, note that 
+Suppose that $X$ only takes nonnegative integer values, and we are interested in bounding $\Pr[X = 0]$. First, note that 
 \begin{equation}\label{eq:probmet:secondmoment:1}
-    \Pr[X > 0] \leq E[X].   
+    \Pr[X > 0] \leq \EE[X].   
 \end{equation}
-Thus, if $E[X] \to 0$, then $X = 0$ almost always. On the other hand, if $E[X] \to \infty$ does not necessarily imply that $X > 0$ almost always. For instance, consider an obviously imaginary game where you throw a coin until it lands heads up and you get paid $2^n$ dollars if it takes $n$ throws. Then, $E[X] = \infty$ but $X = 0$ with probability $\frac{1}{2}$. In some cases, we can use the second moment method to show that if $E[X] \to \infty$ and we have more information about $\text{Var}[X]$, then $X > 0$ almost always. \par
+For a sequence of variables $X_1, X_2, ...$, we say that $X$ satisfies a property $A$ \textit{almost always} if $\lim_{n \to \infty} \Pr[X_n \text{ satisfies } A] = 1$. \par
+Thus, using (\ref{eq:probmet:secondmoment:1}), if $\EE[X] \to 0$, then $X = 0$ almost always. On the other hand, if $\EE[X] \to \infty$, it is not necessarily true that $X > 0$ almost always. For instance, consider an obviously imaginary game where you throw a coin until it lands heads up and you get paid $2^n$ dollars if it takes $n$ throws. Then, $\EE[X] = \infty$ but $X = 0$ with probability $\frac{1}{2}$. In some cases, we can use the second moment method to show that if $\EE[X] \to \infty$ and we have more information about $\text{Var}[X]$, then $X > 0$ almost always. \par
 
-\begin{theorem}\label{thm:probmet:secondmoment:1}
-    \(\Pr[X = 0] \leq \frac{\text{Var}[X]}{E[X]^2}.\)\cite{alon2016probabilistic}
+\begin{theorem}[Theorem 4.3.1 \cite{alon2016probabilistic}]\label{thm:probmet:secondmoment:1}
+    \(\Pr[X = 0] \leq \frac{\Var[X]}{\EE[X]^2}.\)
 \end{theorem}
 
 \textbf{Proof. } We apply Chebyschev's inequality \ref{thm:probmet:chebyschev} with $\lambda = \frac{\mu}{\sigma}$. Thus, 
 \[\Pr[X = 0] \leq \Pr[|X - \mu| \geq \lambda \sigma] \leq \frac{1}{\lambda^2} = \frac{\sigma^2}{\mu^2}. \qed \]
 
-In asymptotic terms, 
-\textcolor{blue}{Define it for a sequence of variables}
+The following result is a direct consequence. 
 
 \begin{corollary}\label{cor:probmet:secondmoment:1}
-    If $\text{Var}[X] \in o(E[X^2])$, $X > 0$ asymptotically almost always a.a.s. \cite{alon2016probabilistic}
+    If $\Var[X] \in o(\EE[X^2])$, $X > 0$ asymptotically almost always. 
 \end{corollary}
 
 Let $\varepsilon > 0$, following the proof of Theorem \ref{thm:probmet:secondmoment:1}, if $\lambda = \frac{\varepsilon\mu}{\sigma}$, then
-\[\Pr[X = 0] \leq \frac{\text{Var}[X]}{\varepsilon^2E[X]^2}.\]
+\[\Pr[X = 0] \leq \frac{\Var[X]}{\varepsilon^2\EE[X]^2}.\]
 Thus, we have a tighter result:
 \begin{corollary}\label{cor:probmet:secondmoment:2}
-    If $\text{Var}[X] \in o(E[X]^2)$, then $X \sim E[X]$ a.a.s.. \cite{alon2016probabilistic}
+    If $\Var[X] \in o(\EE[X]^2)$, then $X \sim \EE[X]$ almost always.. 
 \end{corollary}
 
 Finally, if $X = X_1 + \cdots + X_n$, where each $X_i$ is the indicator variable of event $A_i$. For indices $i, j$ such that $i \neq j$, we say that $i \sim j$ if the events $A_i$ and $A_j$ are not independent. Let
 \[\Delta  = \sum_{i \sim j} \Pr[A_i \wedge A_j].\]
 \begin{corollary}\label{cor:probmet:secondmoment:3}
-    If $E[X] \to \infty$ and $\Delta = o(E[X^2])$, then $X > 0$ almost always. Also, $X \sim E[X]$ almost always. \cite{alon2016probabilistic}
+    If $\EE[X] \to \infty$ and $\Delta = o(\EE[X^2])$, then $X > 0$ almost always. Also, $X \sim \EE[X]$ almost always.
 \end{corollary}
 \textbf{Proof. } When $i \sim j$, 
-\[\text{Cov}[X_i, X_j] = E[X_iX_j] - E[X_i]E[X_j] \leq E[X_iX_j] = \Pr[A_i \wedge A_j],\]
+\[\Cov[X_i, X_j] = \EE[X_iX_j] - \EE[X_i]\EE[X_j] \leq \EE[X_iX_j] = \Pr[A_i \wedge A_j],\]
 and so 
-\[\text{Var}[X] \leq E[X] + \sum_{i \neq j}\text{Cov}[X_i, X_j] \leq E[X] + \sum_{i \sim j}\Pr[A_i \wedge A_j] = E[X] + \Delta. \qed\]
+\[\Var[X] \leq \EE[X] + \sum_{i \neq j}\Cov[X_i, X_j] \leq \EE[X] + \sum_{i \sim j}\Pr[A_i \wedge A_j] = \EE[X] + \Delta. \qed\]
 
 We are now ready to show an application of the second moment method. \par
 \section{Threshold Functions}\label{sec:probmet:threshold}
@@ -212,40 +221,40 @@ Let $G$ be a graph on $n$ labeled vertices. An isolated vertex of $G$ is a verte
 \]
 
 Now, the probability that a vertex $i$ is isolated is $(1 - p)^{n - 1}$,since it is the probability that none of the other $n - 1$ vertices is connected to $i$. Let $X = \sum_{i = 1}^n X_i$, then the expected number of isolated vertices is
- \[E[X] = \sum_{i = 1}^{n} E[X_i] = \sum_{i = 1}^{n} \Pr[A_i] = n(1 - p)^{n - 1}.\]
+ \[\EE[X] = \sum_{i = 1}^{n} \EE[X_i] = \sum_{i = 1}^{n} \Pr[A_i] = n(1 - p)^{n - 1}.\]
 
 
-Let $\displaystyle{p = k\frac{\ln n}{n}}$ for $k \in \R_{>0}$. Then \textcolor{blue}{Put another step}
+Let $\displaystyle{p = k\frac{\ln n}{n}}$ for $k \in \R_{>0}$. Then, since $1 - k\frac{\log n}{n} = e^{-k\frac{\log n}{n} \pm O\left(k^2\frac{(\log n)^2}{n^2}\right)}$,
 \begin{align*}
-    \lim_{n \to \infty} E[X] &= \lim_{n \to \infty} n\left(1 - k\frac{\ln n}{n}\right)^{n - 1} \\
+    \lim_{n \to \infty} \EE[X] &= \lim_{n \to \infty} n\left(1 - \frac{\ln n}{n}\right)^{n - 1}\\
     &= \lim_{n \to \infty} ne^{-k\ln n} = \lim_{n \to \infty} n^{1 - k}.
 \end{align*}
 There are two cases: \par
 \begin{enumerate}
-    \item If $k > 1$, $\lim_{n \to \infty} E[X] = 0$. Since \(E[X] \geq \Pr[X > 0],\) we conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] =  \lim_{n \to \infty} \Pr[X > 0] = 0.\] \par
+    \item If $k > 1$, $\lim_{n \to \infty} \EE[X] = 0$. Since \(\EE[X] \geq \Pr[X > 0],\) we conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] =  \lim_{n \to \infty} \Pr[X > 0] = 0.\] \par
     Thus, if $r(n) \in o(p(n))$, then $\lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 0$. \par
-    \item If $k < 1$, the fact that $\lim_{n \to \infty} E[X] = \infty$ is not enough to conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = 1.\] 
-    We have to use the second moment method.  We will prove that $\text{Var} [X] = o(E[X]^2)$. First, 
+    \item If $k < 1$, the fact that $\lim_{n \to \infty} \EE[X] = \infty$ is not enough to conclude that \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = 1.\] 
+    We have to use the second moment method.  We will prove that $\Var [X] = o(\EE[X]^2)$. First, 
     \begin{align*}
-        \sum_{i \neq j}E[X_iX_j] &= \sum_{i \neq j} \Pr[X_i = X_j = 1] \\
+        \sum_{i \neq j}\EE[X_iX_j] &= \sum_{i \neq j} \Pr[X_i = X_j = 1] \\
         &= n(n - 1)(1 - p)^{n -1}(1 - p)^{n - 2} \\ &= n(n - 1)(1 - p)^{2n - 3},
     \end{align*}
     
     for if $i$ is an isolated vertex, then there is no edge between $i$ and $j$ so we only have to account for the remaining $n - 2$ edges that contain $j$.  \par
     
-    Thus, since $\sum_{i = 1}^{n}E[X_i^2] =  \sum_{i = 1}^n E[X_i] = E[X]$ and $\lim_{n \to \infty} p(n) = 0$,
+    Thus, since $\sum_{i = 1}^{n}\EE[X_i^2] =  \sum_{i = 1}^n \EE[X_i] = \EE[X]$ and $\lim_{n \to \infty} p(n) = 0$,
     
     \begin{align*}
-        \lim_{n \to \infty} \frac{\text{Var}[X]}{E[X]^2} &= 
-        \lim_{n \to \infty}\frac{E[X^2] - E[X]^2}{E[X]^2} \\
-        &= \lim_{n \to \infty} \frac{\sum_{i = 1}^n E[X_i^2] + \sum_{i \neq j}E[X_iX_j]}{E[X]^2} - 1 \\ &= \lim_{n \to \infty} \frac{E[X]}{E[X]^2} +\frac{ n(n - 1)(1 - p)^{2n - 3}}{n^2(1 - p)^{2n - 2}} - 1 \\
+        \lim_{n \to \infty} \frac{\Var[X]}{\EE[X]^2} &= 
+        \lim_{n \to \infty}\frac{\EE[X^2] - \EE[X]^2}{\EE[X]^2} \\
+        &= \lim_{n \to \infty} \frac{\sum_{i = 1}^n \EE[X_i^2] + \sum_{i \neq j}\EE[X_iX_j]}{\EE[X]^2} - 1 \\ &= \lim_{n \to \infty} \frac{\EE[X]}{\EE[X]^2} +\frac{ n(n - 1)(1 - p)^{2n - 3}}{n^2(1 - p)^{2n - 2}} - 1 \\
         & = \lim_{n \to \infty} \frac{1}{1 - p} - 1 = 0.\\
     \end{align*} \par
-    We conclude that $\text{Var}[X] \in o(E[X]^2)$ and so, by Corollary \ref{cor:probmet:secondmoment:1}, if $k < 1$, 
+    We conclude that $\Var[X] \in o(\EE[X]^2)$ and so, by Corollary \ref{cor:probmet:secondmoment:1}, if $k < 1$, 
     \[\lim_{n \to \infty} \Pr[G(n, p) \vDash A] = \lim_{n \to \infty} \Pr[X > 0] = 1.\] 
-    Therefore, if $p(n) \in o(r(n))$, then $\lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 1$. Furthermore, if $p(n) \in o(r(n))$, $X \sim E[X]$ almost always as $n$ tends to infinity.  \par
+    Therefore, if $p(n) \in o(r(n))$, then $\lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 1$. Furthermore, if $p(n) \in o(r(n))$, $X \sim \EE[X]$ almost always as $n$ tends to infinity.  \par
 \end{enumerate}
 We conclude that $r(n) = \frac{\ln n}{n}$ is a threshold function for property $A$. \qed \par
-We could have used Corollary \ref{cor:probmet:secondmoment:3} since we are dealing with a sum of indicator variables. However, since we could show result without using the upper bound on the covariance, we only needed Corollary \ref{cor:probmet:secondmoment:1}. The definition of $\Delta$ will be useful in further results. \par 
+We could have used Corollary \ref{cor:probmet:secondmoment:3} since we are dealing with a sum of indicator variables. However, since we could show the result without using the upper bound on the covariance, we only needed Corollary \ref{cor:probmet:secondmoment:1}. The definition of $\Delta$ will be useful in further results. \par 
 Also, note that we proved a stronger result than what we needed. We also showed that there are functions which are constant multiples of $r(n)$ such that the probability that $G(n, p)$ satisfies $A$ is close to one or close to zero. \par
-For the interested reader, an important result concerning threshold functions has been proven recently \cite{park2023proof}. \par
+For the interested reader, an important result concerning threshold functions has been proven recently. For certain properties, determining the threshold can be difficult. Nonetheless, the "expectation threshold" function offers a simpler calculation alternative. In 2022, Park demonstrated that the threshold function closely aligns with the expectation threshold, within a logarithmic factor \cite{park2023proof}. This finding confirms a conjecture previously proposed by Kahn and Kalai in 2006.  \par

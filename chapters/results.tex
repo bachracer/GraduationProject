@@ -10,7 +10,7 @@ We prove a Theorem found in \cite{de2018random} without the use of the simplicia
 
 \begin{theorem}
     Let $S \sim S(M, p)$, where $p = p(M)$ is a monotone decreasing function of M. If $\frac{1}{M} \ll p \ll 1$, then $S$ is cofinite, i.e., the set of gaps is finite, a.a.s and 
-\[\lim_{M \to \infty} E[e(S)] = \lim_{M \to \infty} E[g(S)] = \lim_{M \to \infty} E[F(S)] = \infty.\]
+\[\lim_{M \to \infty} \EE[e(S)] = \lim_{M \to \infty} \EE[g(S)] = \lim_{M \to \infty} \EE[F(S)] = \infty.\]
 \end{theorem}
 
 \textbf{Proof. } Let $X := \min(S \setminus \{0\})$ be a random variable. Then, for $0 < n \leq M$,
@@ -19,21 +19,21 @@ We prove a Theorem found in \cite{de2018random} without the use of the simplicia
 \end{align*}
 and so 
 \begin{align*}
-    E[X] &= \sum_{n = 0}^{\infty} n\Pr[X = n] =
+    \EE[X] &= \sum_{n = 0}^{\infty} n\Pr[X = n] =
     \sum_{n = 0}^{M} np(1 - p)^{n - 1} = p\frac{d}{dp}\left[-\sum_{n = 0}^{M}(1 - p)^n\right]\\
     &=p\frac{d}{dp} \frac{(1 - p)^{M + 1} - 1}{p} = p\frac{1 - (1 - p)^{M + 1} - (M  + 1)(1 - p)^Mp}{p^2} \\
     &= \frac{1 - (1 - p)^{M} - M(1 - p)^Mp}{p} \geq \frac{1 - e^{-Mp} - Mpe^{-Mp}}{p}. \\
 \end{align*}
 Thus, since $\lim_{M \to \infty} Mp = \infty$, then $\lim_{M \to \infty }Mpe^{-Mp} = \lim_{M \to \infty} e^{-Mp} = 0$, which implies that
-\[\lim _{M \to \infty} E[X] = \lim_{M \to \infty} \frac{1 - e^{-Mp} - Mpe^{-Mp}}{p} = \infty.\]
+\[\lim _{M \to \infty} \EE[X] = \lim_{M \to \infty} \frac{1 - e^{-Mp} - Mpe^{-Mp}}{p} = \infty.\]
 Also, note that if $p = \frac{c}{M}$, $c \in \mathbb{R_+}$ ($0 < e^{-c} + ce^{-c} < 1$),
-\[\lim _{M \to \infty} E[X] = \lim_{M \to \infty} \frac{1 - e^{-c} - ce^{-c}}{p} = \infty.\]
+\[\lim _{M \to \infty} \EE[X] = \lim_{M \to \infty} \frac{1 - e^{-c} - ce^{-c}}{p} = \infty.\]
 \textbf{Proof. }
 Fix $a \in \NN$ such that $a > 11$ and let $A = \{1, \ldots, \lfloor\frac{a}{p}\rfloor\}$. Since   $\frac{1}{M} \ll p$, we have that $\lfloor\frac{a}{p}\rfloor \leq M$ for large enough $M$. Consider the following events:
 \begin{itemize}
     \item $E_1$: No generator selected is less than $\frac{1}{ap}$.  \par
     Let $X_1$ be the number of generators selected from $\{1,\ldots,\lfloor\frac{1}{ap}\rfloor\}$. Then 
-    \[\Pr[\overline{E_1}] = \Pr[X_1 > 0] \leq E[X_1] \leq p \cdot \frac{1}{ap} = \frac{1}{a}.\]
+    \[\Pr[\overline{E_1}] = \Pr[X_1 > 0] \leq \EE[X_1] \leq p \cdot \frac{1}{ap} = \frac{1}{a}.\]
 
     \item $E_2:$ At most $\frac{3a}{2}$ generators are selected from $A$.\par 
     Let $X_2$ be the number of generators selected in $A$, then $X_2$ is a binomial random variable with $n = \frac{a}{p}$ and we can use the bound (Feller \textcolor{blue}{I can add this to the appendix})
@@ -82,55 +82,55 @@ I conjecture that the hypothesis that $q$ is prime can be relaxed.
 \end{lemma}
 
 Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $S$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
-\[\text{Pr}(S) = \frac{1}{\binom{q}{s}}.\]
+\[\Pr(S) = \frac{1}{\binom{q}{s}}.\]
 For a given $z \in \mathbb{Z}_q$ and $k \in \mathbb{N}$ for which $k \leq s/2$, let 
 \[N_z^k := \left\{K \subseteq \mathbb{Z}_q: |K| = k, \sum_{t \in K} t = z\right\}.\]
 Note that $|N_z^k| = \frac{1}{q}{\binom{q}{k}}$, since $K \in N_0^k$ if and only if $K + k^{-1}z \in N_z^k$ for every $z \in \mathbb{Z}_q$.\par
 For $K \in N_z^k$, let $A_K$ be the event that $K \subset S$. Let $X_K$ be the indicator variable of $A_K$.
 We define the random variable 
 \[X_z = \sum_{K \in N_z^k} X_K.\]
-Note that $X_z$ counts the number of sets of size $k$ which add up to $z$. We provide two ways of finding $E[X_z]$. The first one uses that, for any $K \subset N^k_z$, 
-\[E[X_K] = \text{Pr}[A_K] = \frac{\binom{q - k}{s - k}}{\binom{q}{s}},\]
+Note that $X_z$ counts the number of sets of size $k$ which add up to $z$. We provide two ways of finding $\EE[X_z]$. The first one uses that, for any $K \subset N^k_z$, 
+\[\EE[X_K] = \Pr[A_K] = \frac{\binom{q - k}{s - k}}{\binom{q}{s}},\]
 and so we get that
 \begin{align*}
-    E[X_z] = \sum_{K \in N_z^k} E[X_K] = |N_z^k|E[X_K] = \frac{1}{q}{\binom{q}{k}}\frac{\binom{q - k}{s - k}}{\binom{q}{s}} = \frac{1}{q} {\binom{s}{k}}.
+    \EE[X_z] = \sum_{K \in N_z^k} \EE[X_K] = |N_z^k|\EE[X_K] = \frac{1}{q}{\binom{q}{k}}\frac{\binom{q - k}{s - k}}{\binom{q}{s}} = \frac{1}{q} {\binom{s}{k}}.
 \end{align*}
 \par
 This motivates the second way, for we know that 
-\[\sum_{z \in Z_q} X_z = {\binom{s}{k}} = \sum_{z \in Z_q} E[X_z].\]\par
+\[\sum_{z \in Z_q} X_z = {\binom{s}{k}} = \sum_{z \in Z_q} \EE[X_z].\]\par
 As in the argument for finding $|N_z^k|$, for every $z \in \mathbb{Z}_q$, 
-\[E[X_0] = \sum_{K \in N_0^k}E[X_K] = \sum_{K \in N_0^k} E[X_{K + k^{-1}z}] = \sum_{K \in N_z^k} E[X_K] = E[X_z].\]
+\[\EE[X_0] = \sum_{K \in N_0^k}\EE[X_K] = \sum_{K \in N_0^k} \EE[X_{K + k^{-1}z}] = \sum_{K \in N_z^k} \EE[X_K] = \EE[X_z].\]
 Therefore, we also find that
 \begin{equation}
-E[X_z] = \frac{1}{p} {\binom{s}{k}}.
+\EE[X_z] = \frac{1}{p} {\binom{s}{k}}.
 \end{equation}
 Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ and define
-\[\Delta_j := \sum_{|K \cap L| = j} \text{Pr}[A_K \land A_L].\]
+\[\Delta_j := \sum_{|K \cap L| = j} \Pr[A_K \land A_L].\]
 \par Fix $j \leq k$, then 
-\[\text{Pr}[A_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
+\[\Pr[A_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
 \par
 We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
 \[\Delta_j \leq \frac{\binom{p}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{q\binom{q}{s}}.\]
 \par This implies that, using (1),
 \begin{align*}
-    \frac{\Delta_j}{E[X_z]^2} &\leq \frac{\binom{q}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{\frac{1}{q} \binom{s}{k}\frac{1}{q} \binom{s}{k}q\binom{q}{s}} \\
+    \frac{\Delta_j}{\EE[X_z]^2} &\leq \frac{\binom{q}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{\frac{1}{q} \binom{s}{k}\frac{1}{q} \binom{s}{k}q\binom{q}{s}} \\
     &= \frac{\frac{q!}{(q - k)!k!}\frac{(p - k)!}{(k - j)!(q - 2k + k)!}\frac{(q - 2k + j)!}{(s - 2k + j)!(q - s)!}}{\frac{1}{q}\binom{s}{k}\frac{s!}{(s - k)!k!}\frac{q!}{(q - s)!s!}} \\
     &= \frac{q\binom{s - k}{k - j}}{\binom{s}{k}}.
 \end{align*}
 Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$, where $\alpha \in (0, 1)$. Using that $\binom{s - k}{t}$ is maximized at $t = \lfloor (s - k) / 2\rfloor$,
 \begin{align*}
-\frac{\Delta_j}{E[X_z]^2} \leq \frac{q \binom{2\lfloor 3 \log_2 q\rfloor}{\lfloor 3 \log_2 q \rfloor}}{\binom{4\lfloor 3\log_2 q \rfloor}{2\lfloor 3\log_2 q \rfloor}} \leq \frac{q}{\binom{2\lfloor 3 \log_2 q \rfloor }{ \lfloor 3 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 3 \log_2 q \rfloor}} \sim \frac{1}{q^2},
+\frac{\Delta_j}{\EE[X_z]^2} \leq \frac{q \binom{2\lfloor 3 \log_2 q\rfloor}{\lfloor 3 \log_2 q \rfloor}}{\binom{4\lfloor 3\log_2 q \rfloor}{2\lfloor 3\log_2 q \rfloor}} \leq \frac{q}{\binom{2\lfloor 3 \log_2 q \rfloor }{ \lfloor 3 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 3 \log_2 q \rfloor}} \sim \frac{1}{q^2},
 \end{align*}
 since \(\binom{2\lfloor q^{\alpha} \rfloor}{\lfloor 3 \log_2 q \rfloor}^2 \leq \binom{4\lfloor 3 \log_2 q \rfloor }{2\lfloor 3 \log_2 q \rfloor}\) (I can prove this in a lemma or in the appendix).   \par
 This proves that
-\[\text{Pr}[X_z = 0] \leq \frac{\Delta}{E[X_z]^2} = \sum_{j = 0}^k \frac{\Delta_j}{E[X_z]^2} \leq \frac{(k + 1)}{q^2}.\]
+\[\Pr[X_z = 0] \leq \frac{\Delta}{\EE[X_z]^2} = \sum_{j = 0}^k \frac{\Delta_j}{\EE[X_z]^2} \leq \frac{(k + 1)}{q^2}.\]
 Therefore, by the union bound,
-\[\text{Pr}[\bigvee_{z \in \mathbb{Z}_q} X_z = 0] \leq \frac{(k + 1)}{q}.\]
+\[\Pr[\bigvee_{z \in \mathbb{Z}_q} X_z = 0] \leq \frac{(k + 1)}{q}.\]
 
 \subsection{Proof of the upper bound} 
 \begin{theorem}\label{thm:upperbound}
     Let $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ .Then
-    \[\lim_{p \to 0}\text{Pr}\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1.\] 
+    \[\lim_{p \to 0}\Pr\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1.\] 
 \end{theorem}
 
 \par The proof of this Theorem consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $g\left(\frac{1}{p}\right)$ with high probability, since $F(S)$ is less than the maximum element of this Ápery set. The proof has the following structure: 
@@ -149,9 +149,9 @@ Let $q_n$ be the $n$-th prime number and let $k_x$ be the number of primes betwe
 \[n(\log n + \log \log n - 1) < q_n < n(\log n + \log\log n) = o(h(n)).\]
 
 \par Thus, $n = o(k_n)$ (\textcolor{blue}{I can prove this if it is not clear}) and, for every $c > 0$,  
-\[\lim_{p \to 0}\text{Pr}[\lnot E_1] \geq \lim_{p \to 0} (1 - p)^{k_{\frac{1}{p}}} \geq \lim_{p \to 0} (1 - p)^{\frac{c}{p}} = e^{-c}.\]
+\[\lim_{p \to 0}\Pr[\lnot E_1] \geq \lim_{p \to 0} (1 - p)^{k_{\frac{1}{p}}} \geq \lim_{p \to 0} (1 - p)^{\frac{c}{p}} = e^{-c}.\]
 Therefore, 
-\[\lim_{p \to 0}\text{Pr}[E_1] = 1.\]
+\[\lim_{p \to 0}\Pr[E_1] = 1.\]
 \subsubsection*{Part 2}
 
 Now, assume $E_1$. Then $S$ contains a prime number $q$ for which 
@@ -166,16 +166,16 @@ Now, assume $E_1$. Then $S$ contains a prime number $q$ for which
 \par We conclude that
 \[\lim_{p \to 0} \Pr[E_2 | E_1] = 1,\]
 and so
-\[\lim_{p \to 0} \text{Pr}[E_1 \land E_2] = \lim_{p \to 0} \text{Pr}[E_2  | E_1]\text{Pr}[E_1] = 1.\]
+\[\lim_{p \to 0} \Pr[E_1 \land E_2] = \lim_{p \to 0} \Pr[E_2  | E_1]\Pr[E_1] = 1.\]
 
 
 \subsubsection*{Part 3}
 
 \par Finally, assume $E_1$ and $E_2$. Let $B = \{Y_{1}, \ldots, Y_{s}\}$ be a randomly selected subset of size $s$ of the generators selected in $E_2$.  Since the generators are chosen randomly and $|A| = q$, we can apply the \textcolor{blue}{Lemma} to the Ápery set of the subsemigroup generated by $B$, denoted by $G(B)$, and conclude that the Ápery set of $G(B)$ will be completed before step $h\left(\frac{1}{p}\right)2\left\lfloor 3\log_2 h\left(\frac{1}{p}\right)\right\rfloor$ with high probability as $p \to 0$. 
 \par Thus, if $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ (\textcolor{blue}{Probably needs to be explained better}),
-\[\lim_{p \to  0} \text{Pr}\left[F(G(B)) \leq g\left(\frac{1}{p}\right)\right] = 1.\]
+\[\lim_{p \to  0} \Pr\left[F(G(B)) \leq g\left(\frac{1}{p}\right)\right] = 1.\]
 Since $F(S) \leq F(G(B))$, we conclude that
-\[\lim_{p \to 0}\text{Pr}\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1. \qed \] 
+\[\lim_{p \to 0}\Pr\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1. \qed \] 
 
 
 \section{Conclusion}
