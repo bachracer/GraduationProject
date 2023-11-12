@@ -5,46 +5,59 @@
 
 \chapter{Random Numerical Semigroups}\label{chap:randnumsems}
 
+We present three distinct models of random numerical semigroups. The first model employs a uniform distribution for its generators and is the most extensively studied. The second model is inspired in the Erdös-Rényi approach for random graphs. The third model is a new approach we introduce, characterized by a fixed Frobenius number.
+
 \section{Box Model}\label{sec:randomsmpgs:intro}
 
-\begin{algorithm}
-\caption{An algorithm with caption}\label{alg:cap}
-\begin{algorithmic}
-\Require $n \geq 0$
-\Ensure $y = x^n$
-\State $y \gets 1$
-\State $X \gets x$
-\State $N \gets n$
-\While{$N \neq 0$}
-\If{$N$ is even}
-    \State $X \gets X \times X$
-    \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-\ElsIf{$N$ is odd}
-    \State $y \gets y \times X$
-    \State $N \gets N - 1$
-\EndIf
-\EndWhile
-\end{algorithmic}
-\end{algorithm}
+Let $n, T \in \NN$. We consider the set of points in the set
+\[G(T) = \{a \in \NN : \mathrm{gcd}(a) = 1, \; |a|_\infty \leq T\}.\]
+This is the set of 
 
-\subsection{Expected Frobenius number}\label{sec:randomsmpgs:expectedfrob}
+
 
 \section{ER-type model}
 
-We generate a random numerical semigroup with a model similar to the Erdös-Rényi model for random graphs. 
+In order to use similar methods that can be applied to the Erdös-Rényi model for random graphs, a similar model for random numerical semigroups was proposed in \cite{de2018random}. 
 
 \begin{definition}
-    For $p \in [0, 1]$ and $M \in \NN$, a random numerical semigroup $S(M, p)$ is a probability space over the set of semigroups $S = \langle\mathcal{A}\rangle$ with $\mathcal{A} \subseteq \{1,...,M\}$, determined by
+    For $p \in [0, 1]$ and $M \in \NN$, an ER-type random numerical semigroup $S(M, p)$ is a probability space over the set of semigroups $S = \langle\mathcal{A}\rangle$ with $\mathcal{A} \subseteq \{1,...,M\}$, determined by
     \[\Pr[n \in \mathcal{A}] = p,\]
     with these events mutually independent.
 \end{definition}
 
-\subsection{Behavior of the ER-type model}
+In other words, a semigroup $S(M, p)$ is obtained by using the following procedure:
+\begin{enumerate}
+    \item Initialize a set $\mathcal{A} = \{0\}$.
+    \item From step $1$ to $M$, add $i$ to $\mathcal{A}$ with probability $p$, independently of the other steps.
+    \item Return the semigroup $S = \langle\mathcal{A}\rangle$.
+\end{enumerate}
+
+The main result of \cite{de2018random} is the following theorem.  
+
+\begin{theorem}\label{thm:ermodel}
+    
+\end{theorem}
+
+They also provide the following bounds.
+\begin{itemize}
+    \item Test. 
+\end{itemize}
+
+We prove the threshold function for co-finiteness. 
+
+\begin{theorem}
+    
+\end{theorem}
+
+When $p$ is a constant and let $M$ tend to infinity, we think of the ER-type model as 
 
 \section{Downward model}\label{sec:contrib1:theme2}
 
-Etc. etc.
+In relation with Wilf's conjecture \ref{conj:smgps:wilf}, we propose a new model for random numerical semigroups that fixes the Frobenius number.
 
+The main tool for proving the other parts of Theorem \ref{thm:ermodel} is a correspondence between irreducible numerical semigropus with a simplicial complex. 
 
+\begin{definition}
+    
+\end{definition}
 
-\section{Conclusion}

@@ -83,7 +83,7 @@ Let $X$ be a discrete random variable, then the \textit{expected value} of $X$ i
     &= \sum_{x \in \mathrm{Rg}(X)} x\Pr[X = x] + \sum_{y \in \mathrm{Rg}(Y)} y\Pr[Y = y] \\
     &= \EE[X] + \EE[Y].
 \end{align*}
-Similarly, if $a \in \R$,
+Also, if $a \in \R$,
 \begin{align*}
     \EE[aX] &= \sum_{x \in \mathrm{Rg}(X)} ax\Pr[X = x] \\
     &= a\sum_{x \in \mathrm{Rg}(X)} x\Pr[X = x] \\
@@ -170,7 +170,7 @@ We are now ready to show an application of the second moment method. \par
 \section{Threshold Functions}\label{sec:probmet:threshold}
 
 Let $n \in \N$ and $0 \leq p \leq 1$. 
-\begin{definition}
+\begin{definition}\label{def:probmet:ermodel}
     The Erdös-Rényi model for random graphs $G(n, p)$ is a probability space over the set of graphs on $n$ labeled vertices determined by
     \[\Pr[\{i, j\} \in G] = p\] 
     with these events mutually independent.
