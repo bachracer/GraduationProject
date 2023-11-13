@@ -9,11 +9,25 @@ We present three distinct models of random numerical semigroups. The first model
 
 \section{Box Model}\label{sec:randomsmpgs:intro}
 
-Let $n, T \in \NN$. We consider the set of points in the set
-\[G(T) = \{a \in \NN : \mathrm{gcd}(a) = 1, \; |a|_\infty \leq T\}.\]
-This is the set of 
-
-
+Let $n, T \in \NN$. We consider the set of points
+\[G(T) = \{\mathcal{A} \in \NN^n : \mathrm{gcd}(\mathcal{A}) = 1, \; |\mathcal{A}|_\infty \leq T\}.\]
+This is the set of possible sets of $n$ generators of numerical semigroups such that each generator is at most $T$. 
+\begin{definition}
+    A Box model random numerical semigroup $S(T)$ is a probability space over the set of semigroups $S = \langle\mathcal{A}\rangle$ with $\mathcal{A} \in G(T)$, determined by
+    \[\Pr[ \mathcal{A}] = \frac{1}{|G(T)|}.\]
+\end{definition}
+In other words, a point in $G(T)$ is chosen uniformly at random and the corresponding semigroup is returned. V. I. Arnold was the first to study this model \cite{arnold1999weak}.  Assuming that $\mathcal{A} = \{a_1, \ldots, a_n\}$ and $a_1 \leq \ldots \leq a_n$, Erdös and Graham \cite{erdos1972linear} proved that: 
+\[F(\langle\mathcal{A} \rangle)  \leq 2 a_n\left[\frac{a_1}{n}\right]  - a_1.\]
+On the other hand, Aliev and Gruber \cite{aliev2007optimal} proved an optimal lower bound for the Frobenius number, namely:
+\[F(\langle\mathcal{A} \rangle)  > (n - 1)!^{\frac{1}{n - 1}}(a_1\cdots a_n)^{\frac{1}{n - 1}} - (a_1 + \cdots + a_n).\]
+In \cite{arnold1999weak} and \cite{arnold2004arnold}, Arnold conjectured that the average behavior of the Frobenius number is, up to a constant, given by the lower bound, i.e.:
+\[F(\langle\mathcal{A}\rangle) \sim (n - 1)!^{\frac{1}{n - 1}}(a_1\cdots a_n)^{\frac{1}{n - 1}}.\]
+In 2009, Aliev, Henk and Hindrichs \cite{aliev2011expected} proved Arnold's conjecture, by showing the following theorem. 
+% Expected Frobenius number results
+\begin{theorem} Let $n \geq 3$. Then, as $n$ grows, 
+    \[\Pr\left[\frac{F(\langle\mathcal{A}\rangle)}{(a_1\cdots a_n)^{\frac{1}{n - 1}}}\geq D\right]  = o(D^{-2\frac{n - 1}{n + 1}}).\]
+\end{theorem}
+The proof of this theorem is based on a discrete inverse arithmetic-geometric mean inequality.
 
 \section{ER-type model}
 
