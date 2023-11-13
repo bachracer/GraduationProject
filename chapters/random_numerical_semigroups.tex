@@ -87,7 +87,7 @@ Since $Mp \to 0$ as $M \to \infty$, we have that $\Pr[|\mathcal{A}| > 0] \to 0$ 
 
 \subsubsection*{Part 2}
 Suppose that $\frac{1}{M} \in o(p)$ and $\lim_{M \to \infty} p = 0$. We prove that $\mathcal{S}$ is co-finite almost always, by showing that $\mathcal{A}$ almost always contains a co-prime pair of elements. \par
-For each pair of distinct co-prime integers $i, j \in \{1,\ldots, m\}$, let $A_{i, j}$ be the event that $i, j \in \mathcal{A}$. Let $1_{i, j}$ be the indicator variable and let 
+For each pair of distinct co-prime integers $i, j \in \{1,\ldots, m\}$, let $A_{i, j}$ be the event that $i, j \in \mathcal{A}$. Let $1_{i, j}$ be the indicator variable of event $A_{i, j}$ and let 
 \[X = \sum_{\substack{i < j \\ \mathrm{gcd}(i, j) = 1}} 1_{i, j}.\]
 We show that $X > 0$ almost always using the second moment method. First we calculate $\EE[X]$. It is a well-established result in number theory that the probability of two integers being co-prime is $\frac{6}{\pi^2}$ \cite[Theorem 332]{hardy1979introduction}. That is,
 \[\lim_{M \to \infty} \frac{|\{(a, b) \in \{1, \ldots, M\}^2: \mathrm{gcd}(a, b) = 1\}|}{M^2} = \frac{1}{\zeta(2)} =\frac{6}{\pi^2}.\]
