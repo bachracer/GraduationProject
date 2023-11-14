@@ -123,7 +123,7 @@ Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$. Usi
 \end{align*}
 since \(\binom{2\lfloor q^{\alpha} \rfloor}{\lfloor 3 \log_2 q \rfloor}^2 \leq \binom{4\lfloor 3 \log_2 q \rfloor }{2\lfloor 3 \log_2 q \rfloor}\) (I can prove this in a lemma or in the appendix).   \par
 This proves that
-\[\Pr[X_z = 0] \leq \frac{\Delta}{\EE[X_z]^2} = \sum_{j = 0}^k \frac{\Delta_j}{\EE[X_z]^2} \leq \frac{(k + 1)}{q^2}.\]
+\[\Pr[X_z = 0] \leq \frac{\EE[X_z] + \Delta}{\EE[X_z]^2} = \frac{1}{E[X_z]} + \sum_{j = 0}^k \frac{\Delta_j}{\EE[X_z]^2} \leq \frac{1}{E[X_z]} + \frac{(k + 1)}{q^2}.\]
 Therefore, by the union bound,
 \[\Pr\left[\bigvee_{z \in \mathbb{Z}_q} X_z = 0\right] \leq \frac{(k + 1)}{q}.\]
 

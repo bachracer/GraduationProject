@@ -2,6 +2,30 @@
 % mini-introduction and overview at the beginning and a conclusion at the
 % end bookmarking a structured presentation of the contribution. This can be
 % largely based on your publications.
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=Python,
+	basicstyle=\scriptsize,
+	upquote=true,
+	aboveskip={1.5\baselineskip},
+	columns=fixed,
+	showstringspaces=false,
+	extendedchars=true,
+	breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	frame=single,
+	showtabs=false,
+	showspaces=false,
+	showstringspaces=false,
+	identifierstyle=\ttfamily,
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\color[rgb]{0.627,0.126,0.941},
+	numbers=left, numberstyle=\tiny, stepnumber=1,
+	numbersep=5pt
+}
+
 
 \chapter{Experiments}\label{chap:experiments}
 
@@ -9,32 +33,181 @@
 
 We used the following algorithm for random numerical semigroup generation. 
 
-\begin{algorithm}
-    \caption{An algorithm with caption}\label{alg:cap}
-    \begin{algorithmic}
-    \Require $n \geq 0$
-    \Ensure $y = x^n$
-    \State $y \gets 1$
-    \State $X \gets x$
-    \State $N \gets n$
-    \While{$N \neq 0$}
-    \If{$N$ is even}
-        \State $X \gets X \times X$
-        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-    \ElsIf{$N$ is odd}
-        \State $y \gets y \times X$
-        \State $N \gets N - 1$
-    \EndIf
-    \EndWhile
-    \end{algorithmic}
-\end{algorithm}
-    
-For random sums of cyclic groups, we used the following algorithm.
+\begin{lstlisting}[language=Python]
+    # Generates random sample using Erdös-Rényi model 
+    def generate_sample(M, p, sample_size):
+        semigroups = []
+        for j in range(sample_size):
+            generators = []
+            for i in range(M):
+                if random.random() < p:
+                    generators.append(i)
+            if gcd(generators) != 1:
+                continue
+            semigroups.append(NumericalSemigroup(generators))
+        return semigroups
+\end{lstlisting}
 
-In this Chapter, XXX is presented. Include pseudocode. 
-..
+Embedding dimension:
+
+\begin{tabular}{|c|c|c|c|}
+    \toprule
+    $1/p$ & Lower Bound & $\overline{e(\mathcal{S})}$  & Upper bound \\
+    \midrule
+    4.00 & 2.21 & 2.79 & 7.75 \\
+    75.14 & 2.95 & 9.05 & 150.27 \\
+    146.29 & 2.97 & 10.67 & 292.56 \\
+    217.43 & 2.98 & 12.28 & 434.85 \\
+    288.57 & 2.99 & 12.94 & 577.14 \\
+    359.71 & 2.99 & 13.65 & 719.43 \\
+    430.86 & 2.99 & 14.14 & 861.71 \\
+    502.00 & 2.99 & 14.73 & 1,004.00 \\
+    573.14 & 2.99 & 15.29 & 1,146.28 \\
+    644.29 & 2.99 & 16.17 & 1,288.57 \\
+    715.43 & 2.99 & 16.07 & 1,430.86 \\
+    786.57 & 2.99 & 16.34 & 1,573.14 \\
+    857.71 & 3.00 & 16.61 & 1,715.43 \\
+    928.86 & 3.00 & 17.39 & 1,857.71 \\
+    1,000.00 & 3.00 & 17.22 & 2,000.00 \\
+    \bottomrule
+\end{tabular}
+
+Frobenius number:
+
+\begin{tabular}{|c|c|c|c|}
+    \toprule
+    $1/p$ & Lower Bound & $\overline{F(\mathcal{S})}$ & Upper bound \\
+    \midrule
+    4.00 & 7.26 & 13.96 & 46.50 \\
+    75.14 & 218.56 & 1,088.82 & 22,283.25 \\
+    146.29 & 431.93 & 2,483.26 & 85,010.91 \\
+    217.43 & 645.33 & 4,174.94 & 188,229.03 \\
+    288.57 & 858.75 & 5,859.29 & 331,937.60 \\
+    359.71 & 1,072.17 & 7,794.18 & 516,136.62 \\
+    430.86 & 1,285.59 & 9,594.56 & 740,826.09 \\
+    502.00 & 1,499.02 & 11,533.38 & 1,006,006.00 \\
+    573.14 & 1,712.45 & 13,765.73 & 1,311,676.37 \\
+    644.29 & 1,925.87 & 16,239.19 & 1,657,837.19 \\
+    715.43 & 2,139.30 & 17,769.34 & 2,044,488.45 \\
+    786.57 & 2,352.73 & 19,806.19 & 2,471,630.17 \\
+    857.71 & 2,566.15 & 22,157.78 & 2,939,262.33 \\
+    928.86 & 2,779.58 & 25,079.10 & 3,447,384.94 \\
+    1,000.00 & 2,993.01 & 26,637.46 & 3,995,998.00 \\
+    \bottomrule
+\end{tabular}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/frobenius_plot.pgf}
+    \end{center}
+\end{figure}
+    
+\begin{figure}
+    \begin{center}
+        \input{figures/embedding_plot.pgf}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/frobenius_hist4.pgf}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/frobenius_hist220.pgf}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/frobenius_hist1000.pgf}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/embedding_hist4.pgf}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/embedding_hist220.pgf}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/embedding_hist1000.pgf}
+    \end{center}
+\end{figure}
+    
+I also implemented my own algorithm to calculate the minimal generating set and the apery set of a semigroup, for visualization purposes.
+
+\begin{lstlisting}[language=Python]
+    # Function to generate Ap(S, m(S))
+    def generate_apery_set(M, p, first): 
+        # Initialize apery set
+        apery_set = [first]
+
+        # Initialize lists (new elements are elements chosen with probability p,
+        #  they belong to the minimal generating set)
+        generated = []
+        new_elements = [first]
+        non_apery = []
+        
+        # Generate apery set
+        for i in range(first + 1, M + 1):
+            # Check if a representative of a mod first is already in the apery set
+            for a in apery_set:
+                if (i - a) % first == 0:
+                    non_apery.append(i)
+                    break
+            # If not add it to the apery set
+            else:
+                # Check if element can be generated by the apery set
+                for a in apery_set: 
+                    if (i - a) in apery_set:
+                        apery_set.append(i)
+                        generated.append(i)
+                        break 
+                # If not, add it to the generators with probability p
+                else:
+                    if random.random() < p:
+                        apery_set.append(i)
+                        new_elements.append(i)
+                # Break when the apery_set is complete 
+                if len(apery_set) == first:
+                    break
+        return apery_set, generated, new_elements, non_apery
+\end{lstlisting}
+
+Here I show some visualizations of ER-type random numerical semigroups, using the algorithm above. To do it, run \verb|smgps_visualizer.py| and introduce the first non-zero element of the semigroup. The algorithm will generate a ER-type random numerical semigroup with that element as first non-zero element, and will plot a visualization. 
+
+
 
 \section{Downward model experiments}\label{sec:experiments:downward model}
 
 Etc. etc.
+
+
+% format python code
+\begin{lstlisting}[language=Python]
+    # Generate a random numerical semigroup using the downward model
+    def downward_random_nsmgp(frobenius_number, p):
+        # Initialize A
+        generators = list(range(frobenius_number + 1, 2 * frobenius_number + 2))
+        semigroup = NumericalSemigroup(generators)
+        for i in range(frobenius_number - 1, 0, -1):
+            # We first call random for efficiency
+            if random.random() < p:
+                # Check if the new semigroup has the same Frobenius number
+                if NumericalSemigroup(generators + [i]).FrobeniusNumber() == frobenius_number:
+                    generators.append(i)
+                    semigroup = NumericalSemigroup(generators)
+                    generators = semigroup.gens
+        return semigroup
+\end{lstlisting}
 
