@@ -1,4 +1,4 @@
-Thesis template
+Random numerical semigroups and sums of subsets of cyclic groups
 
 
 ### Useful Resources ###
