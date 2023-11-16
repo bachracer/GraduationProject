@@ -72,15 +72,15 @@ Fix $a \in \NN$ such that $a > 11$ and let $T = \{1, \ldots, \lfloor\frac{a}{p}\
     \begin{equation}\label{eq:lowerbound:y2notminimal}
         \Pr[Y_{(2)} \text{ is not minimal}|E_1\land E_2] \leq \frac{pa^2}{1 - \frac{7}{a}}.
     \end{equation}
-    Similarly, for $2 \leq t \leq k$ and fixed $Y_{(1)} = y_1, \ldots, Y_{(t - 1)} = y_{t - 1}$, $Y_{(t)}$ is minimal if $\langle y_1, \ldots, y_{t - 1}\rangle \cap \mathcal{A}_T = \{y_1, \ldots, y_{t - 1}\}$. To bound $|\langle y_1, \ldots, y_{t - 1}\rangle \cap \mathcal{A}_T|$, there are at most $a^2$ choices for each multiple of $y_i$, so there are at most $a^{2t}$ such linear combinations and
+    Similarly, for $2 \leq t \leq k$ and fixed $Y_{(1)} = y_1, \ldots, Y_{(t - 1)} = y_{t - 1}$, $Y_{(t)}$ is minimal if $\langle y_1, \ldots, y_{t - 1}\rangle \cap \mathcal{A}_T = \{y_1, \ldots, y*_{t - 1}\}$. To bound $|\langle y_1, \ldots, y_{t - 1}\rangle \cap \mathcal{A}_T|$, there are at most $a^2$ choices for each multiple of $y_i$, so there are at most $a^{2t}$ such linear combinations and
     \[|\langle y_1, \ldots, y_{t - 1} \rangle \cap  \mathcal{A}_T| \leq |\langle y_1, \ldots, y_{t - 1} \rangle \cap T| \leq a^{2t}.\]
-    Then, 
+    Also, 
     \[P[b \in \mathcal{A}_T] = P[b \in \mathcal{A}_T|Y_{(1)} = y_1\land \cdots \land Y_{(t - 1)} = y_{t - 1}] \quad \text{if} \quad  b > y_{t - 1} > \ldots > y_1,\]
     and so
     \[
-        \Pr[b \in \mathcal{A}_T|E_1 \land E_2 \land Y_{(1)} = y_1 \land \cdots \land Y_{(t - 1)} = y_{t - 1}] \leq \frac{p}{1 - \frac{7}{a}},
+        \Pr[b \in \mathcal{A}_T|E_1 \land E_2 \land Y_{(1)} = y_1 \land \cdots \land Y_{(t - 1)} = y_{t - 1}] \leq \frac{p}{1 - \frac{7}{a}}.
     \]
-    and, as in (\ref{eq:lowerbound:y2notminimal}), 
+    Then, as in (\ref{eq:lowerbound:y2notminimal}), 
     \[\Pr[Y_{(t)} \text{ is not minimal}|E_1\land E_2] \leq \frac{pa^{2t}}{1 - \frac{7}{a}} .\]
     Therefore, we can use the union bound and $k \leq \frac{3a}{2}$ to conclude that
     \[\Pr[E_4|E_1 \land E_2] \geq 1 - \frac{p}{1 - \frac{7}{a}}\sum_{t = 1}^{\frac{3a}{2} - 1}a^{2t} = 1 - o(1),\]
@@ -102,40 +102,33 @@ We conclude that, for every $K \in \NN$,
 \[\lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\qed\]
 
 \section{Upper bound}\label{sec:results:upperbound}
-
-which proves that a cyclic group of prime order is covered by the sums of a random subset of a logarithm.  
+Before proving part (b) of theorem \ref{thm:main}, we will prove a lemma that shows that a cyclic group of prime order is covered by the sums of a random subset of logarithmic size.  
 \begin{lemma}\label{lem:sumset}
-    Let $q$ be a prime number and $S$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. 
+    Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. 
 \end{lemma}
 
-Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $S$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
-\[\Pr(S) = \frac{1}{\binom{q}{s}}.\]
+Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $\mathcal{A}$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
+\[\Pr(\mathcal{A}) = \frac{1}{\binom{q}{s}}.\]
 For a given $z \in \mathbb{Z}_q$ and $k \in \mathbb{N}$ for which $k \leq s/2$, let 
 \[N_z^k := \left\{K \subseteq \mathbb{Z}_q: |K| = k, \sum_{t \in K} t = z\right\}.\]
 Note that $|N_z^k| = \frac{1}{q}{\binom{q}{k}}$, since $K \in N_0^k$ if and only if $K + k^{-1}z \in N_z^k$ for every $z \in \mathbb{Z}_q$.\par
-For $K \in N_z^k$, let $A_K$ be the event that $K \subset S$. Let $X_K$ be the indicator variable of $A_K$.
+For $K \in N_z^k$, let $A_K$ be the event that $K \subset\mathcal{A}$. Let $X_K$ be the indicator variable of $A_K$.
 We define the random variable 
 \[X_z = \sum_{K \in N_z^k} X_K.\]
-Note that $X_z$ counts the number of sets of size $k$ which add up to $z$. We provide two ways of finding $\EE[X_z]$. The first one uses that, for any $K \subset N^k_z$, 
-\[\EE[X_K] = \Pr[A_K] = \frac{\binom{q - k}{s - k}}{\binom{q}{s}},\]
-and so we get that
-\begin{align*}
-    \EE[X_z] = \sum_{K \in N_z^k} \EE[X_K] = |N_z^k|\EE[X_K] = \frac{1}{q}{\binom{q}{k}}\frac{\binom{q - k}{s - k}}{\binom{q}{s}} = \frac{1}{q} {\binom{s}{k}}.
-\end{align*}
-\par
-This motivates the second way, for we know that 
+Note that $X_z$ counts the number of sets of size $k$ which add up to $z$. We now find $\EE[X_z]$. Since the sum of every subset $K \subset S$ is in $\mathbb{Z}_q$,
 \[\sum_{z \in Z_q} X_z = {\binom{s}{k}},\]
 and so
 \[\binom{s}{k} = E\left[\sum_{z \in Z_q} X_z\right] =  \sum_{z \in Z_q} E[X_z].\]\par
 As in the argument for finding $|N_z^k|$, for every $z \in \mathbb{Z}_q$, 
 \[\EE[X_0] = \sum_{K \in N_0^k}\EE[X_K] = \sum_{K \in N_0^k} \EE[X_{K + k^{-1}z}] = \sum_{K \in N_z^k} \EE[X_K] = \EE[X_z].\]
-Therefore, we also find that
+Therefore, we have that
 \begin{equation}\label{eq:upperbound:expected}
 E[X_z] = \frac{1}{q} {\binom{s}{k}}.
 \end{equation}
-Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ and define
+Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ such that $j \leq k$ and define
 \[\Delta_j := \sum_{|K \cap L| = j} \Pr[A_K \land A_L].\]
-\par Fix $j \leq k$, then 
+\par 
+If $|K \cap L| = j$,
 \[\Pr[A_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
 \par
 We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
@@ -146,15 +139,19 @@ We can bound the number of events for which $|K \cap L| = j$. First we choose $K
     &= \frac{\frac{q!}{(q - k)!k!}\frac{(p - k)!}{(k - j)!(q - 2k + k)!}\frac{(q - 2k + j)!}{(s - 2k + j)!(q - s)!}}{\frac{1}{q}\binom{s}{k}\frac{s!}{(s - k)!k!}\frac{q!}{(q - s)!s!}} \\
     &= \frac{q\binom{s - k}{k - j}}{\binom{s}{k}}.
 \end{align*}
-Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$. Using that $\binom{s - k}{t}$ is maximized at $t = \lfloor (s - k) / 2\rfloor$,
+Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$. Using that $\binom{s - k}{k - j}$ is maximized at $k - j = \lfloor (s - k) / 2\rfloor$,
 \begin{align*}
 \frac{\Delta_j}{\EE[X_z]^2} \leq \frac{q \binom{2\lfloor 3 \log_2 q\rfloor}{\lfloor 3 \log_2 q \rfloor}}{\binom{4\lfloor 3\log_2 q \rfloor}{2\lfloor 3\log_2 q \rfloor}} \leq \frac{q}{\binom{2\lfloor 3 \log_2 q \rfloor }{ \lfloor 3 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 3 \log_2 q \rfloor}} \sim \frac{1}{q^2},
 \end{align*}
 since \(\binom{2\lfloor \log_2 q \rfloor}{\lfloor 3 \log_2 q \rfloor}^2 \leq \binom{4\lfloor 3 \log_2 q \rfloor }{2\lfloor 3 \log_2 q \rfloor}\) (Proposition \ref{ap:prop:binom}).   \par
-This proves that
-\[\Pr[X_z = 0] \leq \frac{\EE[X_z] + \Delta}{\EE[X_z]^2} = \frac{1}{E[X_z]} + \sum_{j = 0}^k \frac{\Delta_j}{\EE[X_z]^2} \leq \frac{1}{E[X_z]} + \frac{(k + 1)}{q^2}.\]
-Therefore, by the union bound,
-\[\Pr\left[\bigvee_{z \in \mathbb{Z}_q} X_z = 0\right] \leq \frac{(k + 1)}{q}.\]
+Hence, by (\ref{eq:probmet:deltainequality}) and Theorem \ref{thm:probmet:secondmoment:1},
+\begin{align*}
+\Pr[X_z = 0] \leq \frac{\EE[X_z] + \Delta}{\EE[X_z]^2} &= \frac{1}{E[X_z]} + \sum_{j = 0}^k \frac{\Delta_j}{\EE[X_z]^2} \\
+&\leq \frac{1}{E[X_z]} + \frac{(k + 1)}{q^2} = \frac{1}{E[X_z]} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q^2}.
+\end{align*}
+Therefore, by the union bound and since $q \to \infty$ as $p \to 0$,
+\[\Pr\left[\bigvee_{z \in \mathbb{Z}_q} X_z = 0\right] \leq \frac{q}{E[X_z]} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q^2} = o(1).\]
+We conclude that $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, for every $z \in \mathbb{Z}_q$, there exists $K \in N_z^k$ such that $K \subset \mathcal{A}$ almost always. This means that $2\lfloor 3 \log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. \qed
 
 \subsection{Proof of the upper bound} 
 \begin{lemma}\label{lem:upperbound}

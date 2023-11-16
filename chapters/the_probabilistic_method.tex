@@ -166,7 +166,10 @@ Finally, if $X = X_1 + \cdots + X_n$, where each $X_i$ is the indicator variable
 \textbf{Proof. } When $i \sim j$, 
 \[\Cov[X_i, X_j] = \EE[X_iX_j] - \EE[X_i]\EE[X_j] \leq \EE[X_iX_j] = \Pr[A_i \wedge A_j],\]
 and so 
-\[\Var[X] \leq \EE[X] + \sum_{i \neq j}\Cov[X_i, X_j] \leq \EE[X] + \sum_{i \sim j}\Pr[A_i \wedge A_j] = \EE[X] + \Delta. \qed\]
+\begin{equation}\label{eq:probmet:deltainequality}
+\Var[X] \leq \EE[X] + \sum_{i \neq j}\Cov[X_i, X_j] \leq \EE[X] + \sum_{i \sim j}\Pr[A_i \wedge A_j] = \EE[X] + \Delta. 
+\end{equation}
+The result follows from Theorem \ref{thm:probmet:secondmoment:1} and Corollary \ref{cor:probmet:secondmoment:1}. \qed \par 
 
 We are now ready to show an application of the second moment method. \par
 \section{Threshold Functions}\label{sec:probmet:threshold}
