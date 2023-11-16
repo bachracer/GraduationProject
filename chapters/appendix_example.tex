@@ -1,7 +1,4 @@
-\chapter{Example Appendix}
-
-Here you might present some additional results, derivations, proofs etc. that were not included in the main text.
-
+\chapter{Appendix}
 \section{Useful Bounds}
 
 We include some bounds that are useful in the proofs of the main results. By Stirling's Formula, we have that
@@ -36,8 +33,23 @@ We prove a bound on the tails of the binomial distribution found in \cite{feller
 
 We also give a combinatorial proof of the following result.
 
-\begin{proposition}
+\begin{proposition}\label{ap:prop:binom}
     $\binom{2n}{k}^2 \leq \binom{4n}{2k}$ for $n \geq 1$. 
 \end{proposition}
 
 \textbf{Proof. } The number of subsets of size $2k$ of a set of size $4n$ is $\binom{4n}{2k}$. This is greater than the number of subsets that can be expressed as the product of two subsets of size $k$ of a set of size $2n$, which is $\binom{2n}{k}^2$. \qed
+
+The proof of the following bound can be found in \cite[Section 6.3]{feller}.
+\begin{proposition}\label{ap:prop:rightbinomtail}
+    Let $X \sim \mathrm{Bin}(n, p)$. If $r > np$,
+    \[ \Pr[X \geq r] \leq \frac{r(1 - p)}{(r - np)^2}.\]
+\end{proposition}
+Since the binomial distribution is symmetric, we also have the following.
+\begin{proposition}\label{ap:prop:leftbinomtail}
+    Let $X \sim \mathrm{Bin}(n, p)$. If $r < np$,
+    \[ \Pr[X \leq r] \leq \frac{(n - r)p}{(np - r)^2}.\]
+\end{proposition}
+
+
+
+

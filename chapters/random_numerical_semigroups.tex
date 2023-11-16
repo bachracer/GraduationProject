@@ -10,7 +10,7 @@ We present three distinct models of random numerical semigroups. The first model
 \section{Box Model}\label{sec:randomsmpgs:intro}
 
 Let $n, T \in \NN$. We consider the set of points
-\[G(T) = \{\mathcal{A} \in \NN^n : \mathrm{gcd}(\mathcal{A}) = 1, \; |\mathcal{A}|_\infty \leq T\}.\]
+\[G(T) = \{A\in \NN^n : \mathrm{gcd}(A) = 1, \; |A|_\infty \leq T\}.\]
 This is the set of possible sets of $n$ generators of numerical semigroups such that each generator is at most $T$. 
 \begin{definition}
     A Box model random numerical semigroup $\mathcal{S}(T)$ is a probability space over the set of semigroups $\mathcal{S} = \langle\mathcal{A}\rangle$ with $\mathcal{A} \in G(T)$, determined by
@@ -95,7 +95,7 @@ Therefore, $E[X] \sim \frac{3}{\pi^2}M^2p^2$. Now, $\{i, j\} \sim \{i', j'\}$ (S
 \[\Delta = \sum_{\{i, j\} \sim \{i', j'\}}\Pr[A_{i, j}\land A_{i', j'}] \leq M^3p^3.\]
 Therefore, $\Delta \in o(\EE[X]^2)$, since $\frac{1}{M} \in o(p)$. Thus, by the second moment method (Corollary \ref{cor:probmet:secondmoment:3}), $X > 0$ almost always. This means that $\mathcal{A}$ almost always contains a co-prime pair of elements and so $\mathcal{S}$ is co-finite. \qed \par
 
-In chapter \ref{chap:results}, we prove part (b) using standard methods in the probabilistic method (Theorem \ref{thm:lowerbound}). We also prove a result related to part (c) (Theorem \ref{thm:upperbound}).
+In chapter \ref{chap:results}, we prove part (b) using standard methods in the probabilistic method (Lemma \ref{lem:lowerbound}). We also prove a result related to part (c) (Lemma \ref{lem:upperbound}).
 
 \section{Downward model}\label{sec:contrib1:theme2}
 
