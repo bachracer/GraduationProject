@@ -1,11 +1,14 @@
-Thesis template
+# Random numerical semigroups and sums of subsets of cyclic groups
 
+Undergraduate Thesis. Santiago Morales @ Uniandes
 
-### Useful Resources ###
+## Abstract 
 
-* For help with things like tables, figures, algorithms, code highlighting etc., you can refer to the [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)
-* For your figures, try to use vector graphics formats wherever possible. A great open source tool for this is [Inkscape](https://www.inkscape.org)
-* The suggested workflow is to create the figure and save it (for future modification) in scalable vector graphics (SVG) format, then export to PDF when you are ready to include it in your document.
-* If you have raster images, you can also edit these using the [open source tool GIMP](https://www.gimp.org)
-
-
+We investigate properties of random numerical semigroups using a probabilistic model based on
+the Erdös-Rényi model for random graphs and propose a new probabilistic model. We provide
+a new and more elementary proof of a lower bound of the expected embedding dimension,
+genus, and Frobenius number of a random semigroup, and provide a tighter probabilistic upper
+bound. Our results derive from the application of the Probabilistic Method to the generation
+of random numerical semigroups and observations about sums of uniformly random subsets
+of cyclic groups. We include experiments that motivated our results and offer conjectures for
+subsequent research.
