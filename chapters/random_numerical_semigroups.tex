@@ -5,7 +5,7 @@
 
 \chapter{Random Numerical Semigroups}\label{chap:randnumsems}
 
-We present three distinct models of random numerical semigroups. The first model employs a uniform distribution for its generators and is the most extensively studied. The second model is inspired in the Erdös-Rényi approach for random graphs. The third model is a new approach we introduce, characterized by a fixed Frobenius number.
+We present three distinct models of random numerical semigroups. The first model employs a uniform distribution for its generators and is the most extensively studied. The second model is inspired By the Erdös-Rényi approach to random graphs. The third model is a new approach we introduce, characterized by a fixed Frobenius number.
 
 \section{Box Model}\label{sec:randomsmpgs:intro}
 
@@ -16,7 +16,7 @@ This is the set of possible sets of $n$ generators of numerical semigroups such 
     A Box model random numerical semigroup $\mathcal{S}(T)$ is a probability space over the set of semigroups $\mathcal{S} = \langle\mathcal{A}\rangle$ with $\mathcal{A} \in G(T)$, determined by
     \[\Pr[ \mathcal{A}] = \frac{1}{|G(T)|}.\]
 \end{definition}
-In other words, a point in $G(T)$ is chosen uniformly at random and the corresponding semigroup is returned. V. I. Arnold was the first to study this model \cite{arnold1999weak}.  Assuming that $\mathcal{A} = \{a_1, \ldots, a_n\}$ and $a_1 \leq \ldots \leq a_n$, Erdös and Graham \cite{erdos1972linear} proved that: 
+In other words, a point in $G(T)$ is chosen uniformly at random and the corresponding semigroup is returned. V. I. Arnold was the first to study this model \cite{arnold1999weak}.  \textcolor{blue}{Explain that this holds for all semigroups} Assuming that $\mathcal{A} = \{a_1, \ldots, a_n\}$ and $a_1 \leq \ldots \leq a_n$, Erdös and Graham \cite{erdos1972linear} proved that: 
 \[F(\langle\mathcal{A} \rangle)  \leq 2 a_n\left[\frac{a_1}{n}\right]  - a_1.\]
 On the other hand, Aliev and Gruber \cite{aliev2007optimal} proved an optimal lower bound for the Frobenius number, namely:
 \[F(\langle\mathcal{A} \rangle)  > (n - 1)!^{\frac{1}{n - 1}}(a_1\cdots a_n)^{\frac{1}{n - 1}} - (a_1 + \cdots + a_n).\]
@@ -24,24 +24,24 @@ In \cite{arnold1999weak} and \cite{arnold2004arnold}, Arnold conjectured that th
 \[F(\langle\mathcal{A}\rangle) \sim (n - 1)!^{\frac{1}{n - 1}}(a_1\cdots a_n)^{\frac{1}{n - 1}}.\]
 In 2009, Aliev, Henk and Hindrichs \cite{aliev2011expected} proved Arnold's conjecture, by showing the following theorem. 
 % Expected Frobenius number results
-\begin{theorem} Let $n \geq 3$. Then, 
+\begin{theorem} Let $n \geq 3$. Then, for every constant $D$,
     \[\Pr\left[\frac{F(\langle\mathcal{A}\rangle)}{(a_1\cdots a_n)^{\frac{1}{n - 1}}}\geq D\right]  \in o(D^{-2\frac{n - 1}{n + 1}}).\]
 \end{theorem}
 The statement of this theorem does not depend on $T$, it only depends on $n$. The proof is based on a discrete inverse arithmetic-geometric mean inequality.
 
 \section{ER-type model}
 
-In order to use similar methods that can be applied to the Erdös-Rényi model for random graphs, a similar model for random numerical semigroups was proposed in \cite{de2018random}. 
+In order to use methods such as those that apply to the Erdös-Rényi model for random graphs, a similar model for random numerical semigroups was proposed in \cite{de2018random}. 
 
 \begin{definition}
     For $p \in [0, 1]$ and $M \in \NN$, an ER-type random numerical semigroup $\mathcal{S}(M, p)$ is a probability space over the set of semigroups $\mathcal{S} = \langle\mathcal{A}\rangle$ with $\mathcal{A} \subseteq \{1,...,M\}$, determined by
     \[\Pr[n \in \mathcal{A}] = p,\]
     with these events mutually independent.
 \end{definition}
-Note that this definition does not require for a numerical semigroup $\mathcal{S}$ to be co-finite. A semigroup $\mathcal{S}(M, p)$ is obtained by using the following procedure:
+Note that this definition does not require a numerical semigroup $\mathcal{S}$ to be co-finite. A semigroup $\mathcal{S}(M, p)$ is obtained by using the following procedure:
 \begin{enumerate}
     \item Initialize an empty set $\mathcal{A}$.
-    \item From step $1$ to $M$, add $i$ to $\mathcal{A}$ with probability $p$, independently of the other steps.
+    \item As $i$ goes from $1$ to $M$, add $i$ to $\mathcal{A}$ with probability $p$, independently of the other steps.
     \item Return the semigroup $\mathcal{S} = \langle\mathcal{A}\rangle$.
 \end{enumerate}
 
@@ -58,8 +58,8 @@ The main result of \cite{de2018random} is the following theorem.
     \end{enumerate}
 \end{theorem}
 
-Note that this proves that $\frac{1}{M}$ is a threshold function for co-finiteness, if we extend the definition of threshold functions of random graphs (Definition \ref{def:probmet:threshold}) to ER-type random numerical semigroups. The proof of this part of the theorem follows from standard arguments in the probabilistic method (Theorem \ref{thm:ermodel:co-finite}). \par
-On the other hand, parts (b) and (c) follow from the construction of a shellable simplicial complex (Definition 8 \cite{de2018random}) whose facets are in bijection with irreducible numerical semigroups of a fixed Frobenius number $n$ (Definition \ref{def:smgps:irreducible}). It turns out that the faces of the $n-$th simplicial complex count the number of sets $\mathcal{A} \subset \{1, \ldots, n - 1\}$ satisfying $n \notin \langle\mathcal{A} \rangle$ (Proposition 23 \cite{de2018random}). Thus, the expected value of the embedding dimension can be calculated from the entries of the $h$-vector (in the sense of algebraic combinatorics \cite{stanley2007combinatorics}) for this simplicial complex. \par
+Note that this proves that $\frac{1}{M}$ is a threshold function for co-finiteness, if we extend the definition of threshold functions of random graphs (Definition \ref{def:probmet:threshold}) to ER-type random numerical semigroups. The proof of this part of the theorem follows from standard arguments using the probabilistic method (Theorem \ref{thm:ermodel:co-finite}). \par
+On the other hand, parts (b) and (c) follow from the construction of a shellable simplicial complex ( \cite[Definition 8]{de2018random}) whose facets are in bijection with irreducible numerical semigroups of a fixed Frobenius number $n$ (Definition \ref{def:smgps:irreducible}). It turns out that the faces of the $n-$th simplicial complex count the number of sets $\mathcal{A} \subset \{1, \ldots, n - 1\}$ satisfying $n \notin \langle\mathcal{A} \rangle$ (\cite[Proposition 23]{de2018random}). Thus, the expected value of the embedding dimension can be calculated from the entries of the $h$-vector (in the sense of algebraic combinatorics \cite{stanley2007combinatorics}) of this simplicial complex. \par
 
 The authors also provide bounds for the expected value of the embedding dimension and the genus, when $p$ is constant.
 
@@ -71,7 +71,7 @@ The authors also provide bounds for the expected value of the embedding dimensio
         \frac{6 - 14p + 11p^2 - 3p^3}{2p - 2p^3 + p^4} &\leq \lim_{M \to \infty} \EE[f(\mathcal{S})] \leq \frac{2(1 - p)(2 - p^2)}{p^2}.
     \end{align*}
 \end{theorem}
-As $p$ tends to 0, this says that the limit expected value of the embedding dimension is within a function that tends to a constant and a function that is asymptotically linear in $\frac{1}{p}$. While the expected values of the genus and the Frobenius number are between a function that is asymptotically linear in $\frac{1}{p}$ and a function that is asymptotically quadratic in $\frac{1}{p}$. It is useful to think of these functions in terms of $\frac{1}{p}$, since it is the expected value of the gap between randomly selected elements of $\mathcal{A}$ in the ER-type model. \par 
+As $p$ tends to 0, this says that the limit of the expected value of the embedding dimension is between a function that tends to a constant and a function that is asymptotically linear in $\frac{1}{p}$. Also, the expected values of the genus and the Frobenius number are between a function that is asymptotically linear in $\frac{1}{p}$ and a function that is asymptotically quadratic in $\frac{1}{p}$. It is useful to think of these functions in terms of $\frac{1}{p}$, since it is the expected value of the gap between randomly selected elements of $\mathcal{A}$ in the ER-type model. \par 
 
 We now prove part (a) of Theorem \ref{thm:ermodel}.
 
@@ -82,31 +82,32 @@ We now prove part (a) of Theorem \ref{thm:ermodel}.
 \textbf{Proof. } We prove the two parts of the theorem separately. 
 \subsubsection*{Part 1}
 Suppose that $p \in o\left(\frac{1}{M}\right)$. As in Inequality \ref{eq:probmet:secondmoment:1}, 
-\[\Pr[|\mathcal{A}| > 0] < \EE[|\mathcal{A}|] = Mp.\]
+\[\Pr[|\mathcal{A}| > 0] \leq \EE[|\mathcal{A}|] = Mp.\]
 Since $Mp \to 0$ as $M \to \infty$, we have that $\Pr[|\mathcal{A}| > 0] \to 0$ as $M \to \infty$. Thus, $\mathcal{S} = \{0\}$ almost always. \par
 
 \subsubsection*{Part 2}
 Suppose that $\frac{1}{M} \in o(p)$ and $\lim_{M \to \infty} p = 0$. We prove that $\mathcal{S}$ is co-finite almost always, by showing that $\mathcal{A}$ almost always contains a co-prime pair of elements. \par
 For each pair of distinct co-prime integers $i, j \in \{1,\ldots, m\}$, let $A_{i, j}$ be the event that $i, j \in \mathcal{A}$. Let $1_{i, j}$ be the indicator variable of event $A_{i, j}$ and let 
 \[X = \sum_{\substack{i < j \\ \mathrm{gcd}(i, j) = 1}} 1_{i, j}.\]
-We show that $X > 0$ almost always using the second moment method. First we calculate $\EE[X]$. It is a well-established result in number theory that the probability of two integers being co-prime is $\frac{6}{\pi^2}$ \cite[Theorem 332]{hardy1979introduction}. That is,
+We show that $X > 0$ almost always using the second moment method. First we calculate $\EE[X]$. It is a well-established result in number theory \cite[Theorem 332]{hardy1979introduction} that the limiting probability of two integers being co-prime is $\frac{6}{\pi^2}$. That is,
 \[\lim_{M \to \infty} \frac{|\{(a, b) \in \{1, \ldots, M\}^2: \mathrm{gcd}(a, b) = 1\}|}{M^2} = \frac{1}{\zeta(2)} =\frac{6}{\pi^2}.\]
-Therefore, $E[X] \sim \frac{3}{\pi^2}M^2p^2$. Now, $\{i, j\} \sim \{i', j'\}$ (See (\ref{eq:probmet:delta})) if $i = i'$ and $j \neq j'$. Thus,
+Therefore, $E[X] \sim \frac{3}{\pi^2}M^2p^2$. Now, $\{i, j\} \sim \{i', j'\}$ (see (\ref{eq:probmet:delta})) if $i = i'$ and $j \neq j'$. Thus, by varying over triples $i, j, j'$, we obtain
 \[\Delta = \sum_{\{i, j\} \sim \{i', j'\}}\Pr[A_{i, j}\land A_{i', j'}] \leq M^3p^3.\]
 Therefore, $\Delta \in o(\EE[X]^2)$, since $\frac{1}{M} \in o(p)$. Thus, by the second moment method (Corollary \ref{cor:probmet:secondmoment:3}), $X > 0$ almost always. This means that $\mathcal{A}$ almost always contains a co-prime pair of elements and so $\mathcal{S}$ is co-finite. \qed \par
 
-In chapter \ref{chap:results}, we prove part (b) using standard methods in the probabilistic method (Lemma \ref{lem:lowerbound}). We also prove a result related to part (c) (Lemma \ref{lem:upperbound}).
+In chapter \ref{chap:results}, we prove part (b) of Theorem (\textcolor{blue}{label}) using standard probabilistic methods. We also prove a result related to part (c) (Lemma \ref{lem:upperbound}) (\textcolor{blue}{say why they differ}).
 
 \section{Downward model}\label{sec:contrib1:theme2}
 
-We propose a new model for random numerical semigroups that fixes the Frobenius number, which could be helpful in the study of Wilf's conjecture. We have not proved any results about this model, but we present some experiments in Chapter \ref{chap:experiments}.
+We propose a new model for random numerical semigroups that fixes the Frobenius number, which could be helpful in the study of Wilf's conjecture. We have not yet proved any results about this model, but we present some experiments in Chapter \ref{chap:experiments}.
 
-\begin{definition} Fix $f \in \NN$, then the downward random numerical semigroup $\mathcal{S}(f, p)$ is defined by the following procedure: 
+\begin{definition} Fix $f \in \NN$, then the downward random numerical semigroup $\mathcal{S}_\downarrow(f, p)$ is defined by the following procedure: 
 \begin{enumerate}
     \item Initialize a set $\mathcal{A} = \{f + 1, \ldots, 2f, 2f + 1\}$.
-    \item From step $f - 2$ to $1$. If $F(\langle A \cup \{i\} \rangle) = f$, add $i$ to $\mathcal{A}$ with probability $p$. Otherwise, proceed to the next step.
+    \item As $i$ goes down from $f - 2$ to $1$. If $F(\langle A \cup \{i\} \rangle) = f$, add $i$ to $\mathcal{A}$ with probability $p$. Otherwise, proceed to the next step.
     \item Return the semigroup $\mathcal{S} = \langle\mathcal{A}\rangle$.
 \end{enumerate}
+\textcolor{blue}{Explain step 1, step 2}.
 In this model, every semigroup $\mathcal{S}$ is co-finite and $F(\mathcal{S}) = f$. Also, in this case, the probability of adding an element to $\mathcal{A}$ is not independent of the other steps. 
     
 \end{definition}
