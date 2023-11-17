@@ -126,10 +126,10 @@ Therefore, we have that
 E[X_z] = \frac{1}{q} {\binom{s}{k}}.
 \end{equation}
 Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ such that $j \leq k$ and define
-\[\Delta_j := \sum_{|K \cap L| = j} \Pr[E_K \land A_L].\]
+\[\Delta_j := \sum_{|K \cap L| = j} \Pr[E_K \land E_L].\]
 \par 
 If $|K \cap L| = j$,
-\[\Pr[E_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
+\[\Pr[E_K \land E_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
 \par
 We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
 \[\Delta_j \leq \frac{\binom{p}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{q\binom{q}{s}}.\]
