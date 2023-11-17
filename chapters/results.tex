@@ -104,7 +104,7 @@ We conclude that, for every $K \in \NN$,
 \section{Upper bound}\label{sec:results:upperbound}
 Before proving part (b) of theorem \ref{thm:main}, we will prove a lemma that shows that a cyclic group of prime order is covered by the sums of a random subset of logarithmic size.  
 \begin{lemma}\label{lem:sumset}
-    Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. 
+    Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. 
 \end{lemma}
 
 Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $\mathcal{A}$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
@@ -112,7 +112,7 @@ Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $\
 For a given $z \in \mathbb{Z}_q$ and $k \in \mathbb{N}$ for which $k \leq s/2$, let 
 \[N_z^k := \left\{K \subseteq \mathbb{Z}_q: |K| = k, \sum_{t \in K} t = z\right\}.\]
 Note that $|N_z^k| = \frac{1}{q}{\binom{q}{k}}$, since $K \in N_0^k$ if and only if $K + k^{-1}z \in N_z^k$ for every $z \in \mathbb{Z}_q$.\par
-For $K \in N_z^k$, let $A_K$ be the event that $K \subset\mathcal{A}$. Let $X_K$ be the indicator variable of $A_K$.
+For $K \in N_z^k$, let $E_K$ be the event that $K \subset\mathcal{A}$. Let $X_K$ be the indicator variable of $E_K$.
 We define the random variable 
 \[X_z = \sum_{K \in N_z^k} X_K.\]
 Note that $X_z$ counts the number of sets of size $k$ which add up to $z$. We now find $\EE[X_z]$. Since the sum of every subset $K \subset S$ is in $\mathbb{Z}_q$,
@@ -126,10 +126,10 @@ Therefore, we have that
 E[X_z] = \frac{1}{q} {\binom{s}{k}}.
 \end{equation}
 Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ such that $j \leq k$ and define
-\[\Delta_j := \sum_{|K \cap L| = j} \Pr[A_K \land A_L].\]
+\[\Delta_j := \sum_{|K \cap L| = j} \Pr[E_K \land A_L].\]
 \par 
 If $|K \cap L| = j$,
-\[\Pr[A_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
+\[\Pr[E_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
 \par
 We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
 \[\Delta_j \leq \frac{\binom{p}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{q\binom{q}{s}}.\]
@@ -151,7 +151,7 @@ Hence, by (\ref{eq:probmet:deltainequality}) and Theorem \ref{thm:probmet:second
 \end{align*}
 Therefore, by the union bound and since $q \to \infty$ as $p \to 0$,
 \[\Pr\left[\bigvee_{z \in \mathbb{Z}_q} X_z = 0\right] \leq \frac{q}{E[X_z]} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q^2} = o(1).\]
-We conclude that $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, for every $z \in \mathbb{Z}_q$, there exists $K \in N_z^k$ such that $K \subset \mathcal{A}$ almost always. This means that $2\lfloor 3 \log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. \qed
+We conclude that $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, for every $z \in \mathbb{Z}_q$, there exists $K \in N_z^k$ such that $K \subset \mathcal{A}$ almost always. This means that $2\lfloor 3 \log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. \qed
 
 \subsection{Proof of the upper bound} 
 \begin{lemma}\label{lem:upperbound}
