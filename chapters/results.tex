@@ -3,17 +3,17 @@
 
 \section{Introduction}  
 
-In this chapter, we present the main results of this thesis. We will prove a theorem similar to parts (b) and (c) of Theorem \ref{thm:ermodel} using standard arguments in the probabilistic method. 
+In this chapter, we present the main results of this thesis. We will prove a theorem similar to parts (b) and (c) of Theorem \ref{thm:ermodel} using standard probabilistic arguments. 
 
 \begin{theorem}\label{thm:main}
     Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$ and $\frac{1}{M} \in o(p(M))$. Then, 
 \begin{enumerate}[label=(\alph*)]
     \item If $\lim_{M \to \infty} p(M) = 0$, then for every $K \in \N$,   
     \[\lim_{M \to \infty} \Pr[e(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\]
-    \item If $\lim_{M \to \infty} p(M) > 0$, then $e(\mathcal{S}), g(\mathcal{S})$ and $F(\mathcal{S})$ are bounded in probability, i.e., for every $\varepsilon > 0$, there exists $K_\varepsilon$ such that 
+    \item If $\lim_{M \to \infty} p(M) > 0$, then $e(\mathcal{S}), \; g(\mathcal{S})$ and $F(\mathcal{S})$ are bounded in probability, i.e., for every $\varepsilon > 0$, there exists $K_\varepsilon$ such that 
     \[ \Pr[e(\mathcal{S}) < K_\varepsilon] > 1 - \varepsilon, \quad  \Pr[g(\mathcal{S}) < K_\varepsilon] > 1- \varepsilon \quad \text{and} \quad \Pr[F(\mathcal{S}) < K_\varepsilon] > 1 - \varepsilon.\]
 \end{enumerate}
-Furthermore, there exist explicit functions $\varphi, \psi$, such that 
+Furthermore, there exist explicit functions $\varphi, \psi$ such that 
 \[\lim_{p \to 0} \Pr\left[e(\mathcal{S}) < \varphi\left(\frac{1}{p}\right)\right] = \lim_{p \to 0} \Pr\left[g(\mathcal{S}) < \psi\left(\frac{1}{p}\right)\right]  = \lim_{p \to 0} \Pr\left[F(\mathcal{S}) < \psi\left(\frac{1}{p}\right)\right] = 1.\]
 \end{theorem}
 Note that part (a) is \textit{stronger} than part (b) of Theorem \ref{thm:ermodel}. However, part (b) of this theorem does not imply part (c) of Theorem \ref{thm:ermodel}. The proof of part (b) of this theorem is based on Lemma \ref{lem:sumset}, which is a result on sums of random subsets of cyclic groups.  
@@ -22,12 +22,9 @@ Note that part (a) is \textit{stronger} than part (b) of Theorem \ref{thm:ermode
 
 We first prove part (a) of Theorem \ref{thm:main}. 
 
-\begin{lemma}\label{lem:lowerbound}
-    Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$ and $\frac{1}{M} \in o(p(M))$. If $\lim_{M \to \infty} p(M) = 0$, then for every $K \in \N$,   
-    \[\lim_{M \to \infty} \Pr[e(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\]
-\end{lemma}
+\textbf{Proof of Theorem \ref{thm:main} part (a)}
 
-We will show that, for each fixed number of generators $a$, there is a high probability at least $a$ minimal generators are chosen as $p \to 0$.
+We will show that, for each fixed number of generators $a$, there is a high probability that at least $a$ minimal generators are chosen as $p \to 0$.
 
 \textbf{Proof. }
 Fix $a \in \NN$ such that $a > 11$ and let $T = \{1, \ldots, \lfloor\frac{a}{p}\rfloor\}$. Since   $\frac{1}{M} \in o(p)$, we have that $\lfloor\frac{a}{p}\rfloor \leq M$ for large enough $M$. Consider the following events:
@@ -45,7 +42,7 @@ Fix $a \in \NN$ such that $a > 11$ and let $T = \{1, \ldots, \lfloor\frac{a}{p}\
 
     Also, by the union bound and (\ref{eq:lowerbound:e1}),
     \begin{equation}\label{eq:lowerbound:e1ande2}
-     \Pr[E_1\land E_2] \leq 1 - \frac{1}{a} - \frac{6}{a} = 1 - \frac{7}{a}.
+     \Pr[E_1\land E_2] \geq 1 - \frac{1}{a} - \frac{6}{a} = 1 - \frac{7}{a}.
     \end{equation}
 
     \item $E_3:$ At least $\frac{a}{2}$ generators are selected from $T$. \par 
@@ -53,14 +50,14 @@ Fix $a \in \NN$ such that $a > 11$ and let $T = \{1, \ldots, \lfloor\frac{a}{p}\
     \begin{equation}\label{eq:lowerbound:e3}
         \Pr[ \lnot E_3] = \Pr\left[X_2 < \frac{a}{2}\right] \leq  \frac{(n - \frac{a}{2})p}{(np - \frac{a}{2})^2} = \frac{a - (\frac{a}{2})p}{(\frac{a}{2})^2} \leq \frac{4}{a}.
     \end{equation}
-    \item $E_4:$ The generators selected from $T$ are minimal.\par 
-    Let $Y_{(1)}, Y_{(2)}, \ldots, Y_{(k)}$ denote the first $k$ generators selected in $T$. Assume $E_1$ and $E_2$. We have that $E_1$ implies $Y_{(1)} \geq \frac{1}{ap}$ and $E_2$ implies $k \leq \frac{3a}{2}$. \par
-    First we bound for the probability that $b \in T$ is selected as a generator. Let $\mathcal{A}_T$ be the set of generators selected in $T$. Using conditional probability, we have that 
+    \item $E_4:$ The generators selected from $T$ are all minimal.\par 
+    Let $A_T = \{Y_{(1)}, Y_{(2)}, \ldots, Y_{(k)}\}$ be the generators selected in $T$ in order. Assume $E_1$ and $E_2$. We have that $E_1$ implies $Y_{(1)} \geq \frac{1}{ap}$ and $E_2$ implies $k \leq \frac{3a}{2}$. \par
+    First we bound the probability that $b \in T$ is selected as a generator. Using conditional probability, we have that 
     \begin{align}
         \Pr[b \in \mathcal{A}_T|E_1 \land E_2] &= \frac{\Pr[(b \in \mathcal{A}_T)\land E_1 \land E_2]}{\Pr[E_1 \land E_2]} \\
         &\leq\frac{\Pr[b \in \mathcal{A}_T]}{\Pr[E_1 \land E_2]} = \frac{p}{1 - \frac{7}{a}}. \label{eq:lowerbound:inequality}
     \end{align}
-    Now, if no multiple of $Y_{(1)}$ is selected in $T$, then $Y_{(2)}$ is minimal. Thus, if we fix $Y_{(1)} = y_1 \geq \frac{1}{ap}$, $Y_{(2)}$ is minimal if $\langle y_1 \rangle \cap  \mathcal{A}_T = \{y_1\}$. Also, note that
+    Now, if no multiple of $Y_{(1)}$ is selected in $T$, then $Y_{(2)}$ is minimal. Thus, $Y_{(2)}$ is minimal if $\langle y_1 \rangle \cap  \mathcal{A}_T = \{y_1\}$. Also, note that, since the generators are chosen independently,
     \[P[b \in \mathcal{A}_T] = P[b \in \mathcal{A}_T|Y_{(1)} = y_1] \quad \text{if} \quad  b > y_1.\]
     Since $y_1 \geq \frac{1}{ap}$, we have that \[|\langle y_1 \rangle \cap  \mathcal{A}_T| \leq |\langle y_1 \rangle \cap T| \leq a^2.\] Then, using the union bound and (\ref{eq:lowerbound:inequality}),
     \begin{align*}
@@ -68,12 +65,12 @@ Fix $a \in \NN$ such that $a > 11$ and let $T = \{1, \ldots, \lfloor\frac{a}{p}\
         &\leq \sum_{b \in\langle y_1\rangle \cap T} \frac{p}{1 - \frac{7}{a}} \leq \frac{pa^2}{1 - \frac{7}{a}}.
     \end{align*}
         
-    If we sum over all possible $y_1$, we get that 
+    If this bound is independent of $y_1$, we get that 
     \begin{equation}\label{eq:lowerbound:y2notminimal}
         \Pr[Y_{(2)} \text{ is not minimal}|E_1\land E_2] \leq \frac{pa^2}{1 - \frac{7}{a}}.
     \end{equation}
-    Similarly, for $2 \leq t \leq k$ and fixed $Y_{(1)} = y_1, \ldots, Y_{(t - 1)} = y_{t - 1}$, $Y_{(t)}$ is minimal if $\langle y_1, \ldots, y_{t - 1}\rangle \cap \mathcal{A}_T = \{y_1, \ldots, y*_{t - 1}\}$. To bound $|\langle y_1, \ldots, y_{t - 1}\rangle \cap \mathcal{A}_T|$, there are at most $a^2$ choices for each multiple of $y_i$, so there are at most $a^{2t}$ such linear combinations and
-    \[|\langle y_1, \ldots, y_{t - 1} \rangle \cap  \mathcal{A}_T| \leq |\langle y_1, \ldots, y_{t - 1} \rangle \cap T| \leq a^{2t}.\]
+    Similarly, for $2 \leq t \leq k$ and fixed $Y_{(1)} = y_1, \ldots, Y_{(t - 1)} = y_{t - 1}$, $Y_{(t)}$ is minimal if $\langle y_1, \ldots, y_{t - 1}\rangle \cap \mathcal{A}_T = \{y_1, \ldots, y_{t - 1}\}$. To bound $|\langle y_1, \ldots, y_{t - 1}\rangle \cap \mathcal{A}_T|$, there are at most $a^2$ choices for each multiple of $y_i$, so there are at most $a^{2(t - 1)}$ such linear combinations and
+    \[|\langle y_1, \ldots, y_{t - 1} \rangle \cap  \mathcal{A}_T| \leq |\langle y_1, \ldots, y_{t - 1} \rangle \cap T| \leq a^{2(t - 1)}.\]
     Also, 
     \[P[b \in \mathcal{A}_T] = P[b \in \mathcal{A}_T|Y_{(1)} = y_1\land \cdots \land Y_{(t - 1)} = y_{t - 1}] \quad \text{if} \quad  b > y_{t - 1} > \ldots > y_1,\]
     and so
@@ -83,7 +80,7 @@ Fix $a \in \NN$ such that $a > 11$ and let $T = \{1, \ldots, \lfloor\frac{a}{p}\
     Then, as in (\ref{eq:lowerbound:y2notminimal}), 
     \[\Pr[Y_{(t)} \text{ is not minimal}|E_1\land E_2] \leq \frac{pa^{2t}}{1 - \frac{7}{a}} .\]
     Therefore, we can use the union bound and $k \leq \frac{3a}{2}$ to conclude that
-    \[\Pr[E_4|E_1 \land E_2] \geq 1 - \frac{p}{1 - \frac{7}{a}}\sum_{t = 1}^{\frac{3a}{2} - 1}a^{2t} = 1 - o(1),\]
+    \[\Pr[E_4|E_1 \land E_2] \geq 1 - \frac{p}{1 - \frac{7}{a}}\sum_{t = 1}^{\frac{3a}{2} - 1}a^{2(t - 1)} = 1 - o(1),\]
     since $a$ is constant and $p \to 0$ as $M  \to \infty$.
     Thus,  
     \begin{equation}\label{eq:lowerbound:e4}
@@ -107,7 +104,7 @@ Before proving part (b) of theorem \ref{thm:main}, we will prove a lemma that sh
     Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. 
 \end{lemma}
 
-Let $q$ be a prime number and let $s \in \mathbb{N}$ such that $s\leq q$. Let $\mathcal{A}$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
+\textbf{Proof. } Let $s \in \mathbb{N}$ such that $s\leq q$. Let $\mathcal{A}$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
 \[\Pr(\mathcal{A}) = \frac{1}{\binom{q}{s}}.\]
 For a given $z \in \mathbb{Z}_q$ and $k \in \mathbb{N}$ for which $k \leq s/2$, let 
 \[N_z^k := \left\{K \subseteq \mathbb{Z}_q: |K| = k, \sum_{t \in K} t = z\right\}.\]
@@ -131,7 +128,7 @@ Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ such that $j \leq k$ and defin
 If $|K \cap L| = j$,
 \[\Pr[A_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
 \par
-We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
+We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, \textcolor{blue}{explain a little bit better}
 \[\Delta_j \leq \frac{\binom{p}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{q\binom{q}{s}}.\]
 \par This implies that, using \ref{eq:upperbound:expected},
 \begin{align*}
@@ -150,7 +147,7 @@ Hence, by (\ref{eq:probmet:deltainequality}) and Theorem \ref{thm:probmet:second
 &\leq \frac{1}{E[X_z]} + \frac{(k + 1)}{q^2} = \frac{1}{E[X_z]} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q^2}.
 \end{align*}
 Therefore, by the union bound and since $q \to \infty$ as $p \to 0$,
-\[\Pr\left[\bigvee_{z \in \mathbb{Z}_q} X_z = 0\right] \leq \frac{q}{E[X_z]} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q^2} = o(1).\]
+\[\Pr\left[\bigvee_{z \in \mathbb{Z}_q} X_z = 0\right] \leq \frac{q}{E[X_z]} + \frac{q(2\lfloor 3 \log_2 q\rfloor + 1)}{q^2} = o(1).\]
 We conclude that $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, for every $z \in \mathbb{Z}_q$, there exists $K \in N_z^k$ such that $K \subset \mathcal{A}$ almost always. This means that $2\lfloor 3 \log_2 q\rfloor S$ covers $\mathbb{Z}_q$ almost always. \qed
 
 \subsection{Proof of the upper bound} 
