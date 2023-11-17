@@ -31,7 +31,7 @@
 
 \section{ER-type model experiments}
 
-We used the following algorithm for random numerical semigroup generation (see Definition \ref{def:probmet:ermodel}). The \verb|NumericalSemigroup| class is part of the \verb|numsgps-sage| package \cite{oneill2018}. 
+We used the following algorithm for ER-type random numerical semigroup generation (see Definition \ref{def:probmet:ermodel}). The \verb|NumericalSemigroup| class is part of the \verb|numsgps-sage| package \cite{oneill2018}. 
 
 \begin{lstlisting}[language=Python]
     # Generates random sample using Erdös-Rényi model 
@@ -47,7 +47,8 @@ We used the following algorithm for random numerical semigroup generation (see D
             semigroups.append(NumericalSemigroup(generators))
         return semigroups
 \end{lstlisting}
-We generated random numerical semigroups for several values of $1/p$ in the range $[4, 1000]$. For each $1/p$, the sample size was 1000 and we calculated the average embedding dimension (Table \ref{tab:embedding}) and the average Frobenius number (Table \ref{tab:frobenius}). As shown in \cite{de2018random}, the bounds found in \ref{thm:ermodel:constantp} are not tight. We plot the average embedding dimension and the average Frobenius number for each $1/p$ in Figures \ref{fig:embedding} and \ref{fig:frobenius}. We also plot the histograms of the embedding dimension and the Frobenius number for $1/p = 4, 220, 1000$ in Figures \ref{fig:embedding_hist4}, \ref{fig:embedding_hist220}, \ref{fig:embedding_hist1000}, \ref{fig:frobenius_hist4}, \ref{fig:frobenius_hist220}, \ref{fig:frobenius_hist1000}.
+We generated random numerical semigroups for several values of $1/p$ in the range $[4, 1000]$. For each $1/p$, the sample size was 1000 and we calculated the average embedding dimension (Table \ref{tab:embedding}) and the average Frobenius number (Table \ref{tab:frobenius}). As shown in \cite{de2018random}, the bounds found in Theorem \ref{thm:ermodel:constantp} are not tight. We plot the average embedding dimension and the average Frobenius number for each $1/p$ in Figures \ref{fig:embedding} and \ref{fig:frobenius}. We also plot the histograms of the embedding dimension and the Frobenius number for $1/p = 4, 220, 1000$ in Figures \ref{fig:embedding_hist4}, \ref{fig:embedding_hist220}, \ref{fig:embedding_hist1000}, \ref{fig:frobenius_hist4}, \ref{fig:frobenius_hist220}, \ref{fig:frobenius_hist1000}. \par
+Write a paragraph saying why we are making this proofs. 
 
 \begin{table}
 \centering
