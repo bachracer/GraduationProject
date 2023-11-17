@@ -6,7 +6,7 @@
 	tabsize=4,
 	rulecolor=,
 	language=Python,
-	basicstyle=\scriptsize,
+	basicstyle=\tiny,
 	upquote=true,
 	aboveskip={1.5\baselineskip},
 	columns=fixed,
@@ -31,7 +31,7 @@
 
 \section{ER-type model experiments}
 
-We used the following algorithm for random numerical semigroup generation. 
+We used the following algorithm for random numerical semigroup generation (see Definition \ref{def:probmet:ermodel}). The \verb|NumericalSemigroup| class is part of the \verb|numsgps-sage| package \cite{oneill2018}. 
 
 \begin{lstlisting}[language=Python]
     # Generates random sample using Erdös-Rényi model 
@@ -47,13 +47,14 @@ We used the following algorithm for random numerical semigroup generation.
             semigroups.append(NumericalSemigroup(generators))
         return semigroups
 \end{lstlisting}
+We generated random numerical semigroups for several values of $1/p$ in the range $[4, 1000]$. For each $1/p$, the sample size was 1000 and we calculated the average embedding dimension (Table \ref{tab:embedding}) and the average Frobenius number (Table \ref{tab:frobenius}). As shown in \cite{de2018random}, the bounds found in \ref{thm:ermodel:constantp} are not tight. We plot the average embedding dimension and the average Frobenius number for each $1/p$ in Figures \ref{fig:embedding} and \ref{fig:frobenius}. We also plot the histograms of the embedding dimension and the Frobenius number for $1/p = 4, 220, 1000$ in Figures \ref{fig:embedding_hist4}, \ref{fig:embedding_hist220}, \ref{fig:embedding_hist1000}, \ref{fig:frobenius_hist4}, \ref{fig:frobenius_hist220}, \ref{fig:frobenius_hist1000}.
 
-Embedding dimension:
-
+\begin{table}
+\centering
 \begin{tabular}{|c|c|c|c|}
-    \toprule
+    \hline
     $1/p$ & Lower Bound & $\overline{e(\mathcal{S})}$  & Upper bound \\
-    \midrule
+    \hline
     4.00 & 2.21 & 2.79 & 7.75 \\
     75.14 & 2.95 & 9.05 & 150.27 \\
     146.29 & 2.97 & 10.67 & 292.56 \\
@@ -69,15 +70,19 @@ Embedding dimension:
     857.71 & 3.00 & 16.61 & 1,715.43 \\
     928.86 & 3.00 & 17.39 & 1,857.71 \\
     1,000.00 & 3.00 & 17.22 & 2,000.00 \\
-    \bottomrule
+    \hline
 \end{tabular}
+\caption{Average embedding dimension of random numerical semigroups generated using the ER-type model.}
+\label{tab:embedding}
+\end{table}
 
 Frobenius number:
-
+\begin{table}
+\centering
 \begin{tabular}{|c|c|c|c|}
-    \toprule
+    \hline
     $1/p$ & Lower Bound & $\overline{F(\mathcal{S})}$ & Upper bound \\
-    \midrule
+    \hline
     4.00 & 7.26 & 13.96 & 46.50 \\
     75.14 & 218.56 & 1,088.82 & 22,283.25 \\
     146.29 & 431.93 & 2,483.26 & 85,010.91 \\
@@ -93,55 +98,74 @@ Frobenius number:
     857.71 & 2,566.15 & 22,157.78 & 2,939,262.33 \\
     928.86 & 2,779.58 & 25,079.10 & 3,447,384.94 \\
     1,000.00 & 2,993.01 & 26,637.46 & 3,995,998.00 \\
-    \bottomrule
+    \hline
 \end{tabular}
+\caption{Average Frobenius number of random numerical semigroups generated using the ER-type model.}
+\label{tab:frobenius}
+\end{table}
 
 \begin{figure}
     \begin{center}
         \input{figures/frobenius_plot.pgf}
     \end{center}
+    \caption{Average Frobenius number of random numerical semigroups generated using the ER-type model vs $4(1/p)\log(1/p)$}
+    \label{fig:frobenius}
 \end{figure}
     
 \begin{figure}
     \begin{center}
         \input{figures/embedding_plot.pgf}
     \end{center}
+    \caption{Average embedding dimension of random numerical semigroups generated using the ER-type model.}
+    \label{fig:embedding}
 \end{figure}
 
 \begin{figure}
     \begin{center}
         \input{figures/frobenius_hist4.pgf}
     \end{center}
+    \caption{Histogram of the Frobenius number of random numerical semigroups generated using the ER-type model, for $1/p = 4$.}
+    \label{fig:frobenius_hist4}
 \end{figure}
 
 \begin{figure}
     \begin{center}
         \input{figures/frobenius_hist220.pgf}
     \end{center}
+    \caption{Histogram of the Frobenius number of random numerical semigroups generated using the ER-type model, for $1/p = 220$.}
+    \label{fig:frobenius_hist220}
 \end{figure}
 
 \begin{figure}
     \begin{center}
         \input{figures/frobenius_hist1000.pgf}
     \end{center}
+    \caption{Histogram of the Frobenius number of random numerical semigroups generated using the ER-type model, for $1/p = 1000$.}
+    \label{fig:frobenius_hist1000}
 \end{figure}
 
 \begin{figure}
     \begin{center}
         \input{figures/embedding_hist4.pgf}
     \end{center}
+    \caption{Histogram of the embedding dimension of random numerical semigroups generated using the ER-type model, for $1/p = 4$.}
+    \label{fig:embedding_hist4}
 \end{figure}
 
 \begin{figure}
     \begin{center}
         \input{figures/embedding_hist220.pgf}
     \end{center}
+    \caption{Histogram of the embedding dimension of random numerical semigroups generated using the ER-type model, for $1/p = 220$.}
+    \label{fig:embedding_hist220}
 \end{figure}
 
 \begin{figure}
     \begin{center}
         \input{figures/embedding_hist1000.pgf}
     \end{center}
+    \caption{Histogram of the embedding dimension of random numerical semigroups generated using the ER-type model, for $1/p = 1000$.}
+    \label{fig:embedding_hist1000}
 \end{figure}
     
 I also implemented my own algorithm to calculate the minimal generating set and the apery set of a semigroup, for visualization purposes.
@@ -184,30 +208,30 @@ I also implemented my own algorithm to calculate the minimal generating set and 
         return apery_set, generated, new_elements, non_apery
 \end{lstlisting}
 
-Here I show some visualizations of ER-type random numerical semigroups, using the algorithm above. To do it, run \verb|smgps_visualizer.py| and introduce the first non-zero element of the semigroup. The algorithm will generate a ER-type random numerical semigroup with that element as first non-zero element, and will plot a visualization. 
+Here we show some visualizations of ER-type random numerical semigroups, using the algorithm above. To do it, run \verb|smgps_visualizer.py| and introduce the first non-zero element of the semigroup. The algorithm will generate a ER-type random numerical semigroup with that element as first non-zero element, and will plot a visualization. 
 
 
 
-\section{Downward model experiments}\label{sec:experiments:downward model}
+% \section{Downward model experiments}\label{sec:experiments:downward model}
 
-Etc. etc.
+% Etc. etc.
 
 
-% format python code
-\begin{lstlisting}[language=Python]
-    # Generate a random numerical semigroup using the downward model
-    def downward_random_nsmgp(frobenius_number, p):
-        # Initialize A
-        generators = list(range(frobenius_number + 1, 2 * frobenius_number + 2))
-        semigroup = NumericalSemigroup(generators)
-        for i in range(frobenius_number - 1, 0, -1):
-            # We first call random for efficiency
-            if random.random() < p:
-                # Check if the new semigroup has the same Frobenius number
-                if NumericalSemigroup(generators + [i]).FrobeniusNumber() == frobenius_number:
-                    generators.append(i)
-                    semigroup = NumericalSemigroup(generators)
-                    generators = semigroup.gens
-        return semigroup
-\end{lstlisting}
+% % format python code
+% \begin{lstlisting}[language=Python]
+%     # Generate a random numerical semigroup using the downward model
+%     def downward_random_nsmgp(frobenius_number, p):
+%         # Initialize A
+%         generators = list(range(frobenius_number + 1, 2 * frobenius_number + 2))
+%         semigroup = NumericalSemigroup(generators)
+%         for i in range(frobenius_number - 1, 0, -1):
+%             # We first call random for efficiency
+%             if random.random() < p:
+%                 # Check if the new semigroup has the same Frobenius number
+%                 if NumericalSemigroup(generators + [i]).FrobeniusNumber() == frobenius_number:
+%                     generators.append(i)
+%                     semigroup = NumericalSemigroup(generators)
+%                     generators = semigroup.gens
+%         return semigroup
+% \end{lstlisting}
 

@@ -78,8 +78,8 @@ Let $X$ be a discrete random variable, then the \textit{expected value} of $X$ i
 \textbf{Proof. } Let $X$ and $Y$ be discrete random variables. Then, the expected value of $X + Y$ is
 \begin{align*}
     \EE[X + Y] &= \sum_{x \in \mathrm{Rg}(X)} \sum_{y \in \mathrm{Rg}(Y)} (x + y)\Pr[X = x \wedge Y = y] \\
-    &= \sum_{x \in \mathrm{Rg}(X)} \sum_{y \in \mathrm{Rg}(Y)} x\Pr[X = x \wedge Y = y] + \sum_{x \in \mathrm{Rg}(X)} \sum_{y \in \mathrm{Rg}(Y)} y\Pr[X = x \wedge Y = y] \\
-    &= \sum_{x \in \mathrm{Rg}(X)} x\sum_{y \in \mathrm{Rg}(Y)} \Pr[X = x \wedge Y = y] + \sum_{y \in \mathrm{Rg}(Y)} y\sum_{x \in \mathrm{Rg}(X)} \Pr[X = x \wedge Y = y] \\
+    &= \sum_{x \in \mathrm{Rg}(X)} \sum_{y \in \mathrm{Rg}(Y)} x\Pr[X = x \wedge Y = y] \\&+ \sum_{x \in \mathrm{Rg}(X)} \sum_{y \in \mathrm{Rg}(Y)} y\Pr[X = x \wedge Y = y] \\
+    &= \sum_{x \in \mathrm{Rg}(X)} x\sum_{y \in \mathrm{Rg}(Y)} \Pr[X = x \wedge Y = y] \\&+ \sum_{y \in \mathrm{Rg}(Y)} y\sum_{x \in \mathrm{Rg}(X)} \Pr[X = x \wedge Y = y] \\
     &= \sum_{x \in \mathrm{Rg}(X)} x\Pr[X = x] + \sum_{y \in \mathrm{Rg}(Y)} y\Pr[Y = y] \\
     &= \EE[X] + \EE[Y].
 \end{align*}

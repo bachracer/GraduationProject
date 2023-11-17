@@ -1,24 +1,24 @@
 \chapter{Introduction}\label{chap:intro}
 
-The start of the introduction provides some context and brief background.
-This is a test for github.
-\section{Research Objectives and Overview}
 
-% There is some flexibility about how this is structured. This should be agreed with your supervisor as appropriate for your discipline!
+In contrast to graphs, the algebraic nature of numerical semigroups allows for a wider range of methods to create random models, tailored to specific research goals. This thesis investigates random numerical semigroups using a probabilistic model similar to the Erdös-Rényi model of random graphs. We also propose a new probabilistic model for these semigroups  The central result is proving Theorem \ref{thm:main}, which is similar to Theorem \ref{thm:ermodel}, the main result of 
+\begin{itemize}
+    \item \fullcite{de2018random}
+\end{itemize}
+Our proof is more elementary and provides tighter bounds of the average behaviour of the embedding dimension, genus, and Frobenius number of a random numerical semigroup. 
 
-The research question which this Thesis aims to answer is...
+The approach involves applying the Probabilistic Method to random numerical semigroups and studying sums of uniformly random subsets of cyclic groups. For our experiments, we use \verb|numsgps-sage| \cite[O'Neill]{oneill2018}\cite[Delgado]{delgado2015numericalsgps} and for visualizations we use \verb|IntPic| \cite[Delgado]{delgado2013intpic}. We also employ our own publicly available repository \verb|randnumsgps| \cite{morales2023} for generating and visualizing random numerical semigroups in Python.
 
-% Note that this could also be phased as a hypothesis to be validated.
+The structure of the thesis is as follows:
 
-The specific research objectives of this Thesis are:
+\begin{itemize}
+    \item Chapter \ref{chap:probmet} discusses the Probabilistic Method, based on the work of Noga Alon and Joel H. Spencer.
+    \item Chapter \ref{chap:numsems} focuses on numerical semigroups, providing definitions, examples, and results necessary for understanding their structure.
+    \item Chapter \ref{chap:randnumsems} introduces three models of random numerical semigroups, including our newly proposed model. We also present recent results in the field, including Theorem \ref{thm:ermodel}. 
+    \item Chapter \ref{chap:experiments} details the algorithms and experiments conducted using various software tools and our implementations.
+    \item Chapter \ref{chap:results} presents the main results, including the proof of Theorem \ref{thm:main}, its implications and its relation with Theorem \ref{thm:ermodel}.
+\end{itemize}
 
-\begin{enumerate}
-\item Objective 1
-\item Objective 2
-\end{enumerate}
+The aim of this thesis is to extend the methods used in the study of random graphs to numerical semigroups. The research seeks to contribute to the understanding of random numerical semigroups through a probabilistic perspective.
 
-Chapter \ref{chap:probmet} provides an overview of the Probabilistic Method and introduces the concept of random graphs. \par
-Chapter \ref{chap:numsems} introduces numerical semigroups and their properties. \par
-Chapter \ref{chap:randnumsems} introduces the concept of random numerical semigroups and defines a new model for random numerical semigroups. \par
-Chapter \ref{chap:experiments} presents the results of experiments performed on random numerical semigroups. \par
-Chapter \ref{chap:results} proves 
+In summary, this thesis provides a detailed study of random numerical semigroups using probabilistic models, experimental data and software tools.
