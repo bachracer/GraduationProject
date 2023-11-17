@@ -20,11 +20,7 @@ Note that part (a) is \textit{stronger} than part (b) of Theorem \ref{thm:ermode
 
 \section{Lower Bound}\label{sec:results:lowerbound}
 
-We first prove part (a) of Theorem \ref{thm:main}. 
-
-\textbf{Proof of Theorem \ref{thm:main} part (a)}
-
-We will show that, for each fixed number of generators $a$, there is a high probability that at least $a$ minimal generators are chosen as $p \to 0$.
+We first prove part (a) of Theorem \ref{thm:main}. We will show that, for each fixed number of generators $a$, there is a high probability that at least $a$ minimal generators are chosen as $p \to 0$.
 
 \textbf{Proof. }
 Fix $a \in \NN$ such that $a > 11$ and let $T = \{1, \ldots, \lfloor\frac{a}{p}\rfloor\}$. Since   $\frac{1}{M} \in o(p)$, we have that $\lfloor\frac{a}{p}\rfloor \leq M$ for large enough $M$. Consider the following events:
@@ -128,8 +124,8 @@ Now, for $K, L \in N_z^k$, let $j \in \mathbb{N}$ such that $j \leq k$ and defin
 If $|K \cap L| = j$,
 \[\Pr[A_K \land A_L] = \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
 \par
-We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, \textcolor{blue}{explain a little bit better}
-\[\Delta_j \leq \frac{\binom{p}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{q\binom{q}{s}}.\]
+We can bound the number of events for which $|K \cap L| = j$. First we choose $K$ as any set in $N_z^k$ and then we choose the remaining $k- j$ elements as any subset of $\mathbb{Z}_q \setminus K$ with size $k - j$. Thus, 
+\[\Delta_j \leq \frac{1}{q}\binom{q}{k}\binom{q - k}{k - j} \frac{\binom{q - 2k + j}{s - 2k + j}}{\binom{q}{s}}.\]
 \par This implies that, using \ref{eq:upperbound:expected},
 \begin{align*}
     \frac{\Delta_j}{\EE[X_z]^2} &\leq \frac{\binom{q}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{\frac{1}{q} \binom{s}{k}\frac{1}{q} \binom{s}{k}q\binom{q}{s}} \\
@@ -152,15 +148,16 @@ We conclude that $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, f
 
 \subsection{Proof of the upper bound} 
 \begin{lemma}\label{lem:upperbound}
-    Let $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ .Then
-    \[\lim_{p \to 0}\Pr\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1.\] 
+    Let $\psi(x)$ be a function for which $x(\log x)^2 \in o(\psi(x))$ .Then
+    \[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\] 
+    Since $h(x)$ is a function for which $x(\log x) \in o(h(x))$, we have that
 \end{lemma}
 
-\par The proof of this theorem consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $g\left(\frac{1}{p}\right)$ with high probability, since $F(S)$ is less than the maximum element of this Ápery set. The proof has the following structure: 
+\par The proof of this theorem consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $g\left(\frac{1}{p}\right)$ with high probability, since $F(\mathcal{S})$ is less than the maximum element of this Ápery set. The proof has the following structure: 
 \begin{enumerate}
-\item First, we will find a step for which a prime $q$ is chosen with high probability (E1). 
-\item Then, in the spirit of Lemma \ref{lem:sumset} we will find a step such that $s$ elements which are different modulo $q$ are chosen with high probability (E2). 
-\item Finally, we will apply Lemma \ref{lem:sumset} to $\mathrm{Ap}(\mathcal{S}, q)$.
+\item First, we will find a step for which a prime $q$ is chosen with high probability ($E_1$). 
+\item Then, in the spirit of Lemma \ref{lem:sumset} we will find a step such that a set $\mathcal{A}$ of $s$ elements which are different modulo $q$ are chosen with high probability ($E_2$). 
+\item Finally, we will apply Lemma \ref{lem:sumset} to $\mathrm{Ap}(\langle \mathcal{A} \cup \{q\}\rangle, q)$.
 \end{enumerate}
 \textbf{Proof. }
 \subsubsection*{Part 1} 
@@ -168,37 +165,76 @@ Let \(h(x)\) be a function such that \(h(x) \in o(x (\log x)^2)\) and \(x\log x 
 $E_1$ that there exists a prime $q \in S$, such that 
 \[t\left(\frac{1}{p}\right) \leq q \leq h\left(\frac{1}{p}\right).\]
 \par 
-Let $q_n$ be the $n$-th prime number and let $k_x$ be the number of primes between $20x\log x$ and $h(x)$. For $n \geq 6$, by the \textcolor{blue}{Prime Number Theorem}, 
-\[n(\log n + \log \log n - 1) < q_n < n(\log n + \log\log n) = o(h(n)).\]
-
-\par Thus, $n = o(k_n)$ (\textcolor{blue}{I can prove this if it is not clear}) and, for every $c > 0$,  
-\[\lim_{p \to 0}\Pr[\lnot E_1] \geq \lim_{p \to 0} (1 - p)^{k_{\frac{1}{p}}} \geq \lim_{p \to 0} (1 - p)^{\frac{c}{p}} = e^{-c}.\]
+Let $q_n$ be the $n$-th prime number. By the prime number theorem \cite[Theorem 8]{hardy1979introduction}, 
+\begin{equation}\label{eq:pnt}
+q_n \sim n \log n.
+\end{equation}
+Let $k(x)$ be the number of primes between $t(x)$ and $h(x)$. Now, for sufficiently large $n$, $t(n) \leq q_{20n}$. Also, for every $c \in \RR^+$, $q_{cn} \in o(h(n))$ since $cn\log cn \in o(h(n))$. Thus, for sufficiently large $x$ and every $c \in \RR^+$, $k(x) > cx$
+and we get that
+\[\lim_{p \to 0}\Pr[\lnot E_1] \geq \lim_{p \to 0} (1 - p)^{k(1/p)} \geq \lim_{p \to 0} (1 - p)^{\frac{c}{p}} = e^{-c}.\]
 Therefore, 
-\[\lim_{p \to 0}\Pr[E_1] = 1.\]
+\begin{equation}\label{eq:upperbound:e1}
+    \lim_{p \to 0}\Pr[E_1] = 1.
+\end{equation}
 \subsubsection*{Part 2}
 
 Now, assume $E_1$. Then $S$ contains a prime number $q$ for which 
 \[t\left(\frac{1}{p}\right) \leq q \leq h\left(\frac{1}{p}\right).\]
-\par Let $s = 4\lfloor3\log_2 q \rfloor$, as in the \textcolor{blue}{Lemma}. 
-\par Let $A := \{q + 1, q + 2, \ldots,  2q\}$. Consider the event \textbf{E2} that at least $s$ generators are selected in $A$. Let $X_1$ be the number of generators selected in $A$, then $X_1$ is a binomial random variable with parameters $n = q$ and $p$. Then, in a similar way to $E2$ in \textcolor{blue}{Theorem 1}, we use the \textcolor{blue}{Binomial Distribution Tail Bound} to show that, assuming that $p$ is small enough so that $qp > s$ for all possible $q$,
+\par Let $s = 4\lfloor3\log_2 q \rfloor$, as in Lemma \ref{lem:sumset}. 
+\par Let $T = \{1, \ldots,  q\}$. Consider the event $E_2$ that at least $s$ generators are selected in $T$. Let $X_1$ be the number of generators selected in $T$, then $X_1 \sim \mathrm{Bin}(q, p)$. We first show that for sufficiently small $p$, $qp > s$ in order to use a bound of the left tail of the binomial distribution (Proposition \ref{ap:prop:leftbinomtail}). \par
+Since 
+\[q \geq t\left(\frac{1}{p}\right) = \frac{20}{p}\log\frac{1}{p},\]
+then 
+\begin{equation*}
+qp \geq 20\log\frac{1}{p}.
+\end{equation*}
+Also, since 
+\[q \leq h\left(\frac{1}{p}\right) \leq \frac{1}{p}\left(\log\frac{1}{p}\right)^2,\]
+then
+\[s = 4\lfloor3\log_2 q \rfloor \leq 4\left\lfloor3\log_2 \frac{1}{p}\left(\log\frac{1}{p}\right)^2 \right\rfloor = 4\left\lfloor3\log_2 \frac{1}{p} + 3\log_2 2\log\frac{1}{p} \right\rfloor.\]
+Thus, for sufficiently small $p$, $qp> s$ and we can use Proposition \ref{ap:prop:leftbinomtail} with $r = s$ to show that
 \begin{align*}
-    \Pr[ \overline{E_2}  | E_1] = \Pr\left[X_1 < s\right] \leq \Pr\left[X_2 < s\right] \leq \frac{(n - s)p}{(np - s)^2} = \frac{(q - s)p}{(qp - s)^2}.
+    \Pr[ \overline{E_2}  | E_1] = \Pr\left[X_1 < s\right] \leq \frac{(q - s)p}{(qp - s)^2}.
 \end{align*}
-\par Thus, bounding by the worst case asymptotically, (\textcolor{blue}{needs to be explained better})
-\[\lim_{p \to 0} P[\overline{E_2} | E_1] =  \lim_{p \to 0}\frac{\left(h\left(\frac{1}{p}\right) - 4\left\lfloor3\log_2 h\left(\frac{1}{p}\right) \right\rfloor\right)p}{\left(20 \log \frac{1}{p} - 4\lfloor3\log_2 t\left(\frac{1}{p}\right) \rfloor\right)^2} = 0.\]
+\par Thus, bounding by the worst case asymptotically, 
+
+\begin{align*}
+    \lim_{p \to 0} P[\overline{E_2} | E_1] &\leq \lim_{p \to 0}\frac{\left(h\left(\frac{1}{p}\right) - 4\left\lfloor3\log_2 t\left(\frac{1}{p}\right) \right\rfloor\right)p}{\left(t\left(\frac{1}{p}\right)p - 4\left\lfloor3\log_2 h\left(\frac{1}{p}\right) \right\rfloor\right)^2} \\
+    &\leq \lim_{p \to 0}\frac{\left(h\left(\frac{1}{p}\right) - 4\left\lfloor3\log_2 \frac{20}{p}\log\frac{1}{p} \right\rfloor\right)p}{\left(20\log\frac{1}{p} - 4\left\lfloor3\log_2 \frac{1}{p}\left(\log\frac{1}{p}\right)^2 \right\rfloor\right)^2}\\
+    &=\lim_{p \to 0} \frac{o\left(\left(\log\frac{1}{p}\right)^2\right)}{\left(20\log\frac{1}{p} - 4\left\lfloor3\log_2 \frac{1}{p}\left(\log\frac{1}{p}\right)^2 \right\rfloor\right)^2} = 0.
+\end{align*}
+
 \par We conclude that
 \[\lim_{p \to 0} \Pr[E_2 | E_1] = 1,\]
-and so
+and so, using (\ref{eq:upperbound:e1}),
 \[\lim_{p \to 0} \Pr[E_1 \land E_2] = \lim_{p \to 0} \Pr[E_2  | E_1]\Pr[E_1] = 1.\]
 
 
 \subsubsection*{Part 3}
 
-\par Finally, assume $E_1$ and $E_2$. Let $B = \{Y_{1}, \ldots, Y_{s}\}$ be a randomly selected subset of size $s$ of the generators selected in $E_2$.  Since the generators are chosen randomly and $|A| = q$, we can apply the \textcolor{blue}{Lemma} to the Ápery set of the subsemigroup generated by $B$, denoted by $G(B)$, and conclude that the Ápery set of $G(B)$ will be completed before step $h\left(\frac{1}{p}\right)2\left\lfloor 3\log_2 h\left(\frac{1}{p}\right)\right\rfloor$ with high probability as $p \to 0$. 
-\par Thus, if $g(x)$ be a function for which $x(\log x)^2 \in o(g(x))$ (\textcolor{blue}{Probably needs to be explained better}),
-\[\lim_{p \to  0} \Pr\left[F(G(B)) \leq g\left(\frac{1}{p}\right)\right] = 1.\]
-Since $F(S) \leq F(G(B))$, we conclude that
-\[\lim_{p \to 0}\Pr\left[F(S) \leq g\left(\frac{1}{p}\right)\right] = 1. \qed \] 
-
-
-\section{Conclusions and Further work}
+\par Finally, assume $E_1$ and $E_2$. Let $\mathcal{A} = \{Y_{1}, \ldots, Y_{s}\}$ be a randomly selected subset of size $s$ of the generators selected in $T$.  Since the generators are chosen randomly and $|T| = q$, we can apply Lemma \ref{lem:sumset} to $\ZZ_q \cong \mathrm{Ap}(\langle\mathcal{A}\cup\{q\}\rangle, q)$ to get that it will be completed before step \[ qs\leq h\left(\frac{1}{p}\right)2\left\lfloor 3\log_2 h\left(\frac{1}{p}\right)\right\rfloor \in O\left(h\left(\frac{1}{p}\right)\log \frac{1}{p}\right),\]
+almost always as $p \to 0$. 
+\par Thus, if
+\[\psi(x) = h\left(x\right)2\left\lfloor 3\log_2 h\left(x\right)\right\rfloor,\]
+we have that $x(\log x)^2 \in o(g(x))$ and
+\[\lim_{p \to  0} \Pr\left[F(\langle\mathcal{A}\cup \{q\}\rangle) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\]
+Since $F(\mathcal{S}) \leq F(\langle \mathcal{A}\cup\{q\}\rangle)$, we conclude that
+\[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\]
+Since $h(x)$ is arbitrary, the result is true for any function $\psi$ such that $x(\log x)^2 \in \psi(g(x))$. \qed \par
+The bound on the Frobenius number also implies bounds on the genus and the embedding dimension.
+\begin{corollary}
+    Let $\psi(x)$ be a function for which $x(\log x)^2 \in o(\psi(x))$ .Then
+    \[\lim_{p \to 0}\Pr\left[g(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\]
+\end{corollary}
+\textbf{Proof. } Use Proposition \ref{prop:smgps:frobgenus}. \qed
+\begin{corollary}
+    Let $\varphi(x)$ be a function for which $(\log x)^2 \in o(\varphi(x))$ .Then
+    \[\lim_{p \to 0}\Pr\left[e(\mathcal{S}) \leq \varphi\left(\frac{1}{p}\right)\right] = 1.\]
+\end{corollary}
+\textbf{Proof. } If
+\[\lim_{p \to 0}\Pr\left[f(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1,\]
+then, since $m(\mathcal{S})\leq f(\mathcal{S})$, the elements of the minimal generating set are chosen before step $2\psi\left(\frac{1}{p}\right)$ with high probability. Since $\left|\mathcal{A}\cap\left\{1, \ldots, \left\lfloor2\psi\left(\frac{1}{p}\right)\right \rfloor\right\}\right| \sim \mathrm{Bin}\left(\left\lfloor2\psi\left(\frac{1}{p}\right)\right \rfloor, p\right)$, by the bound on the right tail of the binomial distribution (Proposition \ref{ap:prop:rightbinomtail}), we have that
+\[\lim_{p \to 0}\Pr\left[e(\mathcal{S}) \leq (3p)\psi\left(\frac{1}{p}\right)\right] = 1.\]
+Thus, if $\varphi(x) =\frac{3}{x} \psi\left(x\right)$, then $(\log x)^2 \in \varphi(x)$ and 
+\[\lim_{p \to 0}\Pr\left[e(\mathcal{S}) \leq \varphi\left(\frac{1}{p}\right)\right] = 1.\]
+Since $\psi$ is arbitrary, this is true for any function $\varphi$ such that $(\log x)^2 \in \varphi(x)$. \qed \par
