@@ -1,13 +1,20 @@
 \chapter{Introduction}\label{chap:intro}
 
 
-In contrast to graphs, the algebraic nature of numerical semigroups allows for a wider range of methods to create random models, tailored to specific research goals. This thesis investigates random numerical semigroups using a probabilistic model similar to the Erdös-Rényi model of random graphs. We also propose a new probabilistic model for these semigroups. The central result is Theorem \ref{thm:main}, which is similar to Theorem \ref{thm:ermodel}, the main result of 
-\begin{itemize}
-    \item \fullcite{de2018random}
-\end{itemize}
-Our proof is more elementary and provides tighter bounds of the average behaviour of the embedding dimension, genus, and Frobenius number of a random numerical semigroup. 
+The Probabilistic Method is a powerful tool, with applications in Combinatorics, Graph Theory, Number Theory and Computer Science. It is a nonconstructive method that proves the existence of an object with a certain property, usually a graph, by showing that the probability that a randomly chosen object has that property is greater than zero. In this case, we will apply the probabilistic method to numerical semigroups. \par
 
-The approach involves applying the Probabilistic Method to random numerical semigroups and studying sums of uniformly random subsets of cyclic groups. For our experiments, we use \verb|numsgps-sage| \cite[O'Neill]{oneill2018}\cite[Delgado]{delgado2015numericalsgps} and for visualizations we use \verb|IntPic| \cite[Delgado]{delgado2013intpic}. We also employ our own publicly available repository \verb|randnumsgps| \cite{morales2023} for generating and visualizing random numerical semigroups in Python.
+A numerical semigroups is a subset of $\NN$ that is closed under addition (Definition \ref{def:smgps}). These objects are studied in the context of commutative algebra and algebraic geometry, and they have applications in integer programming, coding theory and cryptography \cite{assi2020numerical}. There are numerical invariants that are used to study numerical semigroups, such as the embedding dimension, the genus and the Frobenius number (Definitions \ref{def:smgps:embedding_dim}, \ref{def:smgps:genus} and \ref{def:smgps:frobeniusnum}). For example, the Frobenius number is defined as the maximum of the complement of the numerical semigroup over the integers. \par
+
+The Erdös-Rényi (ER) model is a commonly used model of random graphs, where each edge is chosen with probability $p$, independently of the other edges (Definition \ref{def:probmet:ermodel}). In contrast to graphs, the algebraic nature of numerical semigroups allows for a wider range of random models. This thesis investigates the average behavior random numerical semigroup invariants using a probabilistic model similar to the ER model (Definition \ref{def:randnumsems:ermodel}).
+
+
+Our central result is Theorem \ref{thm:main}, which is similar to Theorem \ref{thm:ermodel}, the main result of 
+\begin{itemize}
+    \item \fullcite{de2018random}.
+\end{itemize}
+Theorem \ref{thm:ermodel} describes the behavior of the expected embedding dimension, genus, and Frobenius number of a random numerical semigroup, depending on the parameters of the model. It gives an explicit bound of the expected value of these invariants. On the other hand, Theorem \ref{thm:main} describes the behavior of the invariants almost surely, that is, with probability that tends to one as the parameters of the model converge to certain values. Our proof is more elementary and provides asymptotically tighter bounds of the behaviour of these invariants. 
+
+We used experiments to study the behavior of ER-type random numerical semigroups, which led to the proof of Theorem \ref{thm:main}. For our experiments, we used \verb|numsgps-sage| \cite[O'Neill]{oneill2018}\cite[Delgado]{delgado2015numericalsgps} and for visualizations we used \verb|IntPic| \cite[Delgado]{delgado2013intpic}. We also implemented our own publicly available repository \verb|randnumsgps| \cite{morales2023} for generating and visualizing random numerical semigroups in Python.\par
 
 The structure of the thesis is as follows:
 
@@ -15,10 +22,9 @@ The structure of the thesis is as follows:
     \item Chapter \ref{chap:probmet} discusses the Probabilistic Method, based on the work of Noga Alon and Joel H. Spencer.
     \item Chapter \ref{chap:numsems} focuses on numerical semigroups, providing definitions, examples, and results necessary for understanding their structure.
     \item Chapter \ref{chap:randnumsems} introduces three models of random numerical semigroups, including our newly proposed model. We also present recent results in the field, including Theorem \ref{thm:ermodel}. 
-    \item Chapter \ref{chap:experiments} details the algorithms and experiments conducted using various software tools and our implementations.
+    \item Chapter \ref{chap:experiments} details the algorithms and experiments conducted.
     \item Chapter \ref{chap:results} presents the main results, including the proof of Theorem \ref{thm:main}, its implications and its relation with Theorem \ref{thm:ermodel}.
 \end{itemize}
 
-The aim of this thesis is to extend the methods used in the study of random graphs to numerical semigroups. The research seeks to contribute to the understanding of random numerical semigroups through a probabilistic perspective.
-
-In summary, this thesis provides a detailed study of random numerical semigroups using probabilistic models, experimental data and software tools.
+The aim of this thesis is to extend the methods used in the study of random graphs to numerical semigroups. The research seeks to contribute to the understanding of random numerical semigroups through a probabilistic perspective. \par
+To sum up, we provide a detailed study of random numerical semigroups using probabilistic models, experimental data and software tools.\par

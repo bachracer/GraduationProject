@@ -4,7 +4,7 @@
 
 So far we have only discussed graphs. In this chapter, we will introduce a new object which has a different structure, but for which the Probabilistic Method can be used to prove results. Definitions and results in this chapter can be found in \cite{rosales2009numerical} and \cite{assi2020numerical}. \par
 
-\begin{definition} 
+\begin{definition}\label{def:smgps}
     A \textit{numerical semigroup} is a subset $S \subseteq \NN$ for which 
     \begin{enumerate}
         \item $0 \in S$,
@@ -13,7 +13,7 @@ So far we have only discussed graphs. In this chapter, we will introduce a new o
     \end{enumerate}
 \end{definition}
 
-Examples of numerical semigroups include $\NN$ and $\NN\setminus \{1\}$. Subsets of $\NN$ which are not numerical semigroups include the set of even numbers, any finite set and $\NN_0 \setminus \{2\}$. Numerical semigroups are studied in the context of commutative algebra and algebraic geometry, and they have applications in integer programming, coding theory and cryptography \cite{assi2020numerical}. \par
+Examples of numerical semigroups include $\NN$ and $\NN\setminus \{1\}$. Subsets of $\NN$ which are not numerical semigroups include the set of even numbers, any finite set and $\NN_0 \setminus \{2\}$. 
 
 \begin{example}\label{ex:smgps:mcnugget}
     The \textit{McNugget Semigroup} is the set of all non-negative integers which can be expressed as a sum of non-negative multiples of 6, 9 and 20 (see Figure \ref{fig:smgps:mcnugget}).
