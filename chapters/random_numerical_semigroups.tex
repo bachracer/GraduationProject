@@ -5,18 +5,18 @@
 
 \chapter{Random Numerical Semigroups}\label{chap:randnumsems}
 
-We present three distinct models of random numerical semigroups. The first model employs a uniform distribution for its generators and is the most extensively studied. The second model is inspired By the Erdös-Rényi approach to random graphs. The third model is a new approach we introduce, characterized by a fixed Frobenius number.
+We present three distinct models of random numerical semigroups. The first model employs a uniform distribution for its generators and is the most extensively studied. The second model is inspired by the Erdös-Rényi approach to random graphs. The third model is a new approach we introduce, characterized by a fixed Frobenius number.
 
 \section{Box Model}\label{sec:randomsmpgs:intro}
 
 Let $n, T \in \NN$. We consider the set of points
 \[G(T) = \{A\in \NN^n : \mathrm{gcd}(A) = 1, \; |A|_\infty \leq T\}.\]
 This is the set of possible sets of $n$ generators of numerical semigroups such that each generator is at most $T$. 
-\begin{definition}
+\begin{definition}\label{def:randnumsems:boxmodel}
     A Box model random numerical semigroup $\mathcal{S}(T)$ is a probability space over the set of semigroups $\mathcal{S} = \langle\mathcal{A}\rangle$ with $\mathcal{A} \in G(T)$, determined by
     \[\Pr[ \mathcal{A}] = \frac{1}{|G(T)|}.\]
 \end{definition}
-In other words, a point in $G(T)$ is chosen uniformly at random and the corresponding semigroup is returned. V. I. Arnold was the first to study this model \cite{arnold1999weak}.  \textcolor{blue}{Explain that this holds for all semigroups} Assuming that $\mathcal{A} = \{a_1, \ldots, a_n\}$ and $a_1 \leq \ldots \leq a_n$, Erdös and Graham \cite{erdos1972linear} proved that: 
+In other words, a point in $G(T)$ is chosen uniformly at random and the corresponding semigroup is returned. V. I. Arnold was the first to study this model \cite{arnold1999weak}. For any numerical semigroup, for $\mathcal{A} = \{a_1, \ldots, a_n\}$ such that $a_1 \leq \ldots \leq a_n$, Erdös and Graham \cite{erdos1972linear} proved that: 
 \[F(\langle\mathcal{A} \rangle)  \leq 2 a_n\left[\frac{a_1}{n}\right]  - a_1.\]
 On the other hand, Aliev and Gruber \cite{aliev2007optimal} proved an optimal lower bound for the Frobenius number, namely:
 \[F(\langle\mathcal{A} \rangle)  > (n - 1)!^{\frac{1}{n - 1}}(a_1\cdots a_n)^{\frac{1}{n - 1}} - (a_1 + \cdots + a_n).\]
@@ -33,7 +33,7 @@ The statement of this theorem does not depend on $T$, it only depends on $n$. Th
 
 In order to use methods such as those that apply to the Erdös-Rényi model for random graphs, a similar model for random numerical semigroups was proposed in \cite{de2018random}. 
 
-\begin{definition}
+\begin{definition}\label{def:randnumsems:ermodel}
     For $p \in [0, 1]$ and $M \in \NN$, an ER-type random numerical semigroup $\mathcal{S}(M, p)$ is a probability space over the set of semigroups $\mathcal{S} = \langle\mathcal{A}\rangle$ with $\mathcal{A} \subseteq \{1,...,M\}$, determined by
     \[\Pr[n \in \mathcal{A}] = p,\]
     with these events mutually independent.
@@ -107,8 +107,7 @@ We propose a new model for random numerical semigroups that fixes the Frobenius 
     \item As $i$ goes down from $f - 2$ to $1$. If $F(\langle A \cup \{i\} \rangle) = f$, add $i$ to $\mathcal{A}$ with probability $p$. Otherwise, proceed to the next step.
     \item Return the semigroup $\mathcal{S} = \langle\mathcal{A}\rangle$.
 \end{enumerate}
-\textcolor{blue}{Explain step 1, step 2}.
-In this model, every semigroup $\mathcal{S}$ is co-finite and $F(\mathcal{S}) = f$. Also, in this case, the probability of adding an element to $\mathcal{A}$ is not independent of the other steps. 
+Step 1 initializes the minimal numerical semigroup (with respect to inclusion) such that $f(\mathcal{S}) = f$. Step 2 randomly adds elements to $\mathcal{A}$ in decreasing order, such that $F(\langle A \cup \{i\} \rangle) = f$. Note that in this case, the probability of adding an element to $\mathcal{A}$ is not independent of the other steps. 
     
 \end{definition}
 

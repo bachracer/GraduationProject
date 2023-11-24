@@ -6,7 +6,7 @@
 	tabsize=4,
 	rulecolor=,
 	language=Python,
-	basicstyle=\tiny,
+	basicstyle=\scriptsize,
 	upquote=true,
 	aboveskip={1.5\baselineskip},
 	columns=fixed,
@@ -31,7 +31,7 @@
 
 \section{ER-type model experiments}
 
-We used the following algorithm for ER-type random numerical semigroup generation (see Definition \ref{def:probmet:ermodel}). The \verb|NumericalSemigroup| class is part of the \verb|numsgps-sage| package \cite{oneill2018}. 
+In this section, we will present the experiments we conducted to study the behavior of ER-type random numerical semigroups. We used the following algorithm for ER-type random numerical semigroup generation (see Definition \ref{def:probmet:ermodel}). The \verb|NumericalSemigroup| class is part of the \verb|numsgps-sage| package \cite{oneill2018}.
 
 \begin{lstlisting}[language=Python]
     # Generates random sample using Erdös-Rényi model 
@@ -47,8 +47,8 @@ We used the following algorithm for ER-type random numerical semigroup generatio
             semigroups.append(NumericalSemigroup(generators))
         return semigroups
 \end{lstlisting}
-We generated random numerical semigroups for several values of $1/p$ in the range $[4, 1000]$. For each $1/p$, the sample size was 1000 and we calculated the average embedding dimension (Table \ref{tab:embedding}) and the average Frobenius number (Table \ref{tab:frobenius}). As shown in \cite{de2018random}, the bounds found in Theorem \ref{thm:ermodel:constantp} are not tight. We plot the average embedding dimension and the average Frobenius number for each $1/p$ in Figures \ref{fig:embedding} and \ref{fig:frobenius}. We also plot the histograms of the embedding dimension and the Frobenius number for $1/p = 4, 220, 1000$ in Figures \ref{fig:embedding_hist4}, \ref{fig:embedding_hist220}, \ref{fig:embedding_hist1000}, \ref{fig:frobenius_hist4}, \ref{fig:frobenius_hist220}, \ref{fig:frobenius_hist1000}. \par
-Write a paragraph saying why we are making this proofs. 
+For the experiments, we generated random numerical semigroups for several values of $1/p$ in the range $[4, 1000]$. For each $1/p$, the sample size was 1000 and we calculated the average embedding dimension (Table \ref{tab:embedding}) and the average Frobenius number (Table \ref{tab:frobenius}). As shown in the experiments done in \cite{de2018random}, the bounds found in Theorem \ref{thm:ermodel:constantp} are not tight. \par 
+
 
 \begin{table}
 \centering
@@ -73,11 +73,10 @@ Write a paragraph saying why we are making this proofs.
     1,000.00 & 3.00 & 17.22 & 2,000.00 \\
     \hline
 \end{tabular}
-\caption{Average embedding dimension of random numerical semigroups generated using the ER-type model.}
+\caption{Average embedding dimension of random numerical semigroups generated using the ER-type model (15 samples of 1000 random numerical semigroups).}
 \label{tab:embedding}
 \end{table}
 
-Frobenius number:
 \begin{table}
 \centering
 \begin{tabular}{|c|c|c|c|}
@@ -101,19 +100,16 @@ Frobenius number:
     1,000.00 & 2,993.01 & 26,637.46 & 3,995,998.00 \\
     \hline
 \end{tabular}
-\caption{Average Frobenius number of random numerical semigroups generated using the ER-type model.}
+\caption{Average Frobenius number of random numerical semigroups generated using the ER-type model (15 samples of 1000 random numerical semigroups).}
 \label{tab:frobenius}
 \end{table}
 
-\begin{figure}
-    \begin{center}
-        \input{figures/frobenius_plot.pgf}
-    \end{center}
-    \caption{Average Frobenius number of random numerical semigroups generated using the ER-type model vs $4(1/p)\log(1/p)$}
-    \label{fig:frobenius}
-\end{figure}
-    
-\begin{figure}
+\newpage
+
+We plot the average embedding dimension and the average Frobenius number found in the experiments in Figures \ref{fig:embedding} and \ref{fig:frobenius}. These experiments led us to conjecture that the average embedding dimension grows as $\log(1/p)$ and the average Frobenius number grows as $(1/p)\log(1/p)$. Although we did not prove this conjecture, it led us in the right direction to prove Theorem \ref{thm:main}. \par
+
+
+\begin{figure}[h]
     \begin{center}
         \input{figures/embedding_plot.pgf}
     \end{center}
@@ -123,11 +119,24 @@ Frobenius number:
 
 \begin{figure}
     \begin{center}
+        \input{figures/frobenius_plot.pgf}
+    \end{center}
+    \caption{Average Frobenius number of random numerical semigroups generated using the ER-type model vs $4(1/p)\log(1/p)$}
+    \label{fig:frobenius}
+\end{figure}
+
+
+\begin{figure}
+    \begin{center}
         \input{figures/frobenius_hist4.pgf}
     \end{center}
     \caption{Histogram of the Frobenius number of random numerical semigroups generated using the ER-type model, for $1/p = 4$.}
     \label{fig:frobenius_hist4}
 \end{figure}
+
+\newpage
+
+We also plot the histograms of the embedding dimension and the Frobenius number for $1/p = 4, 220, 1000$ (Figures \ref{fig:frobenius_hist4}-\ref{fig:embedding_hist1000}). These histograms hint that the distribution of the embedding dimension and the Frobenius number of ER-type random numerical semigroups may converge to a known distribution, which is a topic for future research. \par
 
 \begin{figure}
     \begin{center}
@@ -168,8 +177,10 @@ Frobenius number:
     \caption{Histogram of the embedding dimension of random numerical semigroups generated using the ER-type model, for $1/p = 1000$.}
     \label{fig:embedding_hist1000}
 \end{figure}
+
+\newpage
     
-I also implemented my own algorithm to calculate the minimal generating set and the apery set of a semigroup, for visualization purposes.
+Finally, we show some visualizations of ER-type random numerical semigroups, using the algorithm below for the generation of $\mathrm{Ap}(\mathcal{S}, m(\mathcal{S}))$, with $M, p$ and $m(\mathcal{S})$ as parameters. 
 
 \begin{lstlisting}[language=Python]
     # Function to generate Ap(S, m(S))
@@ -209,7 +220,39 @@ I also implemented my own algorithm to calculate the minimal generating set and 
         return apery_set, generated, new_elements, non_apery
 \end{lstlisting}
 
-Here we show some visualizations of ER-type random numerical semigroups, using the algorithm above. To do it, run \verb|smgps_visualizer.py| and introduce the first non-zero element of the semigroup. The algorithm will generate a ER-type random numerical semigroup with that element as first non-zero element, and will plot a visualization. 
+To generate a visualization, run the script \verb|smgps_visualizer.py| found in the repository \cite{morales2023} and introduce a number $n$. The script will generate a ER-type random numerical semigroup with multiplicity $n$ and $p = 1/n$, and will plot a visualization. \par
+
+This visualizations are useful to understand the structure of ER-type random numerical semigroups. For example, a number is less likely to be in the minimal generating set as it grows. This is because there are more elements that can be in the span by the minimal generating set as the generation of the numerical semigroup progresses. \par
+
+A related observation is that there are patterns in the density of the numerical semigroup, in the density of the minimal generating set and in the density of the Apéry set. One could think of this patterns as phase transitions. A topic for further research would be to formalize a definition of this density and to study its behavior. \par
+
+\begin{figure}
+    \begin{center}
+        \input{figures/first_er.pgf}
+    \end{center}
+    \caption{ER-type random numerical semigroup, $1/p = 10$.}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/ertype_visual_100000_0.01694915254237288.pgf}
+    \end{center}
+    \caption{ER-type random numerical semigroup, $1/p = 59$.}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/ertype_visual_100000_0.01.pgf}
+    \end{center}
+    \caption{ER-type random numerical semigroup, $1/p = 100$.}
+\end{figure}
+
+\begin{figure}
+    \begin{center}
+        \input{figures/ertype_visual_100000_0.0022222222222222222.pgf}
+    \end{center}
+    \caption{ER-type random numerical semigroup, $1/p = 450$.}
+\end{figure}
 
 
 
