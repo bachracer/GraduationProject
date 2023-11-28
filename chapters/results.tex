@@ -95,7 +95,7 @@ We conclude that, for every $K \in \NN$,
 \[\lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\qed\]
 
 \section{Upper bound}\label{sec:results:upperbound}
-Before proving part (b) of theorem \ref{thm:main}, we will prove a lemma that shows that a cyclic group of prime order is covered by the sums of a random subset of logarithmic size.  
+Before proving part (b) of theorem \ref{thm:main}, we will prove a lemma that shows that a cyclic group of prime order is covered by the sums of a random subset of logarithmic size almost alwasys.
 \begin{lemma}\label{lem:sumset}
     Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. 
 \end{lemma}
@@ -150,7 +150,6 @@ We conclude that $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, f
 \begin{lemma}\label{lem:upperbound}
     Let $\psi(x)$ be a function for which $x(\log x)^2 \in o(\psi(x))$ .Then
     \[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\] 
-    Since $h(x)$ is a function for which $x(\log x) \in o(h(x))$, we have that
 \end{lemma}
 
 \par The proof of this theorem consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $\psi\left(\frac{1}{p}\right)$ with high probability, since $F(\mathcal{S})$ is less than the maximum element of this Ápery set. The proof has the following structure: 
