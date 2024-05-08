@@ -4,7 +4,7 @@
 \section{Upper bound}\label{sec:results:upperbound}
 Before proving part (b) of the main theorem, we will prove a lemma that shows that a cyclic group of prime order is covered by the sums of a random subset of logarithmic size almost always.
 \begin{lemma}\label{lem:sumset}
-    Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. 
+    Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor6\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor6\log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. 
 \end{lemma}
 
 \textbf{Proof. } Let $s \in \mathbb{N}$ such that $s\leq q$. Let $\mathcal{A}$ be a uniformly random subset of $\mathbb{Z}_q$ of size $s$, that is, 
@@ -36,27 +36,27 @@ We can bound the number of events for which $|K \cap L| = j$. First we choose $K
 \par This implies that, using \ref{eq:upperbound:expected},
 \begin{align*}
     \frac{\Delta_j}{\EE[X_z]^2} &\leq \frac{\binom{q}{k} \binom{q - k}{k - j}\binom{q - 2k + j}{s - 2k + j}}{\frac{1}{q} \binom{s}{k}\frac{1}{q} \binom{s}{k}q\binom{q}{s}} \\
-    &= \frac{\frac{q!}{(q - k)!k!}\frac{(p - k)!}{(k - j)!(q - 2k + k)!}\frac{(q - 2k + j)!}{(s - 2k + j)!(q - s)!}}{\frac{1}{q}\binom{s}{k}\frac{s!}{(s - k)!k!}\frac{q!}{(q - s)!s!}} \\
+    &= \frac{\frac{q!}{(q - k)!k!}\frac{(q - k)!}{(k - j)!(q - 2k + k)!}\frac{(q - 2k + j)!}{(s - 2k + j)!(q - s)!}}{\frac{1}{q}\binom{s}{k}\frac{s!}{(s - k)!k!}\frac{q!}{(q - s)!s!}} \\
     &= \frac{q\binom{s - k}{k - j}}{\binom{s}{k}}.
 \end{align*}
-Let $s = 4\lfloor 3 \log_2 q \rfloor$ and $k = 2\lfloor 3 \log_2 q \rfloor$. Using that $\binom{s - k}{k - j}$ is maximized at $k - j = \lfloor (s - k) / 2\rfloor$,
+Let $s = 4\lfloor 6 \log_2 q \rfloor$ and $k = 2\lfloor 6 \log_2 q \rfloor$. Using that $\binom{s - k}{k - j}$ is maximized at $k - j = \lfloor (s - k) / 2\rfloor$,
 \begin{align*}
-\frac{\Delta_j}{\EE[X_z]^2} \leq \frac{q \binom{2\lfloor 3 \log_2 q\rfloor}{\lfloor 3 \log_2 q \rfloor}}{\binom{4\lfloor 3\log_2 q \rfloor}{2\lfloor 3\log_2 q \rfloor}} \leq \frac{q}{\binom{2\lfloor 3 \log_2 q \rfloor }{ \lfloor 3 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 3 \log_2 q \rfloor}} \sim \frac{1}{q^2},
+\frac{\Delta_j}{\EE[X_z]^2} \leq \frac{q \binom{2\lfloor 6 \log_2 q \rfloor}{\lfloor 6 \log_2 q \rfloor}}{\binom{4\lfloor 6 \log_2 q \rfloor}{2\lfloor 6 \log_2 q \rfloor}} \leq \frac{q}{\binom{2\lfloor 6 \log_2 q \rfloor }{ \lfloor 6 \log_2 q \rfloor}} \leq \frac{q}{2^{\lfloor 6 \log_2 q \rfloor}} \sim \frac{1}{q^5},
 \end{align*}
-since \(\binom{2\lfloor 3\log_2 q \rfloor}{\lfloor 3 \log_2 q \rfloor}^2 \leq \binom{4\lfloor 3 \log_2 q \rfloor }{2\lfloor 3 \log_2 q \rfloor}\) (Proposition \ref{ap:prop:binom}).   \par
+since \(\binom{2\lfloor 6 \log_2 q \rfloor}{\lfloor 6 \log_2 q \rfloor}^2 \leq \binom{4\lfloor 6 \log_2 q \rfloor }{2\lfloor 6 \log_2 q \rfloor}\) (Proposition \ref{ap:prop:binom}).   \par
 Hence, by (\ref{eq:probmet:deltainequality}) and Theorem \ref{thm:probmet:secondmoment:1},
 \begin{align*}
 \Pr[X_z = 0] \leq \frac{\EE[X_z] + \Delta}{\EE[X_z]^2} &= \frac{1}{E[X_z]} + \sum_{j = 0}^k \frac{\Delta_j}{\EE[X_z]^2} \\
-&\leq \frac{1}{E[X_z]} + \frac{(k + 1)}{q^2} = \frac{1}{E[X_z]} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q^2}.
+&\leq \frac{1}{E[X_z]} + \frac{(k + 1)}{q^5} = \frac{1}{E[X_z]} + \frac{2\lfloor 6 \log_2 q\rfloor + 1}{q^5}.
 \end{align*}
 Therefore, by the union bound and since $q \to \infty$ as $p \to 0$,
 \begin{align}
-\Pr\left[\bigvee_{z \in \mathbb{Z}_q} X_z = 0\right] &\leq \frac{q}{\EE[X_z]} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q}\\
- &= \frac{q^2}{\binom{4\lfloor 3\log_2 q \rfloor}{2\lfloor 3\log_2 q \rfloor}} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q} \\
- &\leq \frac{q^2}{2^{2\lfloor 3\log_2 q \rfloor}} + \frac{2\lfloor 3 \log_2 q\rfloor + 1}{q} \\
- &\sim \frac{1}{q^4} + \frac{6\log q}{q}= o(1).\label{eq:lemma:prob}
+\Pr\left[\bigvee_{z \in \mathbb{Z}_q} X_z = 0\right] &\leq \frac{q}{\EE[X_z]} + \frac{2\lfloor 6 \log_2 q \rfloor + 1}{q^4}\\
+ &= \frac{q^2}{\binom{4\lfloor 6 \log_2 q \rfloor}{2\lfloor 6 \log_2 q \rfloor}} + \frac{2\lfloor 6 \log_2 q \rfloor + 1}{q^4} \\
+ &\leq \frac{q^2}{2^{2\lfloor 6 \log_2 q \rfloor}} + \frac{2\lfloor 6 \log_2 q \rfloor + 1}{q^4} \\
+ &\sim \frac{1}{q^{10}} + \frac{6\log q}{q^4}= o(1).\label{eq:lemma:prob}
 \end{align}
-We conclude that $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, for every $z \in \mathbb{Z}_q$, there exists $K \in N_z^k$ such that $K \subset \mathcal{A}$ almost always. This means that $2\lfloor 3 \log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. \qed
+We conclude that, as $q \to \infty$, $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, for every $z \in \mathbb{Z}_q$, there exists $K \in N_z^k$ such that $K \subset \mathcal{A}$ almost always. This means that $2\lfloor 6 \log_2 q \rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. \qed
 
 \subsection{Proof of the upper bound} 
 \begin{lemma}\label{lem:upperbound}
@@ -73,51 +73,49 @@ We conclude that $X_z > 0$ for every $z \in \mathbb{Z}_q$ almost always. Thus, f
 \textbf{Proof. }
 \subsubsection*{Part 1} 
 Consider the event $D_1$ that a prime $q$ is selected, such that
-\[\frac{96}{p}\log \frac{4}{p} \leq q \leq \left(\frac{4}{p}\log \frac{1}{p}\right)\log\left(\frac{4}{p}\log \frac{1}{p}\right).\]
+\[\frac{200}{p}\log \frac{4}{p} \leq q \leq \left(\frac{4}{p}\log \frac{1}{p}\right)\log\left(\frac{4}{p}\log \frac{1}{p}\right).\]
 Then
-\[\Pr[\lnot D_1] \leq (1 - p)^{\frac{1}{p}\left(4\log\frac{1}{p} - 96\right)} \leq e^{-\left(4\log\frac{1}{p} - 96\right)} \in  O(p^4).\]
+\[\Pr[\lnot D_1] \leq (1 - p)^{\frac{1}{p}\left(4\log\frac{1}{p} - 200\right)} \leq e^{-\left(4\log\frac{1}{p} - 200\right)} \in  O(p^4).\]
 \subsubsection*{Part 2}
 
-Given $D_1$, let $D_2$ be the event that more than $12\log q$ generators are selected. 
+Given $D_1$, let $D_2$ be the event that more than $24\log q$ generators are selected. 
     Let $X \sim \mathrm{Bin}(q, p)$. Since 
     \[q \leq \left(\frac{4}{p}\log \frac{1}{p}\right)\log\left(\frac{4}{p}\log \frac{1}{p}\right),\]
     then
-    \[12\log q \leq 12\log \left(\frac{4}{p}\right)^4 \leq 48\log\frac{4}{p}.\]
+    \[24\log q \leq 24\log \left(\frac{4}{p}\right)^4 \leq 100\log\frac{4}{p}.\]
     Also, since 
-    \[q \geq \frac{96}{p}\log\frac{4}{p},\]
+    \[q \geq \frac{200}{p}\log\frac{4}{p},\]
     then 
-    \[\EE[X]  = qp \geq 96\log\frac{4}{p}.\]
+    \[\EE[X]  = qp \geq 200\log\frac{4}{p}.\]
     Remember Chernoff's bound: 
     \begin{equation}
         \Pr[X \leq \EE[X] - \lambda] \leq e^{-\frac{\lambda^2}{2\EE[X]}} 
     \end{equation}
     Thus, using $\lambda = \frac{\EE[X]}{2}$,
     \begin{equation}
-        \Pr[\lnot D_2] \leq \Pr\left[X \leq \EE[X] - \frac{\EE[X]}{2}\right] = e^{-\frac{\EE[X]}{8}} \leq e^{-12\log \frac{4}{p}} = O(p^{12}).
+        \Pr[\lnot D_2] \leq \Pr\left[X \leq \EE[X] - \frac{\EE[X]}{2}\right] = e^{-\frac{\EE[X]}{8}} \leq e^{-25\log \frac{4}{p}} \in O(p^{25}).
     \end{equation}
 
 
 \subsubsection*{Part 3}
 
-\par Finally, assume $D_1$ and $D_2$. Let $\mathcal{A}$ be the set of generators of chosen before $q$. Since the generators are chosen randomly and $|\mathcal{A}| \geq 12\log q$, we can apply Lemma \ref{lem:sumset} to $\ZZ_q \cong \mathrm{Ap}(\langle\mathcal{A}\cup\{q\}\rangle, q)$. Consider the event $D_3$ that $\mathrm{Ap}(\langle\mathcal{A}\cup\{q\}\rangle, q)$ will be completed before step \[ 6q\log q \in O\left(\frac{1}{p}\left(\log \frac{1}{p}\right)^3\right).\] 
+\par Finally, assume $D_1$ and $D_2$. Let $\mathcal{A}$ be the set of generators of chosen before $q$. Since the generators are chosen randomly and $|\mathcal{A}| \geq 24\log q$, we can apply Lemma \ref{lem:sumset} to $\ZZ_q \cong \mathrm{Ap}(\langle\mathcal{A}\cup\{q\}\rangle, q)$. Consider the event $D_3$ that $\mathrm{Ap}(\langle\mathcal{A}\cup\{q\}\rangle, q)$ will be completed before step \[ 12q\log q \in O\left(\frac{1}{p}\left(\log \frac{1}{p}\right)^3\right).\] 
 Applying Lemma \ref{lem:sumset} (Equation \ref{eq:lemma:prob}), we have that
 \begin{align*}
-\Pr[\lnot D_3] &\leq \frac{1}{q^4} + \frac{6\log q}{q} \\
-&\leq \frac{1}{\left(\frac{96}{p}\log \frac{4}{p}\right)^4}
-+ \frac{6\log\left(\frac{4}{p}\right)^4}{\frac{96}{p}\log\frac{4}{p}} \in O(p).
+\Pr[\lnot D_3] &\leq \frac{1}{q^{10}} + \frac{6\log q}{q^4} \\
+&\leq \frac{1}{\left(\frac{96}{p}\log \frac{4}{p}\right)^{10}}
++ \frac{6\log\left(\frac{4}{p}\right)^4}{\left(\frac{96}{p}\log\frac{4}{p}\right)^4} \in O(p^4).
 \end{align*}
 \par 
 
+Thus, there exists $K > 0$ such that 
 
-
-
-Thus, if
-\[\psi(x) = h\left(x\right)2\left\lfloor 3\log_2 x\right\rfloor,\]
-we have that $x(\log x)^2 \in o(\psi(x))$ and
-\[\lim_{p \to  0} \Pr\left[F(\langle\mathcal{A}\cup \{q\}\rangle) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\]
+\[\lim_{p \to  0} \Pr\left[F(\langle\mathcal{A}\cup \{q\}\rangle) \leq \frac{K}{p}\left(\log \frac{1}{p}\right)^3\right] = 1.\]
 Since $F(\mathcal{S}) \leq F(\langle \mathcal{A}\cup\{q\}\rangle)$, we conclude that
-\[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\]
-Since the constraints on $h(x)$ are independent of multiplication by constants, the result is true for any function $\psi$ such that $x(\log x)^2 \in \psi(g(x))$. \qed \par
+\[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \frac{K}{p}\left(\log \frac{1}{p}\right)^3\right] = 1.\qed\]
+
+Finally, use that 
+\[\int_0^\infty e^{-px} x^2 \;\mathrm{d}x = \frac{2}{p^3}.\]
 The bound on the Frobenius number also implies bounds on the genus and the embedding dimension.
 \begin{corollary}
     Let $\psi(x)$ be a function for which $x(\log x)^2 \in o(\psi(x))$ .Then
