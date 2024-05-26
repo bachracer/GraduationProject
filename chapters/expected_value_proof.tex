@@ -103,8 +103,8 @@ Given $D_1$, let $D_2$ be the event that more than $24\log q$ generators are sel
 Applying Lemma \ref{lem:sumset} (Equation \ref{eq:lemma:prob}), we have that
 \begin{align*}
 \Pr[\lnot D_3] &\leq \frac{1}{q^{10}} + \frac{6\log q}{q^4} \\
-&\leq \frac{1}{\left(\frac{96}{p}\log \frac{4}{p}\right)^{10}}
-+ \frac{6\log\left(\frac{4}{p}\right)^4}{\left(\frac{96}{p}\log\frac{4}{p}\right)^4} \in O(p^4).
+&\leq \frac{1}{\left(\frac{200}{p}\log \frac{4}{p}\right)^{10}}
++ \frac{6\log\left(\frac{4}{p}\right)^4}{\left(\frac{200}{p}\log\frac{4}{p}\right)^4} \in O(p^4).
 \end{align*}
 \par 
 
@@ -120,14 +120,14 @@ Now that the expected value of the Frobenius number can be bounded by
 \\&+ \EE[F(\mathcal{S}) |\lnot(D_1 \land D_2 \land D_3)] \Pr[\lnot(D_1 \land D_2 \land D_3)] 
 \\&\leq \EE[F(\mathcal{S}) | D_1 \land D_2 \land D_3] 
 \\&+ \EE[F(\mathcal{S}) |\lnot(D_1 \land D_2 \land D_3)] \Pr[\lnot(D_1 \land D_2 \land D_3)]
-\\&= \frac{K}{p}\left(\log \frac{1}{p}\right)^3 + \EE[F(\mathcal{S}) |\lnot(D_1 \land D_2 \land D_3)]O(p^4).
+\\&\leq \frac{K}{p}\left(\log \frac{1}{p}\right)^3 + \EE[F(\mathcal{S}) |\lnot(D_1 \land D_2 \land D_3)]O(p^4).
 \end{align*}
 
 Now,
 \begin{align*}
     \EE[F(\mathcal{S}) |\lnot(D_1 \land D_2 \land D_3)] &\leq \EE[(\min\{(2n)^2|2n \text{ and } 2n + 1 \text{ are selected} \})]
     \\&= \sum_{n = 0}^\infty (2n)^2 (1 - p^2)^{n - 1}p^2
-    \\&= p^2\sum_{n = 0}^\infty (2n)^2 e^{-p^2(n - 1)}
+    \\&\leq p^2\sum_{n = 0}^\infty (2n)^2 e^{-p^2(n - 1)}
     \\&\leq p^2 \int_{0}^\infty (2x)^2 e^{-p^2(x - 1)}\;\mathrm{d}x
     \\&= \frac{8e^{p^2}}{p^4}.
 \end{align*}
@@ -136,16 +136,16 @@ Therefore,
 for some constants $K$ and $C$ that do not depend on $p$.
 \begin{corollary}
     Let $\psi(x)$ be a function for which $x(\log x)^2 \in o(\psi(x))$ .Then
-    \[\lim_{p \to 0}\Pr\left[g(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\]
+    \[\lim_{p \to 0}\Pr\left[g(\mathcal{S}) \leq \frac{K}{p}\left(\log \frac{1}{p}\right)^3\right] = 1.\]
 \end{corollary}
 \textbf{Proof. } Use Proposition \ref{prop:smgps:frobgenus}. \qed
 \begin{corollary}
     Let $\varphi(x)$ be a function for which $(\log x)^2 \in o(\varphi(x))$ .Then
-    \[\lim_{p \to 0}\Pr\left[e(\mathcal{S}) \leq \varphi\left(\frac{1}{p}\right)\right] = 1.\]
+    \[\lim_{p \to 0}\Pr\left[e(\mathcal{S}) \leq 3K\left(\log \frac{1}{p}\right)^3\right] = 1.\]
 \end{corollary}
 \textbf{Proof. } Since
-\[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1,\]
-and the maximal element of the minimal generating set is at most $2F(\mathcal{S})$, the elements of the minimal generating set are chosen before step $2\psi\left(\frac{1}{p}\right)$ with high probability. Since \[\left|\mathcal{A}\cap\left\{1, \ldots, \left\lfloor2\psi\left(\frac{1}{p}\right)\right \rfloor\right\}\right| \sim \mathrm{Bin}\left(\left\lfloor2\psi\left(\frac{1}{p}\right)\right \rfloor, p\right),\] by the bound on the right tail of the binomial distribution (Proposition \ref{ap:prop:rightbinomtail}), we have that
-\[\lim_{p \to 0}\Pr\left[e(\mathcal{S}) \leq (3p)\psi\left(\frac{1}{p}\right)\right] = 1.\]
-Thus, if $\varphi(x) = \frac{3}{x} \psi\left(x\right)$, then $(\log x)^2 \in \varphi(x)$ and 
-\[\lim_{p \to 0}\Pr\left[e(\mathcal{S}) \leq \varphi\left(\frac{1}{p}\right)\right] = 1.\qed \]
+\[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \frac{K}{p}\left(\log \frac{1}{p}\right)^3\right] = 1,\]
+and the maximal element of the minimal generating set is at most $2F(\mathcal{S})$, the elements of the minimal generating set are chosen before step $\frac{2K}{p}\left(\log \frac{1}{p}\right)^3$ with high probability. Since 
+\[\left|\mathcal{A}\cap\left\{1, \ldots, \left\lfloor\frac{2K}{p}\left(\log \frac{1}{p}\right)^3\right \rfloor\right\}\right| \sim \mathrm{Bin}\left(\left\lfloor\frac{2K}{p}\left(\log \frac{1}{p}\right)^3\right \rfloor, p\right),\]
+ by the bound on the right tail of the binomial distribution (Proposition \ref{ap:prop:rightbinomtail}), we have that
+\[\lim_{p \to 0}\Pr\left[e(\mathcal{S}) \leq K\left(\log \frac{1}{p}\right)^3\right] = 1.\]
